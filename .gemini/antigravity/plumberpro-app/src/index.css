@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    height: 100%;
+  }
+
+  body {
+    @apply antialiased text-slate-900 bg-slate-50 h-full overflow-hidden;
+    /* Prevent rubber-banding on iOS whole app */
+    overscroll-behavior-y: none;
+  }
+
+  #root {
+    height: 100%;
+    overflow-y: auto;
+    /* Allow scrolling inside root */
+    overscroll-behavior-y: auto;
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .h-safe {
+    height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
