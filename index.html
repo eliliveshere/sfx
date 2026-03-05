@@ -220,6 +220,25 @@
       100% { transform: translate(75vw, 10vh) scale(1.1); }
     }
 
+    /* ── Enter Site button ── */
+    .enter-btn {
+      font-size: 0.68rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.6rem 1.4rem;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
+      animation: fadeUp 1.2s ease 1.4s both;
+    }
+    .enter-btn:hover {
+      color: var(--lime-1);
+      border-color: rgba(198,255,0,0.35);
+      background: rgba(198,255,0,0.04);
+    }
+
     /* ── Scan lines (subtle) ── */
     body::after {
       content: '';
@@ -272,6 +291,8 @@
       <span class="contact-label">Get in touch</span>
       <a class="contact-link" href="mailto:team@sfxled.com">team@sfxled.com</a>
     </div>
+
+    <a class="enter-btn" href="login.html">Enter Site →</a>
   </main>
 
 </body>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SFX LED — Reactive DMX Lighting</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { overflow-x: hidden; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--nav-h) + 2rem) clamp(1.5rem, 8vw, 5rem) 4rem;
+      gap: clamp(1.2rem, 3vw, 2rem);
+    }
+
+    .hero-eyebrow {
+      font-size: clamp(0.65rem, 1.4vw, 0.8rem);
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .hero-headline {
+      font-size: clamp(3rem, 9vw, 8rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      max-width: 900px;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    /* ── How it works ── */
+    .hiw {
+      background: rgba(0,0,0,0.6);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .hiw-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hiw-header {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 6vw, 5rem);
+    }
+
+    .hiw-header h2 {
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 0.75rem;
+    }
+
+    .hiw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .hiw-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: clamp(1.2rem, 3vw, 2rem);
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .hiw-card:hover {
+      border-color: rgba(198,255,0,0.2);
+      background: rgba(198,255,0,0.03);
+    }
+
+    .hiw-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      color: var(--lime-1);
+      opacity: 0.7;
+    }
+
+    .hiw-card h3 {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hiw-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .hiw-icon {
+      width: 36px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--lime-1), var(--lime-3));
+    }
+
+    /* ── CTA band ── */
+    .cta-band {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(0,0,0,0.7);
+    }
+
+    .cta-band h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.85);
+    }
+
+    .footer p {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .footer a {
+      color: var(--lime-1);
+      text-decoration: none;
+      opacity: 0.7;
+    }
+    .footer a:hover { opacity: 1; }
+
+    /* Scroll-triggered fade (CSS only fallback — JS enhances) */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <script>
+    // Auth guard
+    if (localStorage.getItem('sfx_auth') !== '1') {
+      window.location.replace('login.html');
+    }
+  </script>
+
+  <div class="page-bg page-bg--solid"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="home.html" class="active">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="mailto:team@sfxled.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-eyebrow anim-fadeup">Wireless Reactive DMX Lighting</p>
+
+    <h1 class="hero-headline anim-fadeup anim-delay-1">
+      <span class="lime-text">Light</span><br>Your&nbsp;Stage
+    </h1>
+
+    <p class="hero-sub anim-fadeup anim-delay-2">
+      Professional-grade reactive DMX kits that sync to your music —
+      no cables, no latency, total control.
+    </p>
+
+    <div class="hero-cta anim-fadeup anim-delay-3">
+      <a class="btn btn-primary" href="products.html">Shop Kits</a>
+      <a class="btn btn-outline" href="mailto:team@sfxled.com">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section hiw">
+    <div class="hiw-inner">
+      <div class="hiw-header reveal">
+        <p class="label label--lime">How it works</p>
+        <h2>Reactive lighting,&nbsp;<span class="lime-text">simplified</span></h2>
+      </div>
+
+      <div class="hiw-grid">
+        <div class="hiw-card reveal">
+          <div class="hiw-icon"></div>
+          <span class="hiw-num">01</span>
+          <h3>Plug In</h3>
+          <p>Connect the wireless transmitter to your DMX controller or soundboard. Zero cable runs required between fixtures.</p>
+        </div>
+
+        <div class="hiw-card reveal">
+          <div class="hiw-icon"></div>
+          <span class="hiw-num">02</span>
+          <h3>Sync to Audio</h3>
+          <p>The onboard audio-reactive engine analyzes your mix in real time — beat, frequency, and transient detection built in.</p>
+        </div>
+
+        <div class="hiw-card reveal">
+          <div class="hiw-icon"></div>
+          <span class="hiw-num">03</span>
+          <h3>Control Everything</h3>
+          <p>Drive any DMX-compatible fixture wirelessly. Expand your rig by adding more receivers to a single transmitter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="section cta-band">
+    <p class="label reveal">Ready to light up</p>
+    <h2 class="reveal">Get Your Kit</h2>
+    <a class="btn btn-primary reveal" href="products.html">View Products</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>SFX LED &nbsp;·&nbsp; <a href="mailto:team@sfxled.com">team@sfxled.com</a></p>
+  </footer>
+
+  <script>
+    // Intersection observer for .reveal elements
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
