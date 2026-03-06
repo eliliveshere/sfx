@@ -569,7 +569,7 @@
         <h2 class="detail-title">What's Included</h2>
       </div>
       <ul class="box-list">
-        <li>WLED DMX RGBW tubes — 100cm aluminum housing</li>
+        <li><span id="wledBoxQty">4</span> × WLED DMX RGBW tubes — 100cm aluminum housing</li>
       </ul>
     </div>
 
@@ -580,16 +580,22 @@
   </footer>
 
   <script>
-    const buyBtn = document.getElementById('buyBtn');
+    const buyBtn    = document.getElementById('buyBtn');
+    const wledBoxQty = document.getElementById('wledBoxQty');
+    const packQty   = { '4pack': 4, '6pack': 6, '8pack': 8, '12pack': 12 };
+
+    function updatePack(radio) {
+      document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
+      radio.closest('.pack-option').classList.add('selected');
+      buyBtn.href = radio.dataset.href || '#';
+      wledBoxQty.textContent = packQty[radio.value];
+    }
+
     document.getElementById('packSelector').addEventListener('change', function(e) {
-      if (e.target.type === 'radio') {
-        document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
-        e.target.closest('.pack-option').classList.add('selected');
-        buyBtn.href = e.target.dataset.href || '#';
-      }
+      if (e.target.type === 'radio') updatePack(e.target);
     });
     const checked = document.querySelector('input[name="pack"]:checked');
-    if (checked) buyBtn.href = checked.dataset.href || '#';
+    if (checked) updatePack(checked);
   </script>
 
 </body>
