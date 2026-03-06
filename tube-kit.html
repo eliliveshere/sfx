@@ -351,7 +351,7 @@
             <li>App control + onboard button control</li>
             <li>USB-C rechargeable, high-capacity battery</li>
             <li>CRI 90 · IP54 dust &amp; splash resistant</li>
-            <li id="caseSpec">Heavy-duty hard carry case included</li>
+            <li id="caseSpec">Heavy-duty hard carry case <strong id="caseWord">included</strong></li>
             <li>2-year warranty</li>
           </ul>
 
@@ -400,14 +400,16 @@
 
   <script>
     const buyBtn   = document.getElementById('buyBtn');
-    const caseSpec = document.getElementById('caseSpec');
+    const caseWord = document.getElementById('caseWord');
     const caseIncluded = ['6pack', '12pack'];
 
     function updatePack(radio) {
       document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
       radio.closest('.pack-option').classList.add('selected');
       buyBtn.href = radio.dataset.href || '#';
-      caseSpec.style.display = caseIncluded.includes(radio.value) ? '' : 'none';
+      const included = caseIncluded.includes(radio.value);
+      caseWord.textContent = included ? 'included' : 'not included';
+      caseWord.style.color  = included ? 'var(--lime-1)' : 'rgba(255,100,100,0.85)';
     }
 
     document.getElementById('packSelector').addEventListener('change', function(e) {
