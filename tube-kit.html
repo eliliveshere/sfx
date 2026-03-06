@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SFX LED — Products</title>
+  <title>SFX LED — Wireless Tube Kit</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body { overflow-x: hidden; }
 
-    /* ── Page layout ── */
     .products-page {
       position: relative;
       z-index: 10;
@@ -16,7 +15,6 @@
       padding: calc(var(--nav-h) + 4rem) clamp(1.5rem, 8vw, 6rem) 6rem;
     }
 
-    /* ── Page header ── */
     .page-header {
       text-align: center;
       max-width: 640px;
@@ -39,7 +37,6 @@
       letter-spacing: 0.03em;
     }
 
-    /* ── Product card ── */
     .product-wrap {
       max-width: 860px;
       margin: 0 auto;
@@ -48,7 +45,6 @@
     .product-card {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.02);
     }
@@ -57,7 +53,6 @@
       .product-card { grid-template-columns: 1fr; }
     }
 
-    /* Image side */
     .product-img {
       aspect-ratio: 4 / 3;
       background: rgba(255,255,255,0.03);
@@ -68,7 +63,6 @@
       justify-content: center;
       gap: 0.75rem;
       position: relative;
-      overflow: hidden;
     }
 
     @media (max-width: 640px) {
@@ -79,7 +73,6 @@
       }
     }
 
-    /* Corner accents */
     .product-img::before,
     .product-img::after {
       content: '';
@@ -111,7 +104,6 @@
       color: var(--text-faint);
     }
 
-    /* Info side */
     .product-info {
       padding: clamp(1.5rem, 4vw, 3rem);
       display: flex;
@@ -119,25 +111,6 @@
       gap: 1.5rem;
       justify-content: center;
     }
-
-    /* Clickable image + title */
-    a.product-img {
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      transition: opacity 0.2s;
-    }
-    a.product-img:hover { opacity: 0.85; }
-
-    a.product-name {
-      text-decoration: none;
-      color: var(--text);
-      transition: color 0.2s;
-    }
-    a.product-name:hover { color: var(--lime-1); }
 
     .product-badge {
       display: inline-flex;
@@ -172,7 +145,6 @@
       line-height: 1.75;
     }
 
-    /* Specs */
     .specs {
       list-style: none;
       display: flex;
@@ -197,22 +169,54 @@
       flex-shrink: 0;
     }
 
-    /* Pricing */
-    .pricing-row {
+    /* ── Pack selector ── */
+    .pack-selector {
       display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
+      gap: 0.75rem;
       padding-top: 0.25rem;
     }
 
-    .price {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
+    .pack-option {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.75rem 0.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
     }
 
-    .price-note {
-      font-size: 0.72rem;
+    .pack-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0; height: 0;
+    }
+
+    .pack-option:has(input:checked),
+    .pack-option.selected {
+      border-color: var(--lime-1);
+      background: rgba(198,255,0,0.05);
+    }
+
+    .pack-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .pack-price {
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+    }
+
+    .pack-note {
+      font-size: 0.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-faint);
@@ -252,79 +256,20 @@
       text-align: center;
     }
 
-    /* ── Second product card (grid layout) ── */
-    .product-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(1rem, 3vw, 2rem);
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 700px) {
-      .product-grid { grid-template-columns: 1fr; }
-    }
-
-    .product-grid .product-card {
-      grid-template-columns: 1fr;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .product-grid .product-img {
-      border-right: none;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      aspect-ratio: 3 / 2;
-    }
-
-    .product-grid .product-info {
-      flex: 1;
-    }
-
-    .badge-sale {
+    .back-link {
       display: inline-flex;
       align-items: center;
-      padding: 0.2rem 0.6rem;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
+      gap: 0.4rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: #000;
-      background: var(--lime-1);
-      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
-    }
-
-    .price-original {
-      font-size: 1rem;
-      font-weight: 400;
       color: var(--text-faint);
-      text-decoration: line-through;
-    }
-
-    .view-btn {
-      width: 100%;
-      background: transparent;
-      color: var(--lime-1);
-      font-family: inherit;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      padding: 0.85rem;
-      border: 1px solid rgba(198,255,0,0.35);
       text-decoration: none;
-      display: block;
-      text-align: center;
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-      transition: background 0.25s, border-color 0.25s, transform 0.2s;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
     }
-    .view-btn:hover {
-      background: rgba(198,255,0,0.06);
-      border-color: var(--lime-1);
-      transform: translateY(-1px);
-    }
+    .back-link:hover { color: var(--lime-1); }
 
-    /* ── Footer ── */
     .footer {
       position: relative;
       z-index: 10;
@@ -341,11 +286,7 @@
       color: var(--text-faint);
     }
 
-    .footer a {
-      color: var(--lime-1);
-      text-decoration: none;
-      opacity: 0.7;
-    }
+    .footer a { color: var(--lime-1); text-decoration: none; opacity: 0.7; }
     .footer a:hover { opacity: 1; }
   </style>
 </head>
@@ -359,7 +300,6 @@
 
   <div class="page-bg page-bg--solid"></div>
 
-  <!-- Nav -->
   <nav class="nav">
     <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
     <ul class="nav-links">
@@ -371,17 +311,18 @@
 
   <main class="products-page">
 
-    <div class="page-header anim-fadeup">
-      <p class="label label--lime">Wireless DMX Kits</p>
-      <h1><span class="lime-text">Shop</span> the Rig</h1>
-      <p>Wireless RGBW tube kits built for DJs, rental companies, and event production. Plug-and-play, fully reactive.</p>
+    <a class="back-link anim-fadeup" href="products.html">← All Products</a>
+
+    <div class="page-header anim-fadeup anim-delay-1">
+      <p class="label label--lime">Wireless Tube Kit</p>
+      <h1><span class="lime-text">SFX</span> Wireless Tube Kit</h1>
+      <p>RGBW wireless LED tubes with 500+ reactive animations and a heavy-duty hard case. No DMX controller required.</p>
     </div>
 
-    <div class="product-grid">
-
-      <!-- Kit 1: Wireless Tube Kit -->
+    <div class="product-wrap">
       <div class="product-card anim-fadeup anim-delay-2">
-        <a class="product-img" href="tube-kit.html">
+
+        <div class="product-img">
           <div class="img-placeholder-icon">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <rect x="3" y="3" width="18" height="18" rx="1"/>
@@ -390,47 +331,53 @@
             </svg>
           </div>
           <span class="img-placeholder-label">Product image</span>
-        </a>
+        </div>
+
         <div class="product-info">
           <span class="product-badge">In Stock</span>
-          <a class="product-name" href="tube-kit.html">SFX Wireless<br>Tube Kit <span style="font-size:0.5em;opacity:0.45;font-weight:400">4 or 6-Pack</span></a>
-          <p class="product-desc">RGBW wireless tubes + hard case. 500+ reactive animations, plug-and-play. No DMX controller required.</p>
-          <div class="pricing-row">
-            <span class="price">From $—</span>
-            <span class="price-note">USD</span>
-          </div>
-          <a class="view-btn" href="tube-kit.html">View Details →</a>
-        </div>
-      </div>
 
-      <!-- Kit 2: WLED DMX Tube -->
-      <div class="product-card anim-fadeup anim-delay-3">
-        <a class="product-img" href="wled-tube.html">
-          <div class="img-placeholder-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="18" height="18" rx="1"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <polyline points="21 15 16 10 5 21"/>
-            </svg>
-          </div>
-          <span class="img-placeholder-label">Product image</span>
-        </a>
-        <div class="product-info">
-          <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">
-            <span class="product-badge">In Stock</span>
-            <span class="badge-sale">Sale</span>
-          </div>
-          <a class="product-name" href="wled-tube.html">WLED DMX<br>RGBW Tube</a>
-          <p class="product-desc">Single 100cm addressable RGBW tube, pre-flashed with WLED firmware. Wi-Fi ready, USB-C powered, aluminum housing.</p>
-          <div class="pricing-row">
-            <span class="price">$149</span>
-            <span class="price-original">$199</span>
-            <span class="price-note">USD</span>
-          </div>
-          <a class="view-btn" href="wled-tube.html">View Details →</a>
-        </div>
-      </div>
+          <h2 class="product-name">SFX Wireless<br>Tube Kit</h2>
 
+          <p class="product-desc">
+            RGBW wireless LED tubes plus a heavy-duty hard case. 500+ fully
+            synchronized reactive animations, plug-and-play — no DMX controller
+            required. Built for touring DJs, rental companies, and event production.
+          </p>
+
+          <ul class="specs">
+            <li>4ft (120cm) RGBW wireless LED tubes</li>
+            <li>500+ sound-reactive animations, beat-sync</li>
+            <li>App control + onboard button control</li>
+            <li>USB-C rechargeable, high-capacity battery</li>
+            <li>CRI 90 · IP54 dust &amp; splash resistant</li>
+            <li>Heavy-duty hard carry case included</li>
+            <li>2-year warranty</li>
+          </ul>
+
+          <!-- Pack selector -->
+          <div class="pack-selector" id="packSelector">
+            <label class="pack-option selected">
+              <input type="radio" name="pack" value="4pack" data-href="#" checked />
+              <span class="pack-label">4-Pack</span>
+              <!-- Replace $— with 4-pack price -->
+              <span class="pack-price">$—</span>
+              <span class="pack-note">USD</span>
+            </label>
+            <label class="pack-option">
+              <input type="radio" name="pack" value="6pack" data-href="#" />
+              <span class="pack-label">6-Pack</span>
+              <span class="pack-price">$499</span>
+              <span class="pack-note">USD</span>
+            </label>
+          </div>
+
+          <!-- href updated dynamically by pack selection -->
+          <a class="buy-btn" href="#" id="buyBtn">Buy Now — Stripe</a>
+
+          <p class="secure-note">Secure checkout via Stripe</p>
+        </div>
+
+      </div>
     </div>
 
   </main>
@@ -438,6 +385,21 @@
   <footer class="footer">
     <p>Questions? <a href="mailto:team@sfxled.com">team@sfxled.com</a></p>
   </footer>
+
+  <script>
+    // Update buy link when pack changes
+    const buyBtn = document.getElementById('buyBtn');
+    document.getElementById('packSelector').addEventListener('change', function(e) {
+      if (e.target.type === 'radio') {
+        document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
+        e.target.closest('.pack-option').classList.add('selected');
+        buyBtn.href = e.target.dataset.href || '#';
+      }
+    });
+    // Set initial href from checked radio
+    const checked = document.querySelector('input[name="pack"]:checked');
+    if (checked) buyBtn.href = checked.dataset.href || '#';
+  </script>
 
 </body>
 </html>
