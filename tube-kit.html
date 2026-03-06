@@ -351,7 +351,7 @@
             <li>App control + onboard button control</li>
             <li>USB-C rechargeable, high-capacity battery</li>
             <li>CRI 90 · IP54 dust &amp; splash resistant</li>
-            <li id="caseSpec">Heavy-duty hard carry case <strong id="caseWord">included</strong></li>
+            <li id="caseSpec"><span>Heavy-duty hard carry case <strong id="caseWord">included</strong></span></li>
             <li>2-year warranty</li>
           </ul>
 
@@ -409,7 +409,7 @@
       buyBtn.href = radio.dataset.href || '#';
       const included = caseIncluded.includes(radio.value);
       caseWord.textContent = included ? 'included' : 'not included';
-      caseWord.style.color  = included ? 'var(--lime-1)' : 'rgba(255,100,100,0.85)';
+      caseWord.style.color  = 'var(--lime-1)';
     }
 
     document.getElementById('packSelector').addEventListener('change', function(e) {
