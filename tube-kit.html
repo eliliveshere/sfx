@@ -340,9 +340,9 @@
           <h2 class="product-name">SFX Wireless<br>Tube Kit</h2>
 
           <p class="product-desc">
-            RGBW wireless LED tubes plus a heavy-duty hard case. 500+ fully
-            synchronized reactive animations, plug-and-play — no DMX controller
-            required. Built for touring DJs, rental companies, and event production.
+            RGBW wireless LED tubes with 500+ fully synchronized reactive animations.
+            Plug-and-play — no DMX controller required. Built for touring DJs,
+            rental companies, and event production. 6 and 12-pack include a heavy-duty hard case.
           </p>
 
           <ul class="specs">
@@ -351,7 +351,7 @@
             <li>App control + onboard button control</li>
             <li>USB-C rechargeable, high-capacity battery</li>
             <li>CRI 90 · IP54 dust &amp; splash resistant</li>
-            <li>Heavy-duty hard carry case included</li>
+            <li id="caseSpec">Heavy-duty hard carry case included</li>
             <li>2-year warranty</li>
           </ul>
 
@@ -399,18 +399,23 @@
   </footer>
 
   <script>
-    // Update buy link when pack changes
-    const buyBtn = document.getElementById('buyBtn');
+    const buyBtn   = document.getElementById('buyBtn');
+    const caseSpec = document.getElementById('caseSpec');
+    const caseIncluded = ['6pack', '12pack'];
+
+    function updatePack(radio) {
+      document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
+      radio.closest('.pack-option').classList.add('selected');
+      buyBtn.href = radio.dataset.href || '#';
+      caseSpec.style.display = caseIncluded.includes(radio.value) ? '' : 'none';
+    }
+
     document.getElementById('packSelector').addEventListener('change', function(e) {
-      if (e.target.type === 'radio') {
-        document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
-        e.target.closest('.pack-option').classList.add('selected');
-        buyBtn.href = e.target.dataset.href || '#';
-      }
+      if (e.target.type === 'radio') updatePack(e.target);
     });
-    // Set initial href from checked radio
+
     const checked = document.querySelector('input[name="pack"]:checked');
-    if (checked) buyBtn.href = checked.dataset.href || '#';
+    if (checked) updatePack(checked);
   </script>
 
 </body>
