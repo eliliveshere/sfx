@@ -522,11 +522,11 @@
         <h2 class="detail-title">What's Included</h2>
       </div>
       <ul class="box-list">
-        <li>SFX RGBW wireless LED tubes — 4ft / 120cm (1 per pack slot)</li>
-        <li>Tripod stand — 1 per tube</li>
-        <li>USB-C charging cable — 1 per tube</li>
-        <li>Wireless remote — 1 per tube</li>
-        <li>Hard carry case — ×1 (6-pack) · ×2 (12-pack)</li>
+        <li><span class="box-qty">6</span> × SFX RGBW wireless LED tubes — 4ft / 120cm</li>
+        <li><span class="box-qty">6</span> × Tripod stand</li>
+        <li><span class="box-qty">6</span> × USB-C charging cable</li>
+        <li><span class="box-qty">6</span> × Wireless remote</li>
+        <li id="boxCaseItem"><span id="boxCaseText">Hard carry case ×1</span></li>
         <li>Quick-start guide</li>
       </ul>
     </div>
@@ -538,17 +538,28 @@
   </footer>
 
   <script>
-    const buyBtn   = document.getElementById('buyBtn');
-    const caseWord = document.getElementById('caseWord');
-    const caseIncluded = ['6pack', '12pack'];
+    const buyBtn       = document.getElementById('buyBtn');
+    const caseWord     = document.getElementById('caseWord');
+    const boxCaseItem  = document.getElementById('boxCaseItem');
+    const boxCaseText  = document.getElementById('boxCaseText');
+    const packQty      = { '4pack': 4, '6pack': 6, '8pack': 8, '12pack': 12 };
+    const caseCounts   = { '4pack': 0, '6pack': 1, '8pack': 0, '12pack': 2 };
 
     function updatePack(radio) {
       document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
       radio.closest('.pack-option').classList.add('selected');
       buyBtn.href = radio.dataset.href || '#';
-      const included = caseIncluded.includes(radio.value);
+
+      const included = caseCounts[radio.value] > 0;
       caseWord.textContent = included ? 'included' : 'not included';
       caseWord.style.color  = 'var(--lime-1)';
+
+      const qty = packQty[radio.value];
+      document.querySelectorAll('.box-qty').forEach(el => el.textContent = qty);
+
+      const cases = caseCounts[radio.value];
+      boxCaseItem.style.display = cases === 0 ? 'none' : '';
+      if (cases > 0) boxCaseText.textContent = `Hard carry case ×${cases}`;
     }
 
     document.getElementById('packSelector').addEventListener('change', function(e) {
