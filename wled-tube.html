@@ -212,6 +212,59 @@
       color: var(--text-faint);
     }
 
+    /* Pack selector */
+    .pack-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      padding-top: 0.25rem;
+    }
+
+    .pack-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.75rem 0.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+    }
+
+    .pack-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0; height: 0;
+    }
+
+    .pack-option:has(input:checked),
+    .pack-option.selected {
+      border-color: var(--lime-1);
+      background: rgba(198,255,0,0.05);
+    }
+
+    .pack-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .pack-price {
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+    }
+
+    .pack-note {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
     .buy-btn {
       width: 100%;
       background: linear-gradient(110deg, var(--lime-1), var(--lime-2), var(--lime-3));
@@ -351,14 +404,35 @@
             <li>Limited beta run — no returns</li>
           </ul>
 
-          <div class="pricing-row">
-            <span class="price">$149</span>
-            <span class="price-original">$199</span>
-            <span class="price-note">USD</span>
+          <!-- Pack selector — replace data-href with Stripe links, $— with prices -->
+          <div class="pack-selector" id="packSelector">
+            <label class="pack-option selected">
+              <input type="radio" name="pack" value="4pack" data-href="#" checked />
+              <span class="pack-label">4-Pack</span>
+              <span class="pack-price">$—</span>
+              <span class="pack-note">USD</span>
+            </label>
+            <label class="pack-option">
+              <input type="radio" name="pack" value="6pack" data-href="#" />
+              <span class="pack-label">6-Pack</span>
+              <span class="pack-price">$—</span>
+              <span class="pack-note">USD</span>
+            </label>
+            <label class="pack-option">
+              <input type="radio" name="pack" value="8pack" data-href="#" />
+              <span class="pack-label">8-Pack</span>
+              <span class="pack-price">$—</span>
+              <span class="pack-note">USD</span>
+            </label>
+            <label class="pack-option">
+              <input type="radio" name="pack" value="12pack" data-href="#" />
+              <span class="pack-label">12-Pack</span>
+              <span class="pack-price">$—</span>
+              <span class="pack-note">USD</span>
+            </label>
           </div>
 
-          <!-- Replace href with your Stripe product link -->
-          <a class="buy-btn" href="#">Buy Now — Stripe</a>
+          <a class="buy-btn" href="#" id="buyBtn">Buy Now — Stripe</a>
 
           <p class="secure-note">Secure checkout via Stripe</p>
         </div>
@@ -371,6 +445,19 @@
   <footer class="footer">
     <p>Questions? <a href="mailto:team@sfxled.com">team@sfxled.com</a></p>
   </footer>
+
+  <script>
+    const buyBtn = document.getElementById('buyBtn');
+    document.getElementById('packSelector').addEventListener('change', function(e) {
+      if (e.target.type === 'radio') {
+        document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
+        e.target.closest('.pack-option').classList.add('selected');
+        buyBtn.href = e.target.dataset.href || '#';
+      }
+    });
+    const checked = document.querySelector('input[name="pack"]:checked');
+    if (checked) buyBtn.href = checked.dataset.href || '#';
+  </script>
 
 </body>
 </html>

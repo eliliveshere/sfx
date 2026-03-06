@@ -171,8 +171,9 @@
 
     /* ── Pack selector ── */
     .pack-selector {
-      display: flex;
-      gap: 0.75rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
       padding-top: 0.25rem;
     }
 
@@ -354,19 +355,30 @@
             <li>2-year warranty</li>
           </ul>
 
-          <!-- Pack selector -->
+          <!-- Pack selector — replace data-href with Stripe links, $— with prices -->
           <div class="pack-selector" id="packSelector">
             <label class="pack-option selected">
               <input type="radio" name="pack" value="4pack" data-href="#" checked />
               <span class="pack-label">4-Pack</span>
-              <!-- Replace $— with 4-pack price -->
               <span class="pack-price">$—</span>
               <span class="pack-note">USD</span>
             </label>
             <label class="pack-option">
               <input type="radio" name="pack" value="6pack" data-href="#" />
               <span class="pack-label">6-Pack</span>
-              <span class="pack-price">$499</span>
+              <span class="pack-price">$—</span>
+              <span class="pack-note">USD</span>
+            </label>
+            <label class="pack-option">
+              <input type="radio" name="pack" value="8pack" data-href="#" />
+              <span class="pack-label">8-Pack</span>
+              <span class="pack-price">$—</span>
+              <span class="pack-note">USD</span>
+            </label>
+            <label class="pack-option">
+              <input type="radio" name="pack" value="12pack" data-href="#" />
+              <span class="pack-label">12-Pack</span>
+              <span class="pack-price">$—</span>
               <span class="pack-note">USD</span>
             </label>
           </div>
