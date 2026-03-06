@@ -335,6 +335,89 @@
       opacity: 0.7;
     }
     .footer a:hover { opacity: 1; }
+
+    /* ── Detail sections ── */
+    .detail-section {
+      max-width: 860px;
+      margin: 4rem auto 0;
+    }
+
+    .detail-header { margin-bottom: 2rem; }
+
+    .detail-title {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 700px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 420px) { .features-grid { grid-template-columns: 1fr; } }
+
+    .feature-card {
+      padding: clamp(1.2rem, 3vw, 1.75rem);
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-line {
+      width: 24px; height: 2px;
+      background: linear-gradient(90deg, var(--lime-1), var(--lime-3));
+    }
+
+    .feature-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .feature-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .box-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    @media (max-width: 560px) { .box-list { grid-template-columns: 1fr; } }
+
+    .box-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.9rem clamp(1rem, 3vw, 1.75rem);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-right: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .box-list li::before {
+      content: '';
+      width: 14px; height: 1px;
+      background: var(--lime-2);
+      flex-shrink: 0;
+      margin-top: 0.6em;
+    }
   </style>
 </head>
 <body>
@@ -437,6 +520,60 @@
         </div>
 
       </div>
+    </div>
+
+    <!-- Features -->
+    <div class="detail-section">
+      <div class="detail-header">
+        <p class="label label--lime">Features</p>
+        <h2 class="detail-title">What It Does</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">WLED Pre-Flashed</h3>
+          <p class="feature-desc">Ships with the latest WLED firmware installed. Connect to Wi-Fi and start building effects immediately.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">60 Addressable Pixels</h3>
+          <p class="feature-desc">Full per-pixel RGBW control across 100cm of diffused aluminum housing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Wi-Fi Control</h3>
+          <p class="feature-desc">Browser UI, WLED app, Home Assistant, xLights, and DMX — all supported out of the box.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Universal Power</h3>
+          <p class="feature-desc">5V USB-C or JST connector. Run from any USB source, powerbank, or LED driver.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">1/4-20 Mount</h3>
+          <p class="feature-desc">Standard camera thread for mic stands, light stands, truss clamps, or floor mounting.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Full Ecosystem</h3>
+          <p class="feature-desc">Compatible with WLED effects, segments, palettes, sync, E1.31, DDP, and Hyperion.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- What's in the box -->
+    <div class="detail-section" style="margin-bottom: 2rem;">
+      <div class="detail-header">
+        <p class="label label--lime">In the Box</p>
+        <h2 class="detail-title">What's Included</h2>
+      </div>
+      <ul class="box-list">
+        <li>WLED DMX RGBW tube(s) — 100cm aluminum housing</li>
+        <li>USB-C power cable(s)</li>
+        <li>Quick-start setup card</li>
+        <li>Limited beta run — no returns</li>
+      </ul>
     </div>
 
   </main>

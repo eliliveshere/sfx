@@ -289,6 +289,89 @@
 
     .footer a { color: var(--lime-1); text-decoration: none; opacity: 0.7; }
     .footer a:hover { opacity: 1; }
+
+    /* ── Detail sections ── */
+    .detail-section {
+      max-width: 860px;
+      margin: 4rem auto 0;
+    }
+
+    .detail-header { margin-bottom: 2rem; }
+
+    .detail-title {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 700px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 420px) { .features-grid { grid-template-columns: 1fr; } }
+
+    .feature-card {
+      padding: clamp(1.2rem, 3vw, 1.75rem);
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-line {
+      width: 24px; height: 2px;
+      background: linear-gradient(90deg, var(--lime-1), var(--lime-3));
+    }
+
+    .feature-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .feature-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .box-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    @media (max-width: 560px) { .box-list { grid-template-columns: 1fr; } }
+
+    .box-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.9rem clamp(1rem, 3vw, 1.75rem);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-right: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .box-list li::before {
+      content: '';
+      width: 14px; height: 1px;
+      background: var(--lime-2);
+      flex-shrink: 0;
+      margin-top: 0.6em;
+    }
   </style>
 </head>
 <body>
@@ -390,6 +473,62 @@
         </div>
 
       </div>
+    </div>
+
+    <!-- Features -->
+    <div class="detail-section">
+      <div class="detail-header">
+        <p class="label label--lime">Features</p>
+        <h2 class="detail-title">Built to Perform</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Sound Reactive</h3>
+          <p class="feature-desc">500+ built-in animations sync to the beat in real time. No programming, no soundboard tap.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Fully Wireless</h3>
+          <p class="feature-desc">RF link syncs every tube simultaneously. No cables between fixtures, no signal loss.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">App + Button Control</h3>
+          <p class="feature-desc">Swap animations from your phone or cycle presets with the onboard button mid-set.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">All-Night Battery</h3>
+          <p class="feature-desc">High-capacity USB-C rechargeable cell lasts a full night of use on a single charge.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Built for the Road</h3>
+          <p class="feature-desc">IP54 rated, CRI 90+. Designed for truss, floor, and stand mounts — built to tour.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Zero Setup</h3>
+          <p class="feature-desc">No DMX controller, no interface, no programming. Power on and start performing.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- What's in the box -->
+    <div class="detail-section" style="margin-bottom: 2rem;">
+      <div class="detail-header">
+        <p class="label label--lime">In the Box</p>
+        <h2 class="detail-title">What's Included</h2>
+      </div>
+      <ul class="box-list">
+        <li>SFX RGBW wireless LED tubes — 4ft / 120cm</li>
+        <li>Wireless RF transmitter</li>
+        <li>USB-C charging cables</li>
+        <li>Heavy-duty hard carry case (6 &amp; 12-pack)</li>
+        <li>Quick-start guide</li>
+        <li>2-year warranty card</li>
+      </ul>
     </div>
 
   </main>
