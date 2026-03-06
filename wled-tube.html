@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SFX LED — WLED DMX RGBW Tube</title>
+  <title>WLED DMX RGBW Tube Kit — SFX LED</title>
+  <meta name="description" content="WLED DMX RGBW Tube Kit — 100cm addressable tubes pre-flashed with WLED firmware. Wi-Fi ready, USB-C powered, available in 4, 6, 8, or 12-pack." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="style.css" />
   <style>
     body { overflow-x: hidden; }
@@ -437,6 +439,9 @@
       <li><a href="products.html" class="active">Products</a></li>
       <li><a href="mailto:team@sfxled.com">Contact</a></li>
     </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <main class="products-page">
@@ -576,6 +581,12 @@
   </main>
 
   <footer class="footer">
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping.html">Shipping &amp; Returns</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
     <p>Questions? <a href="mailto:team@sfxled.com">team@sfxled.com</a></p>
   </footer>
 
@@ -596,6 +607,23 @@
     });
     const checked = document.querySelector('input[name="pack"]:checked');
     if (checked) updatePack(checked);
+
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+        links.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            burger.classList.remove('open');
+            links.classList.remove('open');
+          });
+        });
+      }
+    })();
   </script>
 
 </body>

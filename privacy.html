@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — SFX LED</title>
+  <meta name="description" content="SFX LED privacy policy — how we collect, use, and protect your information." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <script>
+    if (localStorage.getItem('sfx_auth') !== '1') {
+      window.location.replace('login.html');
+    }
+  </script>
+
+  <div class="page-bg page-bg--solid"></div>
+
+  <nav class="nav">
+    <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="mailto:team@sfxled.com">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="content-page">
+
+    <div class="page-header anim-fadeup" style="text-align:center;max-width:640px;margin:0 auto clamp(3rem,7vw,5rem);">
+      <p class="label label--lime">Legal</p>
+      <h1 style="font-size:clamp(2rem,6vw,4rem);font-weight:900;letter-spacing:-0.01em;text-transform:uppercase;line-height:1;margin:0.6rem 0 1rem;">
+        <span class="lime-text">Privacy</span> Policy
+      </h1>
+      <p style="font-size:0.82rem;color:var(--text-faint);letter-spacing:0.03em;">Last updated: March 2026</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Overview</h2>
+      <p>SFX LED ("we", "us", "our") operates sfxled.com. This page explains what information we collect when you use our site or purchase our products, and how we use it.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Information We Collect</h2>
+      <p>When you place an order, we collect the information necessary to process and fulfill it:</p>
+      <ul>
+        <li>Name and email address</li>
+        <li>Shipping address</li>
+        <li>Payment information (processed securely by Stripe — we do not store card details)</li>
+        <li>Order history</li>
+      </ul>
+      <p>When you visit our site, standard server logs may record your IP address, browser type, referring page, and pages visited. We do not sell or share this data.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>How We Use Your Information</h2>
+      <ul>
+        <li>To process and fulfill your order</li>
+        <li>To send order confirmation and shipping updates</li>
+        <li>To respond to customer support requests</li>
+        <li>To process warranty claims and returns</li>
+      </ul>
+      <p>We do not use your information for advertising, and we do not sell your data to third parties.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Payment Processing</h2>
+      <p>All payments are handled by Stripe. We never see or store your full card number. Stripe's privacy policy applies to the handling of your payment data. You can read it at stripe.com/privacy.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Cookies</h2>
+      <p>This site uses a single session value stored in localStorage to manage access to the preview site. We do not use tracking cookies, advertising pixels, or third-party analytics.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Data Retention</h2>
+      <p>We retain order records as required for accounting and warranty purposes. You can request deletion of your personal data at any time by emailing us — we will remove your information from our records within 30 days, subject to any legal retention requirements.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Contact</h2>
+      <p>Questions about your data or this policy? Email us.</p>
+      <p><a href="mailto:team@sfxled.com" style="color:var(--lime-1);text-decoration:none;font-weight:600;">team@sfxled.com</a></p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping.html">Shipping &amp; Returns</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <p>Questions? <a href="mailto:team@sfxled.com">team@sfxled.com</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+        links.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            burger.classList.remove('open');
+            links.classList.remove('open');
+          });
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>

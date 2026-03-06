@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — SFX LED</title>
+  <meta name="description" content="Frequently asked questions about SFX LED wireless tube kits — setup, battery, wireless range, app compatibility, and more." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <script>
+    if (localStorage.getItem('sfx_auth') !== '1') {
+      window.location.replace('login.html');
+    }
+  </script>
+
+  <div class="page-bg page-bg--solid"></div>
+
+  <nav class="nav">
+    <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="mailto:team@sfxled.com">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="content-page">
+
+    <div class="page-header anim-fadeup" style="text-align:center;max-width:640px;margin:0 auto clamp(3rem,7vw,5rem);">
+      <p class="label label--lime">Support</p>
+      <h1 style="font-size:clamp(2rem,6vw,4rem);font-weight:900;letter-spacing:-0.01em;text-transform:uppercase;line-height:1;margin:0.6rem 0 1rem;">
+        <span class="lime-text">FAQ</span>
+      </h1>
+      <p style="font-size:0.92rem;color:var(--text-muted);line-height:1.7;letter-spacing:0.03em;">
+        Can't find your answer? Email us at <a href="mailto:team@sfxled.com" style="color:var(--lime-1);text-decoration:none;">team@sfxled.com</a>
+      </p>
+    </div>
+
+    <div class="content-section">
+      <h2>Getting Started</h2>
+      <div class="faq-item">
+        <p class="faq-q">Do I need a DMX controller?</p>
+        <p class="faq-a">No — the kit is fully plug-and-play. The wireless RF transmitter syncs all tubes without any external controller, software, or programming. Power on and perform.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How do I set up the kit?</p>
+        <p class="faq-a">Charge all tubes via USB-C. Power on the transmitter, then power on the tubes — they'll sync automatically within seconds. Select your animation via the companion app or cycle presets with the onboard button on each tube.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How many tubes can sync to one transmitter?</p>
+        <p class="faq-a">Up to 24 tubes per transmitter, all fully synchronized.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>Battery</h2>
+      <div class="faq-item">
+        <p class="faq-q">How long does the battery last?</p>
+        <p class="faq-a">Up to 8 hours of continuous use on a full charge, depending on brightness level and animation mode. High-intensity effects at full brightness will reduce runtime.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How long does it take to charge?</p>
+        <p class="faq-a">2–3 hours from empty via USB-C. All tubes can charge simultaneously using standard USB-C chargers or a USB hub.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Can I use the tubes while they're charging?</p>
+        <p class="faq-a">Yes — the tubes can operate while connected to a USB-C power source, making them suitable for permanent installations.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>Wireless</h2>
+      <div class="faq-item">
+        <p class="faq-q">What is the wireless range?</p>
+        <p class="faq-a">Up to 100m (330ft) line-of-sight. In dense venues with obstructions, expect 30–60m of reliable range.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Will the tubes stay in sync?</p>
+        <p class="faq-a">Yes — the RF link maintains tight synchronization across all tubes simultaneously. There's no noticeable latency between fixtures.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Does it interfere with Wi-Fi or other wireless gear?</p>
+        <p class="faq-a">The tubes use a dedicated RF frequency separate from Wi-Fi and Bluetooth, so interference is minimal in most environments.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>Compatibility</h2>
+      <div class="faq-item">
+        <p class="faq-q">What app do I need?</p>
+        <p class="faq-a">The SFX LED companion app, available on iOS and Android. It lets you browse all 500+ animations, adjust brightness, set timers, and group multiple transmitters.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Can I use these with a DMX controller?</p>
+        <p class="faq-a">Yes — the transmitter accepts standard DMX512 input if you want manual fixture control from a lighting desk.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What about the WLED tubes?</p>
+        <p class="faq-a">The WLED DMX tubes use WLED firmware and are compatible with the full WLED/ESP32 ecosystem — including E1.31, DDP, Hyperion, Home Assistant, xLights, and browser-based control.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>Durability</h2>
+      <div class="faq-item">
+        <p class="faq-q">Are the tubes water resistant?</p>
+        <p class="faq-a">Yes — IP54 rated for dust and splash resistance. Suitable for outdoor use in light rain. Not rated for full submersion or high-pressure water jets.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Can I mount them on a truss or stand?</p>
+        <p class="faq-a">Yes — each tube includes a tripod stand. The 1/4-20 thread mount is also compatible with standard light stands and truss clamps.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>Warranty & Support</h2>
+      <div class="faq-item">
+        <p class="faq-q">What is the warranty?</p>
+        <p class="faq-a">SFX RGBW Wireless Tube Kits come with a 2-year warranty covering manufacturing defects. WLED DMX Tubes are a limited beta run — sold as-is with no returns.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How do I get support?</p>
+        <p class="faq-a">Email <a href="mailto:team@sfxled.com" style="color:var(--lime-1);text-decoration:none;">team@sfxled.com</a> and we'll get back to you within one business day.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping.html">Shipping &amp; Returns</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <p>Questions? <a href="mailto:team@sfxled.com">team@sfxled.com</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+        links.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            burger.classList.remove('open');
+            links.classList.remove('open');
+          });
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>

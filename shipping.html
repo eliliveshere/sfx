@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipping & Returns — SFX LED</title>
+  <meta name="description" content="SFX LED shipping times, rates, and return policy for wireless RGBW tube kits and WLED DMX tubes." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <script>
+    if (localStorage.getItem('sfx_auth') !== '1') {
+      window.location.replace('login.html');
+    }
+  </script>
+
+  <div class="page-bg page-bg--solid"></div>
+
+  <nav class="nav">
+    <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="mailto:team@sfxled.com">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="content-page">
+
+    <div class="page-header anim-fadeup" style="text-align:center;max-width:640px;margin:0 auto clamp(3rem,7vw,5rem);">
+      <p class="label label--lime">Policies</p>
+      <h1 style="font-size:clamp(2rem,6vw,4rem);font-weight:900;letter-spacing:-0.01em;text-transform:uppercase;line-height:1;margin:0.6rem 0 1rem;">
+        Shipping <span class="lime-text">&amp; Returns</span>
+      </h1>
+    </div>
+
+    <div class="content-section">
+      <h2>Processing Time</h2>
+      <p>Orders are processed within 1–3 business days. You'll receive a tracking number by email as soon as your order ships.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Shipping Rates & Estimates</h2>
+      <p>We ship from the United States. Shipping times are estimates and do not include processing time.</p>
+      <ul>
+        <li>Domestic (US) Standard — 3–7 business days</li>
+        <li>Domestic (US) Expedited — 1–3 business days</li>
+        <li>Canada — 5–10 business days</li>
+        <li>International — 7–21 business days depending on destination and customs</li>
+      </ul>
+      <p>Shipping costs are calculated at checkout based on destination and order weight. Free standard shipping is available on US orders over $500.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>International Orders</h2>
+      <p>International customers are responsible for any import duties, taxes, or customs fees charged by their country. These charges are not included in the product price or shipping cost and are collected by the destination country's customs authority.</p>
+      <p>Delivery times for international orders may be extended due to customs processing.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Returns</h2>
+      <p>We want you to be happy with your gear. If something isn't right, here's how it works:</p>
+      <ul>
+        <li>SFX RGBW Wireless Tube Kits — 30-day return window from delivery date</li>
+        <li>Items must be in original condition, unmodified, with all included accessories</li>
+        <li>Return shipping costs are the customer's responsibility unless the item arrived damaged or defective</li>
+        <li>WLED DMX Tubes — sold as a limited beta run, as-is with no returns</li>
+      </ul>
+      <p>To initiate a return, email <a href="mailto:team@sfxled.com" style="color:var(--lime-1);text-decoration:none;font-weight:600;">team@sfxled.com</a> with your order number and a description of the issue.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Damaged or Defective Items</h2>
+      <p>If your order arrives damaged or with a manufacturing defect, contact us within 7 days of delivery. Include photos of the damage and your order number. We'll send a replacement or issue a full refund at no cost to you.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Warranty</h2>
+      <p>SFX RGBW Wireless Tube Kits come with a 2-year warranty covering manufacturing defects under normal use. The warranty does not cover physical damage, water damage beyond IP54 rated conditions, or modifications to the hardware or firmware.</p>
+      <p>To submit a warranty claim, email <a href="mailto:team@sfxled.com" style="color:var(--lime-1);text-decoration:none;font-weight:600;">team@sfxled.com</a>.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Questions</h2>
+      <p>Not sure about something? Reach out before you order.</p>
+      <p><a href="mailto:team@sfxled.com" style="color:var(--lime-1);text-decoration:none;font-weight:600;">team@sfxled.com</a></p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping.html">Shipping &amp; Returns</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <p>Questions? <a href="mailto:team@sfxled.com">team@sfxled.com</a></p>
+  </footer>
+
+  <script>
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+        links.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            burger.classList.remove('open');
+            links.classList.remove('open');
+          });
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>

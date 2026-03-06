@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SFX LED — Products</title>
+  <meta name="description" content="Shop SFX LED wireless RGBW tube kits and WLED DMX tubes — professional reactive lighting for DJs, events, and rental companies." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="style.css" />
   <style>
     body { overflow-x: hidden; }
@@ -367,6 +369,9 @@
       <li><a href="products.html" class="active">Products</a></li>
       <li><a href="mailto:team@sfxled.com">Contact</a></li>
     </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <main class="products-page">
@@ -396,7 +401,7 @@
           <a class="product-name" href="tube-kit.html">SFX RGBW<br>Tube <span style="font-size:0.5em;opacity:0.45;font-weight:400">4, 6, 8 or 12-Pack</span></a>
           <p class="product-desc">RGBW wireless tubes. 500+ reactive animations, plug-and-play. No DMX controller required.</p>
           <div class="pricing-row">
-            <span class="price">$75</span>
+            <span class="price">From $299</span>
             <span class="price-note">USD</span>
           </div>
           <a class="view-btn" href="tube-kit.html">View Details →</a>
@@ -416,15 +421,11 @@
           <span class="img-placeholder-label">Product image</span>
         </a>
         <div class="product-info">
-          <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">
-            <span class="product-badge">In Stock</span>
-            <span class="badge-sale">Sale</span>
-          </div>
+          <span class="product-badge">In Stock</span>
           <a class="product-name" href="wled-tube.html">WLED DMX<br>RGBW Tube</a>
-          <p class="product-desc">Single 100cm addressable RGBW tube, pre-flashed with WLED firmware. Wi-Fi ready, USB-C powered, aluminum housing.</p>
+          <p class="product-desc">100cm addressable RGBW tubes pre-flashed with WLED firmware. Wi-Fi ready, USB-C powered, aluminum housing.</p>
           <div class="pricing-row">
-            <span class="price">$149</span>
-            <span class="price-original">$199</span>
+            <span class="price">From $599</span>
             <span class="price-note">USD</span>
           </div>
           <a class="view-btn" href="wled-tube.html">View Details →</a>
@@ -436,8 +437,33 @@
   </main>
 
   <footer class="footer">
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping.html">Shipping &amp; Returns</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
     <p>Questions? <a href="mailto:team@sfxled.com">team@sfxled.com</a></p>
   </footer>
+
+  <script>
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+        links.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            burger.classList.remove('open');
+            links.classList.remove('open');
+          });
+        });
+      }
+    })();
+  </script>
 
 </body>
 </html>
