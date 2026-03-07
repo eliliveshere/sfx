@@ -3,297 +3,296 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SFX LED — Coming Soon</title>
+  <title>SFX LED — Reactive DMX Lighting</title>
+  <meta name="description" content="SFX LED builds professional wireless RGBW reactive lighting for DJs, touring artists, rental companies, and event production." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    body { overflow-x: hidden; }
 
-    :root {
-      --lime-1: #c6ff00;
-      --lime-2: #76ff03;
-      --lime-3: #00e676;
-      --lime-4: #69ff47;
-      --lime-5: #b2ff59;
-    }
-
-    html, body {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* ── Background ── */
-    .bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background-image: url('bg.jpg');
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-      /* subtle slow drift */
-      animation: bgDrift 30s ease-in-out infinite alternate;
-    }
-
-    @keyframes bgDrift {
-      from { transform: scale(1.04) translate(0, 0); }
-      to   { transform: scale(1.08) translate(-1%, 1%); }
-    }
-
-    /* multi-stop dark gradient overlay */
-    .bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 120% 80% at 50% 100%, rgba(0,0,0,0.15) 0%, transparent 60%),
-        linear-gradient(
-          to top,
-          rgba(0,0,0,0.97) 0%,
-          rgba(0,0,0,0.80) 25%,
-          rgba(0,0,0,0.45) 55%,
-          rgba(0,0,0,0.20) 75%,
-          rgba(0,0,0,0.08) 100%
-        );
-    }
-
-    /* ── Content ── */
-    .content {
+    /* ── Hero ── */
+    .hero {
       position: relative;
       z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--nav-h) + 2rem) clamp(1.5rem, 8vw, 5rem) 4rem;
+      gap: clamp(1.2rem, 3vw, 2rem);
+    }
+
+    .hero-eyebrow {
+      font-size: clamp(0.65rem, 1.4vw, 0.8rem);
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .hero-headline {
+      font-size: clamp(3rem, 9vw, 8rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      max-width: 900px;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    /* ── How it works ── */
+    .hiw {
+      background: rgba(0,0,0,0.6);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .hiw-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hiw-header {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 6vw, 5rem);
+    }
+
+    .hiw-header h2 {
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 0.75rem;
+    }
+
+    .hiw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .hiw-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: clamp(1.2rem, 3vw, 2rem);
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .hiw-card:hover {
+      border-color: rgba(198,255,0,0.2);
+      background: rgba(198,255,0,0.03);
+    }
+
+    .hiw-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      color: var(--lime-1);
+      opacity: 0.7;
+    }
+
+    .hiw-card h3 {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hiw-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .hiw-icon {
+      width: 36px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--lime-1), var(--lime-3));
+    }
+
+    /* ── CTA band ── */
+    .cta-band {
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: clamp(1.2rem, 3vw, 2rem);
+      gap: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(0,0,0,0.7);
+    }
+
+    .cta-band h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
       padding: 2rem;
-      max-width: 900px;
-      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.85);
     }
 
-    /* ── Wordmark ── */
-    .wordmark {
-      font-size: clamp(0.75rem, 1.8vw, 1.1rem);
-      letter-spacing: 0.55em;
+    .footer p {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      font-weight: 300;
-      animation: fadeUp 1.2s ease 0.2s both;
+      color: var(--text-faint);
     }
 
-    /* ── Hero headline ── */
-    .headline {
-      font-size: clamp(3.5rem, 10vw, 9rem);
-      font-weight: 900;
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-
-      background: linear-gradient(
-        110deg,
-        var(--lime-1) 0%,
-        var(--lime-2) 18%,
-        #fff        35%,
-        var(--lime-3) 52%,
-        var(--lime-4) 68%,
-        #fff        80%,
-        var(--lime-5) 100%
-      );
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-
-      animation:
-        fadeUp  1.2s ease 0.4s both,
-        shimmer 4s   linear 1.6s infinite;
-    }
-
-    @keyframes shimmer {
-      0%   { background-position: 200% center; }
-      100% { background-position: -200% center; }
-    }
-
-    /* ── Sub-headline ── */
-    .sub {
-      font-size: clamp(0.9rem, 2.2vw, 1.35rem);
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-weight: 400;
-      color: rgba(255,255,255,0.72);
-      animation: fadeUp 1.2s ease 0.65s both;
-    }
-
-    /* ── Divider ── */
-    .divider {
-      width: clamp(60px, 12vw, 120px);
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--lime-2), var(--lime-1), transparent);
-      border: none;
-      animation: fadeUp 1.2s ease 0.8s both, pulse 3s ease-in-out 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.4; }
-    }
-
-    /* ── Body copy ── */
-    .body-text {
-      font-size: clamp(0.85rem, 1.6vw, 1.05rem);
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.04em;
-      line-height: 1.7;
-      max-width: 480px;
-      animation: fadeUp 1.2s ease 1s both;
-    }
-
-    /* ── Contact ── */
-    .contact-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      animation: fadeUp 1.2s ease 1.2s both;
-    }
-
-    .contact-label {
-      font-size: clamp(0.65rem, 1.2vw, 0.78rem);
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-    }
-
-    .contact-link {
-      font-size: clamp(0.9rem, 2vw, 1.15rem);
-      letter-spacing: 0.12em;
-      font-weight: 600;
-      text-decoration: none;
-      color: transparent;
-      background: linear-gradient(
-        90deg,
-        var(--lime-1),
-        var(--lime-3),
-        var(--lime-2)
-      );
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      transition: background-position 0.4s ease, letter-spacing 0.3s ease;
-    }
-
-    .contact-link:hover {
-      background-position: 100% center;
-      letter-spacing: 0.18em;
-    }
-
-    /* ── Glow dot accent ── */
-    .glow-ring {
-      position: fixed;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(198,255,0,0.08) 0%, transparent 70%);
-      pointer-events: none;
-      animation: roam 18s ease-in-out infinite alternate;
-      z-index: 1;
-      top: 10%;
-      left: 5%;
-    }
-
-    @keyframes roam {
-      0%   { transform: translate(0, 0)   scale(1); }
-      33%  { transform: translate(60vw, 30vh) scale(1.3); }
-      66%  { transform: translate(20vw, 60vh) scale(0.8); }
-      100% { transform: translate(75vw, 10vh) scale(1.1); }
-    }
-
-    /* ── Enter Site button ── */
-    .enter-btn {
-      font-size: 0.68rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: rgba(255,255,255,0.3);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 0.6rem 1.4rem;
-      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-      transition: color 0.25s, border-color 0.25s, background 0.25s;
-      animation: fadeUp 1.2s ease 1.4s both;
-    }
-    .enter-btn:hover {
+    .footer a {
       color: var(--lime-1);
-      border-color: rgba(198,255,0,0.35);
-      background: rgba(198,255,0,0.04);
+      text-decoration: none;
+      opacity: 0.7;
     }
+    .footer a:hover { opacity: 1; }
 
-    /* ── Scan lines (subtle) ── */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 5;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.06) 2px,
-        rgba(0,0,0,0.06) 4px
-      );
-      pointer-events: none;
-    }
-
-    /* ── Shared keyframe ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Responsive tweaks ── */
-    @media (max-width: 500px) {
-      .headline { line-height: 1; }
-      .glow-ring { width: 200px; height: 200px; }
-    }
+    /* Scroll-triggered fade (CSS only fallback — JS enhances) */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
   </style>
 </head>
 <body>
 
-  <div class="bg"></div>
-  <div class="glow-ring"></div>
 
-  <main class="content">
-    <p class="wordmark">SFX LED &nbsp;·&nbsp; Wireless LED Lighting</p>
+  <div class="page-bg page-bg--solid"></div>
 
-    <h1 class="headline">New&nbsp;Site<br>Coming&nbsp;Soon</h1>
+  <!-- Nav -->
+  <nav class="nav">
+    <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="home.html" class="active">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="mailto:team@sfxled.com">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <p class="sub">The future of wireless lighting is loading</p>
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-eyebrow anim-fadeup">Wireless Reactive DMX Lighting</p>
 
-    <hr class="divider" />
+    <h1 class="hero-headline anim-fadeup anim-delay-1">
+      <span class="lime-text">Light</span><br>Your&nbsp;Stage
+    </h1>
 
-    <p class="body-text">
-      We're building something bright. Our new site is on its way —
-      until then, reach out and let's light up your next event.
+    <p class="hero-sub anim-fadeup anim-delay-2">
+      Professional-grade reactive DMX kits that sync to your music —
+      no cables, no latency, total control.
     </p>
 
-    <div class="contact-wrap">
-      <span class="contact-label">Get in touch</span>
-      <a class="contact-link" href="mailto:team@sfxled.com">team@sfxled.com</a>
+    <div class="hero-cta anim-fadeup anim-delay-3">
+      <a class="btn btn-primary" href="products.html">Shop Kits</a>
+      <a class="btn btn-outline" href="mailto:team@sfxled.com">Get in Touch</a>
     </div>
+  </section>
 
-    <a class="enter-btn" href="login.html">Enter Site →</a>
-  </main>
+  <!-- How it works -->
+  <section class="section hiw">
+    <div class="hiw-inner">
+      <div class="hiw-header reveal">
+        <p class="label label--lime">How it works</p>
+        <h2>Reactive lighting,&nbsp;<span class="lime-text">simplified</span></h2>
+      </div>
+
+      <div class="hiw-grid">
+        <div class="hiw-card reveal">
+          <div class="hiw-icon"></div>
+          <span class="hiw-num">01</span>
+          <h3>Plug In</h3>
+          <p>Connect the wireless transmitter to your DMX controller or soundboard. Zero cable runs required between fixtures.</p>
+        </div>
+
+        <div class="hiw-card reveal">
+          <div class="hiw-icon"></div>
+          <span class="hiw-num">02</span>
+          <h3>Sync to Audio</h3>
+          <p>The onboard audio-reactive engine analyzes your mix in real time — beat, frequency, and transient detection built in.</p>
+        </div>
+
+        <div class="hiw-card reveal">
+          <div class="hiw-icon"></div>
+          <span class="hiw-num">03</span>
+          <h3>Control Everything</h3>
+          <p>Drive any DMX-compatible fixture wirelessly. Expand your rig by adding more receivers to a single transmitter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="section cta-band">
+    <p class="label reveal">Ready to light up</p>
+    <h2 class="reveal">Get Your Kit</h2>
+    <a class="btn btn-primary reveal" href="products.html">View Products</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping.html">Shipping &amp; Returns</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <p>Questions? <a href="mailto:team@sfxled.com">team@sfxled.com</a></p>
+  </footer>
+
+  <script>
+    // Intersection observer for .reveal elements
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+        links.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            burger.classList.remove('open');
+            links.classList.remove('open');
+          });
+        });
+      }
+    })();
+  </script>
 
 </body>
 </html>
