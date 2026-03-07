@@ -406,14 +406,7 @@
       <div class="product-card anim-fadeup anim-delay-1">
 
         <div class="product-img">
-          <div class="img-placeholder-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="18" height="18" rx="1"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <polyline points="21 15 16 10 5 21"/>
-            </svg>
-          </div>
-          <span class="img-placeholder-label">Product image</span>
+          <img id="packImg" src="img/6-sfx-kit.jpg" alt="SFX RGBW Tube Kit" style="width:100%;height:100%;object-fit:cover;display:block;" />
         </div>
 
         <div class="product-info">
@@ -547,13 +540,16 @@
     const caseWord     = document.getElementById('caseWord');
     const boxCaseItem  = document.getElementById('boxCaseItem');
     const boxCaseText  = document.getElementById('boxCaseText');
+    const packImg      = document.getElementById('packImg');
     const packQty      = { '4pack': 4, '6pack': 6, '8pack': 8, '12pack': 12 };
     const caseCounts   = { '4pack': 0, '6pack': 1, '8pack': 0, '12pack': 2 };
+    const packImgs     = { '4pack': 'img/4-kit-sfx.jpg', '6pack': 'img/6-sfx-kit.jpg', '8pack': 'img/8-sfx-kit.jpg', '12pack': 'img/12-kit-sfx.jpg' };
 
     function updatePack(radio) {
       document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
       radio.closest('.pack-option').classList.add('selected');
       buyBtn.href = radio.dataset.href || '#';
+      if (packImg) packImg.src = packImgs[radio.value];
 
       const included = caseCounts[radio.value] > 0;
       caseWord.textContent = included ? 'included' : 'not included';
