@@ -542,7 +542,7 @@
     function updatePack(radio) {
       document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
       radio.closest('.pack-option').classList.add('selected');
-      buyBtn.href = radio.dataset.href || '#';
+      buyBtn.href = 'waiver.html?checkout=' + encodeURIComponent(radio.dataset.href || '#');
       if (packImg) packImg.src = packImgs[radio.value];
 
       const included = caseCounts[radio.value] > 0;

@@ -579,7 +579,7 @@
     function updatePack(radio) {
       document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
       radio.closest('.pack-option').classList.add('selected');
-      buyBtn.href = radio.dataset.href || '#';
+      buyBtn.href = 'waiver.html?checkout=' + encodeURIComponent(radio.dataset.href || '#');
       wledBoxQty.textContent = packQty[radio.value];
     }
 

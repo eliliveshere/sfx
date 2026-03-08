@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Purchase Agreement — SFX LED</title>
+  <meta name="description" content="Review and sign the SFX LED purchase agreement before completing your order." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .waiver-form {
+      max-width: 680px;
+      margin: 3rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 3rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 520px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .form-input {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus { border-color: rgba(198,255,0,0.5); }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1.25rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      cursor: pointer;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--lime-1);
+      cursor: pointer;
+    }
+
+    .checkbox-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(110deg, var(--lime-1), var(--lime-2), var(--lime-3));
+      background-size: 200% 100%;
+      color: #000;
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      padding: 1.1rem;
+      border: none;
+      cursor: pointer;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background-position 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      background-position: 100% center;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(198,255,0,0.3);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .proceed-note {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .form-error {
+      font-size: 0.72rem;
+      color: rgba(255, 80, 80, 0.9);
+      text-align: center;
+      display: none;
+    }
+
+    .content-section ul {
+      padding-left: 1.5rem;
+      margin: 0.75rem 0 0;
+    }
+
+    .content-section ul li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 0.35rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-bg page-bg--solid"></div>
+
+  <nav class="nav">
+    <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="mailto:hello@sfxled.com">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="content-page">
+
+    <div class="page-header anim-fadeup" style="text-align:center;max-width:640px;margin:0 auto clamp(3rem,7vw,5rem);">
+      <p class="label label--lime">Required</p>
+      <h1 style="font-size:clamp(2rem,6vw,4rem);font-weight:900;letter-spacing:-0.01em;text-transform:uppercase;line-height:1;margin:0.6rem 0 1rem;">
+        Purchase <span class="lime-text">Agreement</span>
+      </h1>
+      <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7;">Please read this agreement carefully before completing your purchase.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>SFX LED / WLED Lab — Customer Purchase Agreement</h2>
+      <p>By signing below and proceeding to checkout, you acknowledge and agree to the following terms.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>1. Final Sale Policy</h2>
+      <ul>
+        <li>All purchases are final once the order has been shipped.</li>
+        <li>Due to the nature of our products and fulfillment process, we do not offer refunds after shipment.</li>
+        <li>Customers agree that placing an order constitutes acceptance of this final sale policy.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>2. Faulty or Damaged Products</h2>
+      <p>If a product arrives faulty or damaged, the customer must notify us within 7 days of delivery. To submit a claim, the customer must provide:</p>
+      <ul>
+        <li>Order number</li>
+        <li>Clear photo or video evidence showing the issue</li>
+        <li>A brief description of the problem</li>
+      </ul>
+      <p style="margin-top:0.75rem;">Our team will review the claim and determine whether the issue qualifies for replacement parts or a replacement unit. Claims submitted after 7 days of delivery may not be eligible for replacement.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>3. Delivery Confirmation</h2>
+      <ul>
+        <li>Customers acknowledge that once an order has been marked as delivered by the shipping carrier, the order is considered successfully fulfilled.</li>
+        <li>If a package is marked delivered but cannot be located, the customer agrees to contact the shipping carrier directly to resolve the issue.</li>
+        <li>We are not responsible for packages that are lost or stolen after confirmed delivery.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>4. Address Accuracy</h2>
+      <ul>
+        <li>Customers are responsible for providing a correct and complete shipping address.</li>
+        <li>Orders shipped to an address provided by the customer are considered fulfilled once delivered to that address.</li>
+        <li>We are not responsible for delivery issues caused by incorrect address information.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>5. Product Use &amp; Responsibility</h2>
+      <p>Our products are intended for personal use only. By purchasing, the customer assumes responsibility for the proper handling, installation, and operation of the product. We are not liable for damages or issues caused by:</p>
+      <ul>
+        <li>Improper installation</li>
+        <li>Product modification</li>
+        <li>Misuse or unsafe operation</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>6. Chargeback &amp; Dispute Policy</h2>
+      <ul>
+        <li>By completing this purchase, the customer agrees to contact us first to resolve any issues before initiating a chargeback or payment dispute.</li>
+        <li>Customers acknowledge that they are entering a binding purchase agreement and that initiating a chargeback after agreeing to these terms may be considered a violation of this agreement.</li>
+        <li>We reserve the right to submit this signed agreement as evidence in the event of a payment dispute.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>7. Agreement Confirmation</h2>
+      <p>By signing below and proceeding to checkout, the customer confirms that they:</p>
+      <ul>
+        <li>Have read and understood this agreement</li>
+        <li>Accept the final sale policy</li>
+        <li>Agree to report any faulty products within 7 days with photo or video evidence</li>
+        <li>Accept the delivery confirmation policy</li>
+        <li>Agree to contact us before initiating any payment dispute</li>
+      </ul>
+    </div>
+
+    <!-- Sign & Proceed -->
+    <form class="waiver-form" id="waiverForm" novalidate>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="firstName">First Name</label>
+          <input class="form-input" type="text" id="firstName" placeholder="First name" autocomplete="given-name" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="lastName">Last Name</label>
+          <input class="form-input" type="text" id="lastName" placeholder="Last name" autocomplete="family-name" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input class="form-input" type="email" id="email" placeholder="your@email.com" autocomplete="email" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="signature">Signature (type your full name)</label>
+        <input class="form-input" type="text" id="signature" placeholder="Type your full name as your signature" required />
+      </div>
+
+      <label class="checkbox-row">
+        <input type="checkbox" id="agreeCheck" required />
+        <span class="checkbox-label">I confirm that I have read and agree to the Purchase Agreement and Final Sale Policy.</span>
+      </label>
+
+      <div id="formError" class="form-error"></div>
+
+      <button class="submit-btn" type="submit" id="submitBtn">Continue to Checkout</button>
+
+      <p class="proceed-note">By proceeding to checkout you confirm you have read and accepted the Purchase Agreement and Final Sale Policy.</p>
+
+    </form>
+
+  </main>
+
+  <footer class="footer">
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping.html">Shipping &amp; Returns</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <p>Questions? <a href="mailto:hello@sfxled.com">hello@sfxled.com</a></p>
+  </footer>
+
+  <script>
+    // Mobile nav
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+        links.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            burger.classList.remove('open');
+            links.classList.remove('open');
+          });
+        });
+      }
+    })();
+
+    // Checkout URL from query string
+    var checkoutUrl = new URLSearchParams(window.location.search).get('checkout') || '#';
+
+    document.getElementById('waiverForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      var firstName = document.getElementById('firstName').value.trim();
+      var lastName  = document.getElementById('lastName').value.trim();
+      var email     = document.getElementById('email').value.trim();
+      var signature = document.getElementById('signature').value.trim();
+      var agreed    = document.getElementById('agreeCheck').checked;
+      var errorEl   = document.getElementById('formError');
+      var submitBtn = document.getElementById('submitBtn');
+
+      errorEl.style.display = 'none';
+
+      if (!firstName || !lastName || !email || !signature) {
+        errorEl.textContent = 'Please fill in all fields.';
+        errorEl.style.display = 'block';
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorEl.textContent = 'Please enter a valid email address.';
+        errorEl.style.display = 'block';
+        return;
+      }
+      if (!agreed) {
+        errorEl.textContent = 'You must check the agreement box to continue.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Processing...';
+
+      // Get IP
+      var ip = 'unknown';
+      try {
+        var ipRes  = await fetch('https://api.ipify.org?format=json');
+        var ipData = await ipRes.json();
+        ip = ipData.ip;
+      } catch (_) {}
+
+      var timestamp = new Date().toISOString();
+      var fullName  = firstName + ' ' + lastName;
+
+      // Send signed form to owner via Resend
+      try {
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer RESEND_SFX',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: 'SFX LED <noreply@sfxled.com>',
+            to: 'eliliveshere@gmail.com',
+            subject: 'Purchase Agreement Signed — ' + fullName,
+            html: [
+              '<div style="font-family:sans-serif;max-width:600px;">',
+              '<h2 style="margin:0 0 24px;">Purchase Agreement Signed</h2>',
+              '<table style="border-collapse:collapse;width:100%;">',
+              '<tr><td style="padding:8px 20px 8px 0;color:#666;font-size:13px;white-space:nowrap;">Timestamp</td><td style="padding:8px 0;font-size:13px;">' + timestamp + '</td></tr>',
+              '<tr><td style="padding:8px 20px 8px 0;color:#666;font-size:13px;white-space:nowrap;">IP Address</td><td style="padding:8px 0;font-size:13px;">' + ip + '</td></tr>',
+              '<tr><td style="padding:8px 20px 8px 0;color:#666;font-size:13px;white-space:nowrap;">Full Name</td><td style="padding:8px 0;font-size:13px;">' + fullName + '</td></tr>',
+              '<tr><td style="padding:8px 20px 8px 0;color:#666;font-size:13px;white-space:nowrap;">Email</td><td style="padding:8px 0;font-size:13px;">' + email + '</td></tr>',
+              '<tr><td style="padding:8px 20px 8px 0;color:#666;font-size:13px;white-space:nowrap;">Signature</td><td style="padding:8px 0;font-size:13px;font-style:italic;">' + signature + '</td></tr>',
+              '<tr><td style="padding:8px 20px 8px 0;color:#666;font-size:13px;white-space:nowrap;">Checkout URL</td><td style="padding:8px 0;font-size:12px;word-break:break-all;">' + checkoutUrl + '</td></tr>',
+              '</table>',
+              '</div>',
+            ].join(''),
+          }),
+        });
+      } catch (_) {
+        // Email failure must not block the purchase
+      }
+
+      window.location.href = checkoutUrl;
+    });
+  </script>
+
+</body>
+</html>
