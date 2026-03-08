@@ -28,7 +28,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'SFX LED <noreply@sfxled.com>',
+        from: 'SFX LED <onboarding@resend.dev>',
         to: process.env.NOTIFY_EMAIL,
         subject: 'Purchase Agreement Signed — ' + fullName,
         html,
