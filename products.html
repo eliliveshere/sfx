@@ -257,13 +257,17 @@
     /* ── Second product card (grid layout) ── */
     .product-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: clamp(1rem, 3vw, 2rem);
-      max-width: 860px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
       .product-grid { grid-template-columns: 1fr; }
     }
 
@@ -409,6 +413,23 @@
             <span class="price-note">USD</span>
           </div>
           <a class="view-btn" href="wled-tube.html">View Details →</a>
+        </div>
+      </div>
+
+      <!-- Kit 3: Wireless WLED PCB Kit -->
+      <div class="product-card anim-fadeup anim-delay-4">
+        <a class="product-img" href="https://wledlab.com/cart/45324457705669:1?checkout">
+          <img src="img/pcb.jpg" alt="Wireless WLED PCB Kit" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </a>
+        <div class="product-info">
+          <span class="product-badge">In Stock</span>
+          <a class="product-name" href="https://wledlab.com/cart/45324457705669:1?checkout">Wireless WLED<br>PCB Kit</a>
+          <p class="product-desc">Wireless WLED PCB + 1M SK6812 LED strip + battery. Everything you need to build your own addressable wireless LED fixture.</p>
+          <div class="pricing-row">
+            <span class="price">$99</span>
+            <span class="price-note">USD</span>
+          </div>
+          <a class="view-btn" href="https://wledlab.com/cart/45324457705669:1?checkout">Buy Now →</a>
         </div>
       </div>
 
