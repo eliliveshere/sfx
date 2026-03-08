@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireless WLED PCB Kit — SFX LED</title>
+  <meta name="description" content="Wireless WLED PCB Kit — includes WLED PCB, 1M SK6812 RGBW LED strip, and battery. Everything to build your own addressable wireless LED fixture." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { overflow-x: hidden; }
+
+    .products-page {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      padding: calc(var(--nav-h) + 1.5rem) clamp(1.5rem, 8vw, 6rem) 6rem;
+    }
+
+    .product-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    @media (max-width: 640px) {
+      .product-card { grid-template-columns: 1fr; }
+    }
+
+    .product-img {
+      aspect-ratio: 1 / 1;
+      background: rgba(255,255,255,0.03);
+      border-right: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .product-img {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        aspect-ratio: 1 / 1;
+      }
+    }
+
+    .product-img::before,
+    .product-img::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border-color: rgba(198,255,0,0.3);
+      border-style: solid;
+    }
+    .product-img::before { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+    .product-img::after  { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
+
+    .product-info {
+      padding: clamp(1.5rem, 4vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .product-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--lime-1);
+      opacity: 0.8;
+    }
+
+    .product-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--lime-1);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .product-name {
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .product-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .specs {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .specs li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .specs li::before {
+      content: '';
+      width: 14px; height: 1px;
+      background: var(--lime-2);
+      flex-shrink: 0;
+    }
+
+    /* Pack selector */
+    .pack-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      padding-top: 0.25rem;
+    }
+
+    .pack-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.75rem 0.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+    }
+
+    .pack-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0; height: 0;
+    }
+
+    .pack-option:has(input:checked),
+    .pack-option.selected {
+      border-color: var(--lime-1);
+      background: rgba(198,255,0,0.05);
+    }
+
+    .pack-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .pack-price {
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+    }
+
+    .pack-note {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .buy-btn {
+      width: 100%;
+      background: linear-gradient(110deg, var(--lime-1), var(--lime-2), var(--lime-3));
+      background-size: 200% 100%;
+      color: #000;
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      padding: 1rem;
+      border: none;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      cursor: pointer;
+      transition: background-position 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .buy-btn:hover {
+      background-position: 100% center;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(198,255,0,0.3);
+    }
+
+    .secure-note {
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--lime-1); }
+
+    .footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer p {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .footer a { color: var(--lime-1); text-decoration: none; opacity: 0.7; }
+    .footer a:hover { opacity: 1; }
+
+    /* Detail sections */
+    .detail-section {
+      max-width: 1100px;
+      margin: 4rem auto 0;
+    }
+
+    .detail-header { margin-bottom: 2rem; }
+
+    .detail-title {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 700px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 420px) { .features-grid { grid-template-columns: 1fr; } }
+
+    .feature-card {
+      padding: clamp(1.2rem, 3vw, 1.75rem);
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-line {
+      width: 24px; height: 2px;
+      background: linear-gradient(90deg, var(--lime-1), var(--lime-3));
+    }
+
+    .feature-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .feature-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .box-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    @media (max-width: 560px) { .box-list { grid-template-columns: 1fr; } }
+
+    .box-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.9rem clamp(1rem, 3vw, 1.75rem);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-right: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .box-list li::before {
+      content: '';
+      width: 14px; height: 1px;
+      background: var(--lime-2);
+      flex-shrink: 0;
+      margin-top: 0.6em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-bg page-bg--solid"></div>
+
+  <nav class="nav">
+    <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="mailto:hello@sfxled.com">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="products-page">
+
+    <a class="back-link anim-fadeup" href="products.html">← All Products</a>
+
+    <div class="product-wrap">
+      <div class="product-card anim-fadeup anim-delay-1">
+
+        <div class="product-img">
+          <img src="img/pcb.jpg" alt="Wireless WLED PCB Kit" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+
+        <div class="product-info">
+          <span class="product-badge">In Stock</span>
+
+          <h2 class="product-name">Wireless WLED<br>PCB Kit</h2>
+
+          <p class="product-desc">
+            Everything you need to build your own addressable wireless LED fixture.
+            Includes a Wireless WLED PCB pre-flashed with WLED firmware, a 1M SK6812 RGBW
+            LED strip, and battery — ready to wire and run.
+          </p>
+
+          <ul class="specs">
+            <li>Wireless WLED PCB (ESP32, RF sync)</li>
+            <li>1M SK6812 RGBW addressable LED strip</li>
+            <li>Battery included</li>
+            <li>Pre-flashed WLED firmware</li>
+            <li>Wi-Fi + RF wireless control</li>
+            <li>Compatible with full WLED ecosystem</li>
+          </ul>
+
+          <div class="pack-selector" id="packSelector">
+            <label class="pack-option selected">
+              <input type="radio" name="pack" value="1kit" data-href="https://wledlab.com/cart/45324457640133:1?checkout" checked />
+              <span class="pack-label">1-Kit</span>
+              <span class="pack-price">$99</span>
+              <span class="pack-note">USD</span>
+            </label>
+            <label class="pack-option">
+              <input type="radio" name="pack" value="3kit" data-href="https://wledlab.com/cart/45940577763525:1?checkout" />
+              <span class="pack-label">3-Kit</span>
+              <span class="pack-price">$279</span>
+              <span class="pack-note">USD</span>
+            </label>
+            <label class="pack-option">
+              <input type="radio" name="pack" value="6kit" data-href="https://wledlab.com/cart/45940577796293:1?checkout" />
+              <span class="pack-label">6-Kit</span>
+              <span class="pack-price">$539</span>
+              <span class="pack-note">USD</span>
+            </label>
+            <label class="pack-option">
+              <input type="radio" name="pack" value="9kit" data-href="https://wledlab.com/cart/45940577829061:1?checkout" />
+              <span class="pack-label">9-Kit</span>
+              <span class="pack-price">$799</span>
+              <span class="pack-note">USD</span>
+            </label>
+          </div>
+
+          <a class="buy-btn" href="#" id="buyBtn">Buy Now</a>
+
+          <p class="secure-note">Secure checkout via Shopify</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="detail-section">
+      <div class="detail-header">
+        <p class="label label--lime">Features</p>
+        <h2 class="detail-title">Build Your Own Fixture</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">WLED Pre-Flashed</h3>
+          <p class="feature-desc">Ships with WLED firmware ready to go. Connect to Wi-Fi and start building effects from your phone or browser.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Wireless RF Sync</h3>
+          <p class="feature-desc">RF link lets multiple units sync wirelessly — no cables between fixtures, no Wi-Fi required for sync.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">SK6812 RGBW Strip</h3>
+          <p class="feature-desc">1M of SK6812 RGBW individually addressable LEDs included. True white channel for clean, accurate whites.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Battery Included</h3>
+          <p class="feature-desc">Comes with a battery so you can start building cordless fixtures right out of the box.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">DIY Ready</h3>
+          <p class="feature-desc">Designed for makers, DJs, and creators who want full control over their build. Solder, mount, and go.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Full Ecosystem</h3>
+          <p class="feature-desc">Compatible with WLED effects, palettes, E1.31, DDP, Home Assistant, xLights, and Hyperion.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- What's in the box -->
+    <div class="detail-section" style="margin-bottom: 2rem;">
+      <div class="detail-header">
+        <p class="label label--lime">In the Box</p>
+        <h2 class="detail-title">What's Included</h2>
+      </div>
+      <ul class="box-list">
+        <li><span id="pcbBoxQty">1</span> × Wireless WLED PCB (ESP32, pre-flashed)</li>
+        <li><span id="stripBoxQty">1</span> × 1M SK6812 RGBW LED strip</li>
+        <li><span id="battBoxQty">1</span> × Battery</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping.html">Shipping &amp; Returns</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <p>Questions? <a href="mailto:hello@sfxled.com">hello@sfxled.com</a></p>
+  </footer>
+
+  <script>
+    const buyBtn  = document.getElementById('buyBtn');
+    const packQty = { '1kit': 1, '3kit': 3, '6kit': 6, '9kit': 9 };
+
+    function updatePack(radio) {
+      document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
+      radio.closest('.pack-option').classList.add('selected');
+      buyBtn.href = 'waiver.html?checkout=' + encodeURIComponent(radio.dataset.href || '#');
+      const qty = packQty[radio.value];
+      document.getElementById('pcbBoxQty').textContent  = qty;
+      document.getElementById('stripBoxQty').textContent = qty;
+      document.getElementById('battBoxQty').textContent  = qty;
+    }
+
+    document.getElementById('packSelector').addEventListener('change', function(e) {
+      if (e.target.type === 'radio') updatePack(e.target);
+    });
+    const checked = document.querySelector('input[name="pack"]:checked');
+    if (checked) updatePack(checked);
+
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+        links.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            burger.classList.remove('open');
+            links.classList.remove('open');
+          });
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
