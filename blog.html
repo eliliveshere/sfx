@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — SFX LED</title>
+  <meta name="description" content="Tips, guides, and insights on WLED, wireless LED lighting, DMX control, RGBW tube kits, and reactive lighting for events and production." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .blog-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: calc(var(--nav-h) + 3rem) clamp(1.5rem, 6vw, 3rem) 6rem;
+    }
+
+    .blog-header {
+      margin-bottom: 3rem;
+    }
+
+    .blog-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 0.8rem;
+    }
+
+    .blog-title {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5px;
+    }
+
+    .blog-card {
+      display: block;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+    }
+
+    .blog-card:hover { opacity: 0.75; }
+
+    .blog-card-date {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 0.6rem;
+    }
+
+    .blog-card-title {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+    }
+
+    .blog-card-excerpt {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 620px;
+    }
+
+    .blog-card-cta {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lime-1);
+    }
+
+    .blog-empty {
+      padding: 4rem 0;
+      color: var(--text-faint);
+      font-size: 0.9rem;
+    }
+
+    .blog-loading {
+      padding: 4rem 0;
+      color: var(--text-faint);
+      font-size: 0.9rem;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-bg page-bg--solid"></div>
+
+  <nav class="nav">
+    <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="mailto:hello@sfxled.com">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="blog-wrap">
+    <div class="blog-header">
+      <p class="blog-eyebrow">SFX LED</p>
+      <h1 class="blog-title">Blog</h1>
+    </div>
+    <div class="blog-grid" id="blogGrid">
+      <p class="blog-loading">Loading posts&hellip;</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping.html">Shipping &amp; Returns</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 SFX LED. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+      }
+    })();
+
+    async function loadPosts() {
+      const grid = document.getElementById('blogGrid');
+      try {
+        const res = await fetch('blog/posts/index.json?_=' + Date.now());
+        if (!res.ok) throw new Error('not found');
+        const posts = await res.json();
+        if (!posts.length) {
+          grid.innerHTML = '<p class="blog-empty">No posts yet — check back soon.</p>';
+          return;
+        }
+        grid.innerHTML = posts.map(function(post) {
+          var dateLabel = '';
+          try {
+            dateLabel = new Date(post.date).toLocaleDateString('en-US', {
+              year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'
+            });
+          } catch(_) { dateLabel = post.date; }
+          return [
+            '<a class="blog-card" href="blog/posts/' + post.slug + '.html">',
+            '  <p class="blog-card-date">' + dateLabel + '</p>',
+            '  <p class="blog-card-title">' + post.title + '</p>',
+            '  <p class="blog-card-excerpt">' + post.excerpt + '</p>',
+            '  <span class="blog-card-cta">Read More &rarr;</span>',
+            '</a>',
+          ].join('\n');
+        }).join('\n');
+      } catch(_) {
+        grid.innerHTML = '<p class="blog-empty">No posts yet — check back soon.</p>';
+      }
+    }
+
+    loadPosts();
+  </script>
+</body>
+</html>
