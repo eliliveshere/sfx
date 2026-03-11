@@ -45,6 +45,8 @@ function buildPostHtml({ title, metaDescription, slug, excerpt, htmlBody, dateSt
   <link rel="stylesheet" href="/style.css" />
   <style>
     .blog-post-wrap {
+      position: relative;
+      z-index: 10;
       max-width: 760px;
       margin: 0 auto;
       padding: calc(var(--nav-h) + 3rem) clamp(1.5rem, 6vw, 3rem) 6rem;
