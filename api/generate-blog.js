@@ -215,6 +215,15 @@ async function run(req, res) {
     return res.status(500).json({ error: 'Missing ANTHROPIC_API_KEY or GITHUB_TOKEN env vars' });
   }
 
+  // Debug: if ?debug=1, list available models and return
+  if (req.query.debug === '1') {
+    const modelsRes = await fetch('https://api.anthropic.com/v1/models', {
+      headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
+    });
+    const modelsData = await modelsRes.json();
+    return res.status(modelsRes.status).json(modelsData);
+  }
+
   // Pick topic
   const dayOfYear = getDayOfYear();
   const topic = TOPICS[dayOfYear % TOPICS.length];
