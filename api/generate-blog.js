@@ -229,7 +229,7 @@ async function run(req, res) {
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'claude-3-5-haiku-20241022',
+      model: 'claude-3-haiku-20240307',
       max_tokens: 2048,
       messages: [{
         role: 'user',
