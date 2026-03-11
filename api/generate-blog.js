@@ -209,6 +209,8 @@ async function run(req, res) {
     GITHUB_TOKEN: process.env.GITHUB_TOKEN,
     GITHUB_REPO: process.env.GITHUB_REPO || 'eliliveshere/sfx',
     GITHUB_BRANCH: process.env.GITHUB_BRANCH || 'main',
+    GITHUB_REPO_2: process.env.GITHUB_REPO_2 || null,
+    GITHUB_BRANCH_2: process.env.GITHUB_BRANCH_2 || 'main',
   };
 
   if (!env.ANTHROPIC_API_KEY || !env.GITHUB_TOKEN) {
@@ -302,12 +304,26 @@ Return ONLY valid JSON with this exact structure (no markdown, no code fences):
   // Prepend new entry
   indexData.unshift({ title, slug: filename, date: dateStr, excerpt });
 
-  // Commit post HTML
+  // Commit post HTML + index to primary repo
   const existingPost = await githubGet(postPath, env);
   await githubPut(postPath, postHtml, `Add blog post: ${title}`, existingPost?.sha || null, env);
-
-  // Commit updated index
   await githubPut(indexPath, JSON.stringify(indexData, null, 2), `Update blog index: ${title}`, indexSha, env);
 
-  return res.status(200).json({ ok: true, slug: filename, title });
+  // Commit to second repo if configured
+  if (env.GITHUB_REPO_2) {
+    const env2 = { ...env, GITHUB_REPO: env.GITHUB_REPO_2, GITHUB_BRANCH: env.GITHUB_BRANCH_2 };
+    const indexFile2 = await githubGet(indexPath, env2);
+    let indexData2 = [];
+    let indexSha2 = null;
+    if (indexFile2) {
+      indexSha2 = indexFile2.sha;
+      indexData2 = JSON.parse(Buffer.from(indexFile2.content, 'base64').toString('utf8'));
+    }
+    indexData2.unshift({ title, slug: filename, date: dateStr, excerpt });
+    const existingPost2 = await githubGet(postPath, env2);
+    await githubPut(postPath, postHtml, `Add blog post: ${title}`, existingPost2?.sha || null, env2);
+    await githubPut(indexPath, JSON.stringify(indexData2, null, 2), `Update blog index: ${title}`, indexSha2, env2);
+  }
+
+  return res.status(200).json({ ok: true, slug: filename, title, repos: [env.GITHUB_REPO, env.GITHUB_REPO_2].filter(Boolean) });
 }
