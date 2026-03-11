@@ -1,5 +1,13 @@
 {
   "crons": [
     { "path": "/api/generate-blog", "schedule": "0 8 * * *" }
+  ],
+  "headers": [
+    {
+      "source": "/blog/posts/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
   ]
 }
