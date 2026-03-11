@@ -186,6 +186,15 @@ async function githubPut(path, content, message, sha, env) {
 }
 
 export default async function handler(req, res) {
+  try {
+    return await run(req, res);
+  } catch (err) {
+    console.error('generate-blog crash:', err);
+    return res.status(500).json({ error: err.message, stack: err.stack });
+  }
+}
+
+async function run(req, res) {
   // Verify cron or secret
   const cronSecret = process.env.CRON_SECRET;
   if (cronSecret) {
@@ -220,7 +229,7 @@ export default async function handler(req, res) {
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'claude-haiku-4-5-20251001',
+      model: 'claude-3-5-haiku-20241022',
       max_tokens: 2048,
       messages: [{
         role: 'user',
