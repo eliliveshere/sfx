@@ -252,7 +252,10 @@ Return ONLY valid JSON with this exact structure (no markdown, no code fences):
   }
 
   const claudeData = await claudeRes.json();
-  const rawText = claudeData.content[0].text.trim();
+  let rawText = claudeData.content[0].text.trim();
+
+  // Strip markdown code fences if present
+  rawText = rawText.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
 
   let post;
   try {
