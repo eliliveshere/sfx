@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — SFX LED</title>
+  <meta name="description" content="Get in touch with SFX LED. Questions about our wireless RGBW tube kits, WLED DMX setups, or orders — we're here to help." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .contact-wrap {
+      max-width: 600px;
+      margin: 3rem auto 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 3rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 520px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .form-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .form-input {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus { border-color: rgba(198,255,0,0.5); }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-submit {
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    .contact-status {
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      min-height: 1.2em;
+    }
+
+    .contact-status--success { color: var(--lime-1); }
+    .contact-status--error { color: #ff6b6b; }
+  </style>
+</head>
+<body>
+
+  <div class="page-bg page-bg--solid"></div>
+
+  <nav class="nav">
+    <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="content-page">
+
+    <div class="page-header anim-fadeup" style="text-align:center;max-width:640px;margin:0 auto clamp(3rem,7vw,5rem);">
+      <p class="label label--lime">Get in Touch</p>
+      <h1 style="font-size:clamp(2rem,6vw,4rem);font-weight:900;letter-spacing:-0.01em;text-transform:uppercase;line-height:1;margin:0.6rem 0 1rem;">
+        <span class="lime-text">Contact</span>
+      </h1>
+      <p style="font-size:0.92rem;color:var(--text-muted);line-height:1.7;letter-spacing:0.03em;">
+        Questions about gear, orders, or custom setups — we'll get back to you fast.
+      </p>
+    </div>
+
+    <div class="contact-wrap">
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="firstName">First Name</label>
+            <input class="form-input" type="text" id="firstName" name="firstName" autocomplete="given-name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lastName">Last Name</label>
+            <input class="form-input" type="text" id="lastName" name="lastName" autocomplete="family-name" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" name="email" autocomplete="email" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-input" id="message" name="message" required></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button class="btn btn--lime" type="submit" id="submitBtn" style="width:100%;">Send Message</button>
+        </div>
+
+        <p class="contact-status" id="contactStatus"></p>
+      </form>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping.html">Shipping &amp; Returns</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 SFX LED. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+      }
+    })();
+
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn    = document.getElementById('submitBtn');
+      const status = document.getElementById('contactStatus');
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName  = document.getElementById('lastName').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      const message   = document.getElementById('message').value.trim();
+
+      if (!firstName || !lastName || !email || !message) {
+        status.textContent = 'Please fill in all fields.';
+        status.className = 'contact-status contact-status--error';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      status.textContent = '';
+      status.className = 'contact-status';
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ firstName, lastName, email, message }),
+        });
+        if (!res.ok) throw new Error('Send failed');
+        status.textContent = 'Message sent — we\'ll be in touch soon.';
+        status.className = 'contact-status contact-status--success';
+        document.getElementById('contactForm').reset();
+      } catch (_) {
+        status.textContent = 'Something went wrong. Email us at hello@sfxled.com';
+        status.className = 'contact-status contact-status--error';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      }
+    });
+  </script>
+</body>
+</html>
