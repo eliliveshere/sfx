@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LED Tube Kit Installation Guide for DJs and Event Producers — SFX LED Blog</title>
+  <meta name="description" content="Step-by-step LED tube kit installation guide for DJs and event producers. Covers WLED, DMX LED, wireless RGBW setup, and pro tips for any venue." />
+  <meta property="og:title" content="LED Tube Kit Installation Guide for DJs and Event Producers" />
+  <meta property="og:description" content="Step-by-step LED tube kit installation guide for DJs and event producers. Covers WLED, DMX LED, wireless RGBW setup, and pro tips for any venue." />
+  <meta property="og:type" content="article" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .blog-post-wrap {
+      position: relative;
+      z-index: 10;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: calc(var(--nav-h) + 3rem) clamp(1.5rem, 6vw, 3rem) 6rem;
+    }
+    .blog-post-back {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lime-1);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+    .blog-post-back:hover { opacity: 1; }
+    .blog-post-date {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 1.2rem;
+    }
+    .blog-post-title {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 2.5rem;
+    }
+    .blog-post-body { color: var(--text-muted); line-height: 1.8; }
+    .blog-post-body h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2.5rem 0 0.8rem;
+    }
+    .blog-post-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.6rem;
+    }
+    .blog-post-body p { margin: 0 0 1.2rem; }
+    .blog-post-body ul, .blog-post-body ol {
+      margin: 0 0 1.2rem;
+      padding-left: 1.5rem;
+    }
+    .blog-post-body li { margin-bottom: 0.4rem; }
+    .blog-post-body strong { color: var(--text); }
+    .blog-post-body a { color: var(--lime-1); }
+  </style>
+</head>
+<body>
+  <div class="page-bg page-bg--solid"></div>
+
+  <nav class="nav">
+    <a class="nav-logo" href="/home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="/home.html">Home</a></li>
+      <li><a href="/products.html">Products</a></li>
+      <li><a href="/blog.html" class="active">Blog</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="blog-post-wrap">
+    <a class="blog-post-back" href="/blog.html">← All Posts</a>
+    <p class="blog-post-date">March 12, 2026</p>
+    <h1 class="blog-post-title">LED Tube Kit Installation Guide for DJs and Event Producers</h1>
+    <div class="blog-post-body">
+      <p>Whether you're decking out a nightclub, preparing a festival rig, or building an inventory for your rental company, <strong>LED tube lighting</strong> is one of the most versatile and visually striking options available. Modern wireless RGBW tube kits have made professional-grade lighting accessible to DJs and independent event producers — no electrician required. This guide walks you through everything you need to know to get your tubes up, connected, and looking incredible.</p>
+
+      <h2>Why LED Tube Kits Are a Game-Changer</h2>
+      <p>LED tube lights offer a unique combination of even light distribution, slim profiles, and vibrant RGBW color mixing. Unlike traditional par cans or moving heads, tubes fit naturally into architectural spaces — behind bars, along trussing, under stage edges, or suspended vertically for an immersive column effect. When controlled with <strong>WLED</strong> or a dedicated <strong>DMX LED</strong> system, they become dynamic, programmable elements that can define the entire aesthetic of a space.</p>
+      <p>For DJs and event producers who move between venues, wireless LED lighting eliminates the cable runs and patching overhead that slows down load-in. SFX LED's <strong>wireless RGBW tube kits</strong> are engineered with exactly this workflow in mind — battery-powered or plug-in, with built-in receivers that respond to your controller the moment you power on.</p>
+
+      <h2>What's Inside a Typical LED Tube Kit</h2>
+      <p>Before installation, it helps to understand what comes in a professional kit. A complete <strong>WLED DMX kit</strong> from SFX LED typically includes:</p>
+      <ul>
+        <li><strong>LED tubes</strong> — usually in 3-foot or 6-foot lengths, filled with high-density RGBW pixels</li>
+        <li><strong>Wireless DMX receiver</strong> — built into each tube or attached as a clip-on module</li>
+        <li><strong>Transmitter/controller</strong> — a handheld or rack-mounted unit that sends wireless DMX signals to all tubes simultaneously</li>
+        <li><strong>Power cables or battery packs</strong> — depending on whether you choose corded or truly portable units</li>
+        <li><strong>Mounting hardware</strong> — O-clamps, floor stands, or truss adapters for flexible positioning</li>
+      </ul>
+      <p>Some kits also include PCB kits for builders who want to create custom fixtures — a popular option among rental companies looking to differentiate their inventory or match a venue's specific aesthetic.</p>
+
+      <h2>Step 1 — Plan Your Layout Before You Hang Anything</h2>
+      <p>A few minutes of planning prevents hours of repositioning. Sketch the space and mark where each tube will go. Consider sightlines from the audience, proximity to power outlets or battery charging stations, and RF interference sources that might disrupt your <strong>wireless LED lighting</strong> signal.</p>
+      <p>For stage-front tube arrays, vertical placement at equal spacing creates a dramatic column effect. For ceiling washes, horizontal mounting along structural beams produces smooth, even color. Hybrid layouts — mixing orientations — add depth and visual complexity without adding hardware.</p>
+      <h3>How Many Tubes Do You Need?</h3>
+      <p>A good starting point for a medium DJ booth or small stage is six to twelve tubes. Larger festival stages or club installations may use 30 or more. The key metric is coverage: aim for tubes spaced no more than 4–6 feet apart for a continuous wash, or cluster them tightly for intense focal points.</p>
+
+      <h2>Step 2 — Mount the Tubes</h2>
+      <p>Most LED tube kits support several mounting configurations:</p>
+      <ol>
+        <li><strong>O-clamp on truss</strong> — the most common for portable rigs; clamp the tube bracket to your trussing and tighten with a wing nut</li>
+        <li><strong>Floor stand</strong> — ideal for rear-stage upwash or side fills; adjustable height stands keep the tubes free-standing without rigging</li>
+        <li><strong>Permanent wall or ceiling mount</strong> — for fixed installations, use the supplied bracket plates and secure to studs or structural anchors</li>
+      </ol>
+      <p>Always confirm your mounting hardware is rated for the weight of the tube plus any cables or battery packs attached. For overhead rigging, use safety cables as a secondary attachment — this is non-negotiable for any event with an audience below.</p>
+
+      <h2>Step 3 — Connect Power</h2>
+      <p>Plug-in LED tube kits draw modest power — typically 15–30W per tube depending on length and pixel density. For a 12-tube setup, you're looking at under 400W total, well within a standard 20A circuit. Use a quality power distro box and keep runs short to avoid voltage drop that can cause color inconsistency at the far end of a chain.</p>
+      <p>If you're running battery-powered tubes for truly cable-free operation, charge all packs the night before. Most lithium packs in professional <strong>wireless RGBW tube kits</strong> provide 6–10 hours at moderate brightness — more than enough for a full event day.</p>
+
+      <h2>Step 4 — Configure Your Wireless DMX System</h2>
+      <p>This is where <strong>WLED DMX</strong> shines. Modern wireless DMX protocols (W-DMX, LumenRadio CRMX, or proprietary 2.4 GHz systems) pair transmitter to receiver in seconds. The general process:</p>
+      <ol>
+        <li>Power on the transmitter first, then the tubes</li>
+        <li>Put each tube's receiver into pairing mode (usually a button hold)</li>
+        <li>Confirm the link indicator on both units goes solid</li>
+        <li>Assign DMX start addresses — each tube needs a unique address block matching your fixture profile</li>
+        <li>Test a basic color command from your console or the SFX LED controller app</li>
+      </ol>
+      <p>With <strong>RGBW</strong> tubes you'll have at least four channels per fixture (red, green, blue, white) plus optional channels for dimmer, strobe, and effect macros. Plan your address map before the event so troubleshooting is fast if something doesn't respond.</p>
+      <h3>Using WLED Firmware for Advanced Control</h3>
+      <p>If your tubes run on ESP32-based controller boards, flashing <strong>WLED</strong> firmware unlocks a world of built-in effects, Wi-Fi control via the WLED app, and seamless integration with DMX universes. WLED's live DMX input mode lets your lighting console take full control while the onboard effects serve as a fallback when the console goes offline — a critical failsafe for live events.</p>
+
+      <h2>Step 5 — Program Your Show</h2>
+      <p>With hardware connected and addresses confirmed, it's time to program. Build a handful of core looks:</p>
+      <ul>
+        <li><strong>White wash</strong> — a clean, even white for load-in, soundcheck, and breaks</li>
+        <li><strong>Club color</strong> — a slow-cycling RGBW gradient that sets a mood without demanding attention</li>
+        <li><strong>Beat sync flash</strong> — a fast strobe or color-bump tied to audio input for peak moments</li>
+        <li><strong>Brand color</strong> — a static hue matching the event's color scheme for sponsor photos and livestreams</li>
+      </ul>
+      <p>Save these as presets on your controller. Being able to jump between looks with a single button press keeps you focused on the music and the crowd, not the lighting board.</p>
+
+      <h2>Maintenance Tips for Rental Companies and Touring DJs</h2>
+      <p>LED tube kits are durable, but regular maintenance keeps them looking and performing like new:</p>
+      <ul>
+        <li>Wipe down polycarbonate diffusers with a microfiber cloth after every event — fingerprints and haze fluid residue reduce output over time</li>
+        <li>Inspect O-clamps and mounting brackets for wear or cracked hardware before every hang</li>
+        <li>Store tubes in padded cases or custom foam-lined road cases; even minor impact can crack diffusers or dislodge receiver modules</li>
+        <li>Re-pair receivers to the transmitter at the start of each new event to avoid conflicts from other wireless systems in the venue</li>
+      </ul>
+
+      <h2>Getting Started with SFX LED</h2>
+      <p>SFX LED offers <strong>wireless RGBW tube kits</strong>, complete <strong>WLED DMX kits</strong>, and bare <strong>PCB kits</strong> for builders who want to design their own enclosures. Whether you're buying your first six tubes or scaling to a full touring rig, the product line is designed to grow with you — every kit uses the same wireless protocol and DMX addressing conventions, so adding units to an existing setup is seamless.</p>
+      <p>Installing LED tube lighting is one of the highest-impact upgrades you can make to any event production toolkit. With the right kit, a solid layout plan, and a few hours of setup time, you'll have a wireless, fully programmable lighting system that sets your shows apart from the competition.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <nav class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/shipping.html">Shipping &amp; Returns</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/blog.html">Blog</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 SFX LED. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
