@@ -374,6 +374,82 @@
       flex-shrink: 0;
       margin-top: 0.6em;
     }
+
+    /* Play button */
+    .play-btn {
+      position: absolute;
+      z-index: 5;
+      width: 68px; height: 68px;
+      background: rgba(0,0,0,0.55);
+      border: 2px solid rgba(255,255,255,0.85);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+      backdrop-filter: blur(4px);
+    }
+    .play-btn:hover {
+      background: rgba(0,0,0,0.8);
+      border-color: var(--lime-1);
+      transform: scale(1.08);
+    }
+    .play-btn svg {
+      width: 24px; height: 24px;
+      fill: #fff;
+      margin-left: 3px;
+    }
+
+    /* Video modal */
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .video-modal.open { opacity: 1; pointer-events: all; }
+
+    .video-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+    }
+
+    .video-modal-inner {
+      position: relative;
+      z-index: 1;
+      width: min(92vw, 92vh, 720px);
+      max-width: 720px;
+    }
+
+    .video-close {
+      position: absolute;
+      top: -2.75rem; right: 0;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .video-close:hover { color: #fff; }
+
+    .video-frame {
+      aspect-ratio: 1 / 1;
+      background: #000;
+    }
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
   </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -419,6 +495,9 @@
 
         <div class="product-img">
           <img id="packImg" src="img/6-sfx-kit.jpg" alt="SFX RGBW Tube Kit" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <button class="play-btn" id="playBtn" aria-label="Watch video">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+          </button>
         </div>
 
         <div class="product-info">
@@ -537,6 +616,17 @@
 
   </main>
 
+  <!-- Video modal -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Product video">
+    <div class="video-modal-backdrop" id="videoBackdrop"></div>
+    <div class="video-modal-inner">
+      <button class="video-close" id="videoClose" aria-label="Close video">&times;</button>
+      <div class="video-frame">
+        <iframe id="videoIframe" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <nav class="footer-links">
       <a href="about.html">About</a>
@@ -581,6 +671,25 @@
 
     const checked = document.querySelector('input[name="pack"]:checked');
     if (checked) updatePack(checked);
+
+    // Video modal
+    const modal  = document.getElementById('videoModal');
+    const iframe = document.getElementById('videoIframe');
+    const VIMEO  = 'https://player.vimeo.com/video/1174622136?autoplay=1&color=c6ff00';
+
+    document.getElementById('playBtn').addEventListener('click', function() {
+      iframe.src = VIMEO;
+      modal.classList.add('open');
+    });
+
+    function closeModal() {
+      modal.classList.remove('open');
+      iframe.src = '';
+    }
+
+    document.getElementById('videoClose').addEventListener('click', closeModal);
+    document.getElementById('videoBackdrop').addEventListener('click', closeModal);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
     (function() {
       const burger = document.getElementById('navBurger');
