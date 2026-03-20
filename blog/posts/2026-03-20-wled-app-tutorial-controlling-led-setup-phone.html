@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WLED App Tutorial: Controlling Your LED Setup from Your Phone — WLED LAB Blog</title>
+  <meta name="description" content="Master the WLED app to control wireless LED lighting from your phone. Perfect guide for DJs, event producers, and venue managers." />
+  <meta property="og:title" content="WLED App Tutorial: Controlling Your LED Setup from Your Phone" />
+  <meta property="og:description" content="Master the WLED app to control wireless LED lighting from your phone. Perfect guide for DJs, event producers, and venue managers." />
+  <meta property="og:type" content="article" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .blog-post-wrap {
+      position: relative; z-index: 10;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: calc(var(--nav-h) + 3rem) clamp(1.5rem, 6vw, 3rem) 6rem;
+    }
+    .blog-post-back {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lime-1);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+    .blog-post-back:hover { opacity: 1; }
+    .blog-post-date {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 1.2rem;
+    }
+    .blog-post-title {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 2.5rem;
+    }
+    .blog-post-body { color: var(--text-muted); line-height: 1.8; }
+    .blog-post-body h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2.5rem 0 0.8rem;
+    }
+    .blog-post-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.6rem;
+    }
+    .blog-post-body p { margin: 0 0 1.2rem; }
+    .blog-post-body ul, .blog-post-body ol {
+      margin: 0 0 1.2rem;
+      padding-left: 1.5rem;
+    }
+    .blog-post-body li { margin-bottom: 0.4rem; }
+    .blog-post-body strong { color: var(--text); }
+    .blog-post-body a { color: var(--lime-1); }
+  </style>
+</head>
+<body>
+  <div class="page-bg page-bg--solid"></div>
+
+  <nav class="nav">
+    <a class="nav-logo" href="/home.html"><span>SFX</span> LED</a>
+    <ul class="nav-links">
+      <li><a href="/home.html">Home</a></li>
+      <li><a href="/products.html">Products</a></li>
+      <li><a href="/blog.html" class="active">Blog</a></li>
+      <li><a href="mailto:team@wledlab.com">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="blog-post-wrap">
+    <a class="blog-post-back" href="/blog.html">← All Posts</a>
+    <p class="blog-post-date">March 20, 2026</p>
+    <h1 class="blog-post-title">WLED App Tutorial: Controlling Your LED Setup from Your Phone</h1>
+    <div class="blog-post-body">
+      <h2>Introduction: Control Your LED Lighting Wirelessly</h2><p>Gone are the days of being tethered to your lighting desk during events. With the WLED app, DJs, event producers, rental companies, and venue owners can now control their entire LED setup directly from their smartphones. Whether you're managing wireless LED lighting at a nightclub, controlling RGBW LED tube lighting at a wedding, or coordinating complex DMX LED systems at a large venue, the WLED app puts professional-grade lighting control in your pocket.</p><p>This tutorial walks you through everything you need to know about the WLED app, from initial setup to advanced control techniques that will take your lighting game to the next level.</p><h2>What is WLED and Why Should You Care?</h2><p>WLED is an open-source firmware that transforms standard LED controllers into powerful wireless lighting systems. Unlike traditional hardwired setups, WLED enables you to control your smart LED installations remotely via WiFi, giving you unprecedented flexibility during performances and events.</p><p>For professionals in the entertainment industry, WLED offers several key advantages:</p><ul><li><strong>Wireless Control:</strong> Manage your wireless LED lighting from anywhere in the venue without cables</li><li><strong>Real-time Adjustments:</strong> Change colors, effects, and intensity instantly during your event</li><li><strong>Multi-zone Management:</strong> Control multiple RGBW and DMX LED zones simultaneously</li><li><strong>Cost-Effective:</strong> WLED LAB's affordable wireless RGBW tube kits and PCB kits provide professional results without premium pricing</li><li><strong>DMX Integration:</strong> Sync your smart LED systems with existing DMX setups using WLED DMX capabilities</li></ul><h2>Getting Started: Installation and Setup</h2><h3>Hardware Requirements</h3><p>Before you can use the WLED app, you'll need compatible hardware. Popular options include WLED LAB's wireless RGBW tube kits, which are perfect for rental companies and venues needing quick deployment. You'll also need:</p><ul><li>A WiFi-enabled ESP32 or ESP8266 microcontroller (included in WLED kits)</li><li>Your LED strips or RGBW LED tube lighting</li><li>A power supply appropriate for your setup</li><li>A smartphone with the WLED app installed</li></ul><h3>Installing the WLED App</h3><p>Download the WLED app from your phone's app store—it's available for both iOS and Android. The app is free and user-friendly, designed specifically for controlling wireless LED lighting systems. Once installed, ensure your phone is connected to the same WiFi network as your WLED controller.</p><h3>Connecting Your LED Controller</h3><p>Most WLED controllers, including WLED LAB's wireless RGBW tube kits, come pre-flashed with the WLED firmware. When powered on, they'll broadcast a WiFi network. Open the WLED app, scan for available networks, and connect to your controller. You'll see the controller's IP address displayed in the app—this is your gateway to wireless LED lighting control.</p><h2>Mastering the WLED App Interface</h2><h3>The Main Dashboard</h3><p>The WLED app's main dashboard is intuitive and designed for quick adjustments during live events. At the top, you'll find a large color wheel for selecting your desired hue. Below that, sliders control brightness and saturation. For RGBW setups, you'll notice a dedicated white channel slider, essential for achieving pure white tones without color casts.</p><h3>Effects and Presets</h3><p>One of the most powerful features of the WLED app is its extensive library of lighting effects. Event producers and DJs love using effects like:</p><ul><li><strong>Solid Colors:</strong> Perfect for static mood lighting</li><li><strong>Breathing Effects:</strong> Creates dynamic pulsing patterns ideal for ambient scenes</li><li><strong>Rainbow Cycles:</strong> Multi-color sequences that captivate audiences</li><li><strong>Chase Patterns:</strong> Moving light effects that add energy to dancefloors</li><li><strong>Sparkle Effects:</strong> Random color bursts that work great with LED tube lighting</li></ul><p>Save your favorite color combinations and effect settings as presets for quick recall during your event. This feature is invaluable for rental companies managing multiple venues with consistent branding requirements.</p><h3>Segment Control and DMX Integration</h3><p>For more advanced setups, the WLED app allows you to create segments—different zones within your LED installation that can be controlled independently. This is crucial when working with WLED DMX systems or complex installations using multiple wireless RGBW tube kits.</p><p>If you're integrating DMX LED fixtures, the WLED app can receive DMX data through your network, allowing your smart LED systems to respond to professional lighting controllers. This compatibility makes WLED perfect for venues transitioning from traditional DMX setups to wireless LED lighting.</p><h2>Advanced Features for Professionals</h2><h3>Sync Across Multiple Controllers</h3><p>Managing a large venue with multiple LED zones? The WLED app lets you sync controllers, ensuring all your wireless LED lighting responds uniformly. Alternatively, control each zone independently for complex, layered lighting designs.</p><h3>UDP and API Control</h3><p>Power users can leverage WLED's UDP protocol and API for custom automation. Integrate your smart LED systems with other event technology, create synchronized light shows, or develop custom presets specific to your venue's needs.</p><h3>Color Temperature Control</h3><p>RGBW LED tube lighting excels at precise color temperature adjustment. The WLED app's color temperature slider lets you shift from warm (2700K) to cool (6500K) white, perfect for creating the right atmosphere at any event.</p><h2>Pro Tips for DJs and Event Producers</h2><ul><li><strong>Plan Your Presets:</strong> Before the event, create and test all your color and effect presets in the WLED app</li><li><strong>Use Brightness Strategically:</strong> Keep brightness levels flexible—lower lighting during speeches, brighten during peak moments</li><li><strong>Test WiFi Range:</strong> Verify your phone stays connected to your wireless LED lighting system throughout your venue</li><li><strong>Backup Settings:</strong> Save configuration files for repeat events or venue setups</li><li><strong>Battery Management:</strong> Keep your phone charged and consider a backup device during critical events</li></ul><h2>Troubleshooting Common Issues</h2><p>Can't connect to your WLED controller? Ensure both your phone and controller are on the same WiFi network. If colors appear incorrect on your RGBW LED tube lighting, check that your color profile matches your hardware setup in the WLED settings. For WLED DMX synchronization issues, verify your network configuration and firewall settings.</p><h2>Conclusion: Elevate Your LED Lighting Game</h2><p>The WLED app transforms how professionals manage wireless LED lighting. Whether you're using wireless RGBW tube kits for rental events, integrating WLED DMX systems into existing setups, or deploying smart LED solutions across multiple venues, the WLED app provides intuitive control right from your phone. With WLED LAB's professional-grade kits and this comprehensive tutorial, you're ready to take your lighting control to new heights.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <nav class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/shipping.html">Shipping &amp; Returns</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/blog.html">Blog</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 WLED LAB. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function() {
+      const burger = document.getElementById('navBurger');
+      const links  = document.querySelector('.nav-links');
+      if (burger && links) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('open');
+          links.classList.toggle('open');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
