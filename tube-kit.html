@@ -521,6 +521,101 @@
       border: none;
       display: block;
     }
+
+    /* Sticky mobile CTA */
+    .sticky-cta {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .sticky-cta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 200;
+        background: rgba(10,10,10,0.96);
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding: 0.85rem 1.25rem;
+        backdrop-filter: blur(12px);
+        transform: translateY(100%);
+        transition: transform 0.3s;
+      }
+      .sticky-cta.visible { transform: translateY(0); }
+      .sticky-cta-info { display: flex; flex-direction: column; gap: 0.15rem; }
+      .sticky-cta-pack { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-faint); }
+      .sticky-cta-price { font-size: 1.1rem; font-weight: 900; letter-spacing: -0.01em; }
+      .sticky-buy-btn {
+        background: linear-gradient(110deg, var(--lime-1), var(--lime-2), var(--lime-3));
+        color: #000;
+        font-family: inherit;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        padding: 0.85rem 1.5rem;
+        border: none;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+        white-space: nowrap;
+      }
+    }
+
+    /* Inline FAQ */
+    .faq-section {
+      max-width: 1100px;
+      margin: 4rem auto 0;
+    }
+    .faq-list {
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%;
+      background: rgba(255,255,255,0.02);
+      border: none;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1.1rem clamp(1rem,3vw,1.75rem);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: background 0.2s;
+    }
+    .faq-q:hover { background: rgba(255,255,255,0.04); }
+    .faq-q svg {
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+      stroke: var(--lime-1);
+      fill: none;
+      stroke-width: 2;
+      transition: transform 0.25s;
+    }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-a-inner {
+      padding: 0 clamp(1rem,3vw,1.75rem) 1.1rem;
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.75;
+    }
   </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -586,7 +681,7 @@
             <li>4ft (120cm) RGBW wireless LED tubes</li>
             <li>500+ sound-reactive animations, beat-sync</li>
             <li>App control + onboard button control</li>
-            <li>USB-C rechargeable, high-capacity battery</li>
+            <li>8-hour battery life, USB-C rechargeable</li>
             <li>CRI 90 · IP54 dust &amp; splash resistant</li>
             <li id="caseSpec"><span>Heavy-duty hard carry case <strong id="caseWord">included</strong></span></li>
             <li>2-year warranty</li>
@@ -625,6 +720,10 @@
             <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--lime-1);">Free Shipping on All Kits</span>
           </div>
 
+          <p style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime-1);opacity:0.75;text-align:center;">
+            ✦ Ships in 1–2 business days
+          </p>
+
           <!-- href updated dynamically by pack selection -->
           <a class="buy-btn" href="#" id="buyBtn">Buy Now</a>
 
@@ -647,47 +746,7 @@
       </div>
     </div>
 
-    <!-- Features -->
-    <div class="detail-section">
-      <div class="detail-header">
-        <p class="label label--lime">Features</p>
-        <h2 class="detail-title">Built to Perform</h2>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">Sound Reactive</h3>
-          <p class="feature-desc">500+ built-in animations sync to the beat in real time. No programming, no soundboard tap.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">Fully Wireless</h3>
-          <p class="feature-desc">RF link syncs every tube simultaneously. No cables between fixtures, no signal loss.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">App + Button Control</h3>
-          <p class="feature-desc">Swap animations from your phone or cycle presets with the onboard button mid-set.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">All-Night Battery</h3>
-          <p class="feature-desc">High-capacity USB-C rechargeable cell lasts a full night of use on a single charge.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">Built for the Road</h3>
-          <p class="feature-desc">IP54 rated, CRI 90+. Designed for truss, floor, and stand mounts — built to tour.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">Zero Setup</h3>
-          <p class="feature-desc">No DMX controller, no interface, no programming. Power on and start performing.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Reviews -->
+    <!-- Reviews (social proof before the pitch) -->
     <div class="reviews-section">
       <div class="detail-header">
         <p class="label label--lime">Reviews</p>
@@ -730,6 +789,72 @@
       </div>
     </div>
 
+    <!-- Features -->
+    <div class="detail-section">
+      <div class="detail-header">
+        <p class="label label--lime">Features</p>
+        <h2 class="detail-title">Built to Perform</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Sound Reactive</h3>
+          <p class="feature-desc">500+ built-in animations sync to the beat in real time. No programming, no soundboard tap.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Fully Wireless</h3>
+          <p class="feature-desc">RF link syncs every tube simultaneously. No cables between fixtures, no signal loss.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">App + Button Control</h3>
+          <p class="feature-desc">Swap animations from your phone or cycle presets with the onboard button mid-set.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">8-Hour Battery</h3>
+          <p class="feature-desc">8-hour battery life on a single USB-C charge. Enough for a full event without touching a cable.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Built for the Road</h3>
+          <p class="feature-desc">IP54 rated, CRI 90+. Designed for truss, floor, and stand mounts — built to tour.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-line"></div>
+          <h3 class="feature-name">Zero Setup</h3>
+          <p class="feature-desc">No DMX controller, no interface, no programming. Power on and start performing.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <div class="detail-header">
+        <p class="label label--lime">FAQ</p>
+        <h2 class="detail-title">Common Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">How long does the battery last?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-a"><p class="faq-a-inner">Each tube has an 8-hour battery life on a single USB-C charge — enough for a full event without touching a cable. Charging takes approximately 2–3 hours.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What's the wireless sync range?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-a"><p class="faq-a-inner">The RF wireless link syncs all tubes simultaneously across a typical venue. Range is up to 30m (100ft) in open space. Walls and obstructions may reduce range.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do I need a DMX controller or mixer tap?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-a"><p class="faq-a-inner">No. The kits are fully plug-and-play. The tubes have a built-in microphone for sound reactivity — just power on and they sync to the music. You can also control animations via the app or the onboard button.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What app do I use to control them?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-a"><p class="faq-a-inner">The tubes are controlled via a dedicated app available on iOS and Android. Connect over Bluetooth to switch animations, adjust brightness, and change color modes in real time.</p></div>
+        </div>
+      </div>
+    </div>
+
     <!-- What's in the box -->
     <div class="detail-section" style="margin-bottom: 2rem;">
       <div class="detail-header">
@@ -747,6 +872,15 @@
     </div>
 
   </main>
+
+  <!-- Sticky mobile CTA -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sticky-cta-info">
+      <span class="sticky-cta-pack" id="stickyPack">6-Pack</span>
+      <span class="sticky-cta-price" id="stickyPrice">$399</span>
+    </div>
+    <a class="sticky-buy-btn" href="#" id="stickyBuyBtn">Buy Now</a>
+  </div>
 
   <!-- Video modal -->
   <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Product video">
@@ -803,6 +937,50 @@
 
     const checked = document.querySelector('input[name="pack"]:checked');
     if (checked) updatePack(checked);
+
+    // Sticky CTA
+    const stickyCta    = document.getElementById('stickyCta');
+    const stickyPack   = document.getElementById('stickyPack');
+    const stickyPrice  = document.getElementById('stickyPrice');
+    const stickyBuyBtn = document.getElementById('stickyBuyBtn');
+    const packLabels   = { '4pack': '4-Pack', '6pack': '6-Pack', '8pack': '8-Pack', '12pack': '12-Pack' };
+    const packPrices   = { '4pack': '$299', '6pack': '$399', '8pack': '$549', '12pack': '$749' };
+
+    function syncStickyBtn(radio) {
+      stickyPack.textContent  = packLabels[radio.value];
+      stickyPrice.textContent = packPrices[radio.value];
+      stickyBuyBtn.href       = radio.dataset.href || '#';
+    }
+    if (checked) syncStickyBtn(checked);
+
+    document.getElementById('packSelector').addEventListener('change', function(e) {
+      if (e.target.type === 'radio') syncStickyBtn(e.target);
+    });
+
+    const buyBtnEl = document.getElementById('buyBtn');
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        stickyCta.classList.toggle('visible', !entry.isIntersecting);
+      });
+    }, { threshold: 0 });
+    observer.observe(buyBtnEl);
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const item = btn.closest('.faq-item');
+        const ans  = item.querySelector('.faq-a');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-a').style.maxHeight = null;
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          ans.style.maxHeight = ans.scrollHeight + 'px';
+        }
+      });
+    });
 
     // Video modal
     const modal  = document.getElementById('videoModal');
