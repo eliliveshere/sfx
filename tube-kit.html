@@ -616,6 +616,41 @@
       color: rgba(255,255,255,0.9);
       line-height: 1.75;
     }
+
+    /* Currency switcher */
+    .currency-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .currency-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    .currency-select {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      padding: 0.35rem 0.65rem;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .currency-select:focus { border-color: rgba(198,255,0,0.5); }
+    .pack-converted {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--lime-1);
+      opacity: 0.75;
+      min-height: 0.9em;
+    }
   </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -687,31 +722,43 @@
             <li>2-year warranty</li>
           </ul>
 
+          <!-- Currency switcher -->
+          <div class="currency-row">
+            <span class="currency-label">Currency</span>
+            <select class="currency-select" id="currencySelect">
+              <option value="USD">$ USD</option>
+              <option value="GBP">£ GBP</option>
+              <option value="AUD">A$ AUD</option>
+              <option value="CAD">C$ CAD</option>
+              <option value="EUR">€ EUR</option>
+            </select>
+          </div>
+
           <!-- Pack selector -->
           <div class="pack-selector" id="packSelector">
             <label class="pack-option">
               <input type="radio" name="pack" value="4pack" data-href="https://wled-lab.myshopify.com/cart/45320382972101:1" />
               <span class="pack-label">4-Pack</span>
               <span class="pack-price">$299</span>
-              <span class="pack-note">USD</span>
+              <span class="pack-converted" data-usd="299"></span>
             </label>
             <label class="pack-option selected">
               <input type="radio" name="pack" value="6pack" data-href="https://wled-lab.myshopify.com/cart/45938229117125:1" checked />
               <span class="pack-label">6-Pack</span>
               <span class="pack-price">$399</span>
-              <span class="pack-note">USD</span>
+              <span class="pack-converted" data-usd="399"></span>
             </label>
             <label class="pack-option">
               <input type="radio" name="pack" value="8pack" data-href="https://wled-lab.myshopify.com/cart/45938229149893:1" />
               <span class="pack-label">8-Pack</span>
               <span class="pack-price">$549</span>
-              <span class="pack-note">USD</span>
+              <span class="pack-converted" data-usd="549"></span>
             </label>
             <label class="pack-option">
               <input type="radio" name="pack" value="12pack" data-href="https://wled-lab.myshopify.com/cart/45938229182661:1" />
               <span class="pack-label">12-Pack</span>
               <span class="pack-price">$749</span>
-              <span class="pack-note">USD</span>
+              <span class="pack-converted" data-usd="749"></span>
             </label>
           </div>
 
@@ -1000,6 +1047,51 @@
     document.getElementById('videoClose').addEventListener('click', closeModal);
     document.getElementById('videoBackdrop').addEventListener('click', closeModal);
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+    // ── Currency converter ──
+    var fxRates   = {};
+    var fxSymbols = { USD:'$', GBP:'£', AUD:'A$', CAD:'C$', EUR:'€' };
+    var countryToCurrency = {
+      GB:'GBP', AU:'AUD', CA:'CAD',
+      DE:'EUR', FR:'EUR', IT:'EUR', ES:'EUR', NL:'EUR',
+      AT:'EUR', BE:'EUR', PT:'EUR', IE:'EUR', FI:'EUR', GR:'EUR'
+    };
+
+    function applyRates(currency) {
+      var rate = fxRates[currency] || 1;
+      var sym  = fxSymbols[currency] || currency + ' ';
+      document.querySelectorAll('.pack-converted').forEach(function(el) {
+        if (currency === 'USD') { el.textContent = ''; return; }
+        var usd = parseFloat(el.dataset.usd);
+        el.textContent = '~' + sym + Math.round(usd * rate).toLocaleString();
+      });
+    }
+
+    function initCurrency(currency) {
+      var sel = document.getElementById('currencySelect');
+      if (sel) sel.value = currency;
+      applyRates(currency);
+    }
+
+    // Fetch live rates
+    fetch('https://open.er-api.com/v6/latest/USD')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        fxRates = data.rates || {};
+        // Try IP geolocation to auto-select currency
+        fetch('https://ipapi.co/json/')
+          .then(function(r) { return r.json(); })
+          .then(function(geo) {
+            var currency = geo.currency || countryToCurrency[geo.country_code] || 'USD';
+            if (fxSymbols[currency]) initCurrency(currency);
+          })
+          .catch(function() {}); // silently fall back to USD
+      })
+      .catch(function() {});
+
+    document.getElementById('currencySelect').addEventListener('change', function() {
+      applyRates(this.value);
+    });
 
     (function() {
       const burger = document.getElementById('navBurger');
