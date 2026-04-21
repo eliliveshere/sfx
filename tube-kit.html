@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
+  <script src="https://player.vimeo.com/api/player.js"></script>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -68,11 +69,35 @@
       --ink-35:       rgba(242,242,238,0.35);
       --display:      'Space Grotesk', system-ui, sans-serif;
       --mono:         'JetBrains Mono', ui-monospace, monospace;
+      --beat:         0;
     }
 
     /* Fallback for browsers without oklch */
     @supports not (color: oklch(0 0 0)) {
       :root { --accent: #a8f708; --accent-dim: #5e8a04; }
+    }
+
+    /* ── CSS-driven beat pulse (single var, no JS thrash) ── */
+    #statusDot {
+      transform: scale(calc(1 + var(--beat) * 0.35));
+      box-shadow: 0 0 calc(6px + var(--beat) * 14px) var(--accent);
+    }
+    #bpmDot {
+      transform: scale(calc(1 + var(--beat) * 0.55));
+      box-shadow: 0 0 calc(6px + var(--beat) * 14px) var(--accent);
+    }
+    #mediaHalo {
+      opacity: calc(0.10 + var(--beat) * 0.22);
+    }
+    #mediaStage {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5),
+                  0 0 calc(20px + var(--beat) * 40px) oklch(0.78 0.22 145 / calc(0.09 + var(--beat) * 0.16));
+    }
+    #buyBtnMain {
+      box-shadow: 0 0 calc(14px + var(--beat) * 28px) oklch(0.78 0.22 145 / 0.6);
+    }
+    #sgBtn {
+      box-shadow: 0 0 calc(12px + var(--beat) * 24px) oklch(0.78 0.22 145 / 0.55);
     }
 
     body {
@@ -155,7 +180,7 @@
       background: var(--accent);
       box-shadow: 0 0 8px var(--accent);
       flex-shrink: 0;
-      transition: box-shadow 0.05s, transform 0.05s;
+      will-change: transform, box-shadow;
     }
 
     .status-id { margin-left: auto; opacity: 0.65; }
@@ -184,7 +209,7 @@
       filter: blur(30px);
       pointer-events: none;
       z-index: 0;
-      transition: opacity 0.05s;
+      will-change: opacity;
     }
 
     .media-layer {
@@ -247,7 +272,7 @@
       background: var(--accent);
       box-shadow: 0 0 6px var(--accent);
       flex-shrink: 0;
-      transition: box-shadow 0.05s, transform 0.05s;
+      will-change: transform, box-shadow;
     }
 
     .media-tag {
@@ -271,6 +296,12 @@
       border: 1px solid rgba(255,255,255,0.1);
       display: flex; align-items: center; justify-content: center;
       color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .media-sound:hover {
+      background: rgba(0,0,0,0.75);
+      border-color: rgba(255,255,255,0.2);
     }
 
     /* ── Tube row ──────────────────────────────────── */
@@ -777,29 +808,32 @@
 
       .pdp-topbar, .pdp-topbar-wrap { display: none; }
 
-      /* ── Centering shell shared by hero + sections ── */
-      .pdp-hero-grid,
-      .pdp-sections-wrap {
-        max-width: 1100px;
-        margin: 0 auto;
-        width: calc(100% - 48px);
-      }
-
+      /* ── Full-width canvas hero ──────────────────── */
       .pdp-hero-grid {
         display: grid;
         grid-template-columns: 1.15fr 1fr;
-        border: 1px solid rgba(255,255,255,0.07);
+        width: 100%;
+        margin: 0;
+        max-width: none;
+        border: none;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
         background: var(--bg);
-        overflow: hidden;
-        border-radius: 2px;
+        overflow: visible;
+      }
+
+      /* ── Sections stay readable ──────────────────── */
+      .pdp-sections-wrap {
+        max-width: 1280px;
+        margin: 40px auto 0;
+        width: calc(100% - 80px);
       }
 
       .pdp-left-col {
-        padding: 48px;
+        padding: clamp(40px, 5vw, 80px) clamp(40px, 6vw, 100px);
         background: radial-gradient(ellipse at 50% 60%, oklch(0.18 0.06 145) 0%, #05060a 70%);
         border-right: 1px solid rgba(255,255,255,0.06);
         display: flex; flex-direction: column; gap: 20px;
-        justify-content: center;
+        justify-content: center; align-items: flex-start;
       }
 
       @supports not (color: oklch(0 0 0)) {
@@ -807,9 +841,15 @@
       }
 
       .pdp-right-col {
-        padding: 48px;
+        padding: clamp(40px, 5vw, 80px) clamp(40px, 6vw, 100px);
         display: flex; flex-direction: column;
         overflow-y: auto;
+      }
+
+      /* Cap media stage so it stays square on wide screens */
+      .pdp-left-col .media-wrap {
+        width: 100%;
+        max-width: 560px;
       }
 
       /* In desktop grid, remove individual mobile padding */
@@ -835,15 +875,13 @@
       /* Sections below the grid */
       .pdp-sections-wrap {
         padding: 0;
-        margin-top: 40px;
-        border-top: 1px solid rgba(255,255,255,0.06);
       }
 
       .pdp-sections-wrap .pdp-sec,
       .pdp-sections-wrap .pdp-sec-wide {
         max-width: none;
-        padding-left: 48px;
-        padding-right: 48px;
+        padding-left: clamp(32px, 4vw, 60px);
+        padding-right: clamp(32px, 4vw, 60px);
       }
 
       /* Features → 2×3 grid on desktop */
@@ -874,8 +912,8 @@
       }
 
       .pdp-sections-wrap .use-scroll {
-        padding-left: 48px;
-        margin-left: -48px;
+        padding-left: clamp(32px, 4vw, 60px);
+        margin-left: calc(-1 * clamp(32px, 4vw, 60px));
       }
     }
 
@@ -958,14 +996,16 @@
         <div class="media-stage" id="mediaStage">
           <div class="media-halo" id="mediaHalo"></div>
 
-          <!-- Video layer (Vimeo background autoplay) -->
+          <!-- Video layer (Vimeo) -->
           <div class="media-layer" id="videoLayer">
             <iframe
-              src="https://player.vimeo.com/video/1174622136?badge=0&autopause=0&autoplay=1&loop=1&muted=1&background=1&player_id=0&app_id=58479"
+              id="vimeoIframe"
+              src="https://player.vimeo.com/video/1174622136?badge=0&autopause=0&autoplay=1&loop=1&muted=1&background=1&playsinline=1&player_id=0&app_id=58479"
               frameborder="0"
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
-              title="SFX Tube Kit"></iframe>
+              title="SFX Tube Kit"
+              playsinline></iframe>
           </div>
 
           <!-- Photo layer -->
@@ -990,14 +1030,20 @@
           <!-- Product tag -->
           <div class="media-tag">SFX / TUBE-04</div>
 
-          <!-- Sound icon (cosmetic) -->
-          <div class="media-sound">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <!-- Sound toggle -->
+          <button class="media-sound" id="soundBtn" aria-label="Unmute video">
+            <!-- muted icon (default) -->
+            <svg id="soundIconMuted" width="14" height="14" viewBox="0 0 16 16" fill="none">
               <path d="M8 3L4.5 5.5H2v5h2.5L8 13V3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
-              <path d="M11.5 5.5a3.5 3.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
               <path d="M2 14L14 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
             </svg>
-          </div>
+            <!-- unmuted icon (shown when playing with sound) -->
+            <svg id="soundIconOn" width="14" height="14" viewBox="0 0 16 16" fill="none" style="display:none">
+              <path d="M8 3L4.5 5.5H2v5h2.5L8 13V3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M11 5.5a3.5 3.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M13 3.5a6 6 0 0 1 0 9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -1526,11 +1572,11 @@ function drawTubes() {
       grad.addColorStop(u, clr);
     }
 
-    // Glow via shadow
+    // Glow via shadow (keep blur modest for perf)
     ctx.save();
     const glowH = tubeMode === 'rainbow' ? (now * 90) % 360 : ACCENT_H;
-    ctx.shadowBlur  = 8 + (0.4 + env * 0.9) * 18;
-    ctx.shadowColor = `hsl(${glowH},90%,60%)`;
+    ctx.shadowBlur  = 4 + env * 10;
+    ctx.shadowColor = `hsl(${glowH},90%,65%)`;
     rrPath(sx, sy, sw, sh, sr);
     ctx.fillStyle = grad; ctx.fill();
     ctx.restore();
@@ -1549,31 +1595,18 @@ function drawTubes() {
 }
 
 // ═══════════════════════════════════════════════════════
-// BEAT-DRIVEN DOM UPDATES
+// BEAT-DRIVEN DOM UPDATES — single CSS var per frame
 // ═══════════════════════════════════════════════════════
-const elStatusDot  = document.getElementById('statusDot');
-const elBpmDot     = document.getElementById('bpmDot');
-const elMediaHalo  = document.getElementById('mediaHalo');
-const elMediaStage = document.getElementById('mediaStage');
-const elBuyBtn     = document.getElementById('buyBtnMain');
-const elSgBtn      = document.getElementById('sgBtn');
+const elBuyBtn = document.getElementById('buyBtnMain');
+const docStyle = document.documentElement.style;
+let   lastBeat = -1;
 
 function updateBeatDOM() {
   const e = beatEnv;
-  const gA = `oklch(0.78 0.22 145 / ${(0.09 + e * 0.16).toFixed(2)})`;
-
-  if (elStatusDot) {
-    elStatusDot.style.boxShadow = `0 0 ${6 + e * 14}px var(--accent)`;
-    elStatusDot.style.transform = `scale(${(1 + e * 0.35).toFixed(3)})`;
-  }
-  if (elBpmDot) {
-    elBpmDot.style.boxShadow = `0 0 ${6 + e * 14}px var(--accent)`;
-    elBpmDot.style.transform = `scale(${(1 + e * 0.55).toFixed(3)})`;
-  }
-  if (elMediaHalo) elMediaHalo.style.opacity = (0.1 + e * 0.22).toFixed(3);
-  if (elMediaStage) elMediaStage.style.boxShadow = `0 20px 60px rgba(0,0,0,0.5), 0 0 ${20 + e * 40}px ${gA}`;
-  if (elBuyBtn)  elBuyBtn.style.boxShadow  = `0 0 ${14 + e * 28}px oklch(0.78 0.22 145 / 0.6)`;
-  if (elSgBtn)   elSgBtn.style.boxShadow   = `0 0 ${12 + e * 24}px oklch(0.78 0.22 145 / 0.55)`;
+  // Only write if changed by >1% to save work
+  if (Math.abs(e - lastBeat) < 0.01) return;
+  lastBeat = e;
+  docStyle.setProperty('--beat', e.toFixed(3));
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1795,6 +1828,46 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
       burger.classList.remove('open');
       links.classList.remove('open');
     }));
+  }
+})();
+
+// ═══════════════════════════════════════════════════════
+// VIMEO PLAYER — autoplay + mute toggle
+// ═══════════════════════════════════════════════════════
+(function() {
+  const iframe = document.getElementById('vimeoIframe');
+  if (!iframe || typeof Vimeo === 'undefined') return;
+
+  const player = new Vimeo.Player(iframe);
+  let   isMuted = true;
+
+  // Ensure muted + loop on init
+  player.setMuted(true).catch(() => {});
+  player.setLoop(true).catch(() => {});
+
+  // Trigger play when visible — handles iOS Safari's autoplay block
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      player.play().catch(() => {});
+    } else {
+      player.pause().catch(() => {});
+    }
+  }, { threshold: 0.25 });
+  obs.observe(iframe);
+
+  // Mute toggle button
+  const soundBtn = document.getElementById('soundBtn');
+  const iconMuted = document.getElementById('soundIconMuted');
+  const iconOn    = document.getElementById('soundIconOn');
+
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      isMuted = !isMuted;
+      player.setMuted(isMuted).catch(() => {});
+      iconMuted.style.display = isMuted ? '' : 'none';
+      iconOn.style.display    = isMuted ? 'none' : '';
+      soundBtn.setAttribute('aria-label', isMuted ? 'Unmute video' : 'Mute video');
+    });
   }
 })();
 </script>
