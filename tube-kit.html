@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
-  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="https://player.vimeo.com/api/player.js" async></script>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -1138,16 +1138,13 @@
         <div class="media-stage" id="mediaStage">
           <div class="media-halo" id="mediaHalo"></div>
 
-          <!-- Video layer (Vimeo) -->
+          <!-- Video layer — poster shown immediately, iframe injected lazily -->
           <div class="media-layer" id="videoLayer">
-            <iframe
-              id="vimeoIframe"
-              src="https://player.vimeo.com/video/1174622136?badge=0&autopause=0&autoplay=1&loop=1&muted=1&background=1&playsinline=1&player_id=0&app_id=58479"
-              frameborder="0"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              title="SFX Tube Kit"
-              playsinline></iframe>
+            <img id="videoPoster"
+                 src="img/6-sfx-kit.jpg"
+                 alt=""
+                 aria-hidden="true"
+                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:none;display:block;"/>
           </div>
 
           <!-- Photo layer -->
@@ -1974,42 +1971,108 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
 })();
 
 // ═══════════════════════════════════════════════════════
-// VIMEO PLAYER — autoplay + mute toggle
+// VIMEO — lazy inject + unmuted autoplay + quality
 // ═══════════════════════════════════════════════════════
 (function() {
-  const iframe = document.getElementById('vimeoIframe');
-  if (!iframe || typeof Vimeo === 'undefined') return;
+  const videoLayer = document.getElementById('videoLayer');
+  const soundBtn   = document.getElementById('soundBtn');
+  const iconMuted  = document.getElementById('soundIconMuted');
+  const iconOn     = document.getElementById('soundIconOn');
+  if (!videoLayer) return;
 
-  const player = new Vimeo.Player(iframe);
-  let   isMuted = true;
+  let player, isMuted = true;
 
-  // Ensure muted + loop on init
-  player.setMuted(true).catch(() => {});
-  player.setLoop(true).catch(() => {});
+  // ── Update mute button icon ──────────────────────────
+  function setSoundUI(muted) {
+    isMuted = muted;
+    if (iconMuted) iconMuted.style.display = muted ? ''     : 'none';
+    if (iconOn)    iconOn.style.display    = muted ? 'none' : '';
+    if (soundBtn)  soundBtn.setAttribute('aria-label', muted ? 'Unmute video' : 'Mute video');
+  }
 
-  // Trigger play when visible — handles iOS Safari's autoplay block
-  const obs = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      player.play().catch(() => {});
-    } else {
-      player.pause().catch(() => {});
+  // ── Wire player after it's ready ────────────────────
+  function initPlayer(iframe) {
+    // Vimeo SDK may still be loading — retry if needed
+    if (typeof Vimeo === 'undefined') {
+      setTimeout(() => initPlayer(iframe), 80);
+      return;
     }
-  }, { threshold: 0.25 });
-  obs.observe(iframe);
 
-  // Mute toggle button
-  const soundBtn = document.getElementById('soundBtn');
-  const iconMuted = document.getElementById('soundIconMuted');
-  const iconOn    = document.getElementById('soundIconOn');
+    player = new Vimeo.Player(iframe);
 
-  if (soundBtn) {
-    soundBtn.addEventListener('click', () => {
-      isMuted = !isMuted;
-      player.setMuted(isMuted).catch(() => {});
-      iconMuted.style.display = isMuted ? '' : 'none';
-      iconOn.style.display    = isMuted ? 'none' : '';
-      soundBtn.setAttribute('aria-label', isMuted ? 'Unmute video' : 'Mute video');
+    player.ready().then(() => {
+      // Quality: 360p on mobile for fast start, 720p on desktop
+      const quality = window.innerWidth < 768 ? '360p' : '720p';
+      player.setQuality(quality).catch(() => {});
+
+      // Try autoplay with sound — fall back to muted if browser blocks it
+      player.setMuted(false)
+        .then(() => player.play().catch(() => {}))
+        .catch(() => {
+          // Mobile/browser blocked unmuted autoplay
+          player.setMuted(true)
+            .then(() => player.play().catch(() => {}))
+            .catch(() => {});
+          setSoundUI(true);
+        });
+
+      // Sync button to actual state after the attempt settles
+      setTimeout(() => player.getMuted().then(m => setSoundUI(m)), 800);
     });
+
+    // Fade video in over the poster on first play
+    let fadedIn = false;
+    player.on('play', () => {
+      if (fadedIn) return;
+      fadedIn = true;
+      iframe.style.transition = 'opacity 0.45s';
+      iframe.style.opacity = '1';
+      const poster = document.getElementById('videoPoster');
+      if (poster) {
+        poster.style.transition = 'opacity 0.5s 0.2s';
+        poster.style.opacity = '0';
+        setTimeout(() => { if (poster.parentNode) poster.remove(); }, 750);
+      }
+    });
+
+    // Pause when scrolled away (saves mobile battery), resume on return
+    const obs = new IntersectionObserver(entries => {
+      entries[0].isIntersecting
+        ? player.play().catch(() => {})
+        : player.pause().catch(() => {});
+    }, { threshold: 0.25 });
+    obs.observe(iframe);
+
+    // Mute toggle button
+    if (soundBtn) {
+      soundBtn.addEventListener('click', () => {
+        isMuted = !isMuted;
+        player.setMuted(isMuted).catch(() => {});
+        setSoundUI(isMuted);
+      });
+    }
+  }
+
+  // ── Build + inject the iframe ────────────────────────
+  function injectVimeo() {
+    const iframe = document.createElement('iframe');
+    // background=1 → no controls, autoplay, loop; muted overridden by API above
+    iframe.src = 'https://player.vimeo.com/video/1174622136?badge=0&autopause=0&autoplay=1&loop=1&background=1&playsinline=1&player_id=0&app_id=58479';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+    iframe.setAttribute('playsinline', '');
+    iframe.setAttribute('title', 'SFX Tube Kit');
+    // Start transparent — fades in on first play event
+    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;display:block;opacity:0;';
+    videoLayer.insertBefore(iframe, videoLayer.firstChild);
+    initPlayer(iframe);
+  }
+
+  // Defer until page is idle — poster renders instantly, iframe loads quietly
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(injectVimeo, { timeout: 2500 });
+  } else {
+    window.addEventListener('load', () => setTimeout(injectVimeo, 500));
   }
 })();
 </script>
