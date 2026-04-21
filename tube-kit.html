@@ -18,10 +18,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
-  <link rel="preconnect" href="https://player.vimeo.com"/>
-  <link rel="preconnect" href="https://f.vimeocdn.com" crossorigin/>
-  <link rel="preconnect" href="https://fresnel.vimeocdn.com" crossorigin/>
-  <script src="https://player.vimeo.com/api/player.js" defer></script>
+  <link rel="preconnect" href="https://www.youtube.com"/>
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin/>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -228,6 +226,14 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover; border: none; display: block;
+    }
+
+    /* YouTube: scale up 112% so corner watermarks are clipped by overflow:hidden */
+    #ytIframe {
+      top: -6%; left: -6%;
+      width: 112%; height: 112%;
+      right: auto; bottom: auto;
+      pointer-events: none; /* block hover states that reveal YT UI */
     }
 
     .media-vignette {
@@ -1204,14 +1210,13 @@
           <!-- Video layer — iframe loads immediately; poster sits on top until play -->
           <div class="media-layer" id="videoLayer">
             <iframe
-              id="vimeoIframe"
-              src="https://player.vimeo.com/video/1174622136?badge=0&autopause=0&autoplay=1&loop=1&background=1&playsinline=1&player_id=0&app_id=58479"
+              id="ytIframe"
+              src="https://www.youtube.com/embed/-FsGdVk123s?autoplay=1&mute=1&loop=1&playlist=-FsGdVk123s&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&playsinline=1&cc_load_policy=0&enablejsapi=1&origin=https://sfxled.com"
               frameborder="0"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
+              allow="autoplay; fullscreen; picture-in-picture"
               title="SFX Tube Kit"
               playsinline
-              style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;opacity:0;"></iframe>
+              style="border:none;display:block;opacity:0;"></iframe>
             <!-- Poster sits above iframe; removed once video plays -->
             <img id="videoPoster"
                  src="img/6-sfx-kit.jpg"
@@ -2055,92 +2060,94 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
 })();
 
 // ═══════════════════════════════════════════════════════
-// VIMEO — bind to iframe already in DOM, unmuted autoplay
+// YOUTUBE — autoplaying muted hero, tap-to-unmute
 // ═══════════════════════════════════════════════════════
 (function() {
-  const iframe        = document.getElementById('vimeoIframe');
-  const soundBtn      = document.getElementById('soundBtn');
-  const audioOverlay  = document.getElementById('audioOverlay');
-  const iconMuted     = document.getElementById('soundIconMuted');
-  const iconOn        = document.getElementById('soundIconOn');
-  if (!iframe) return;
+  const soundBtn     = document.getElementById('soundBtn');
+  const audioOverlay = document.getElementById('audioOverlay');
+  const iconMuted    = document.getElementById('soundIconMuted');
+  const iconOn       = document.getElementById('soundIconOn');
 
-  let isMuted = true;
+  let isMuted  = true;
+  let ytPlayer = null;
+  let revealed = false;
 
   function setSoundUI(muted) {
     isMuted = muted;
     if (iconMuted)    iconMuted.style.display    = muted ? ''     : 'none';
     if (iconOn)       iconOn.style.display       = muted ? 'none' : '';
     if (soundBtn)     soundBtn.setAttribute('aria-label', muted ? 'Unmute video' : 'Mute video');
-    // Show big overlay only while muted; hide it once sound is on
     if (audioOverlay) audioOverlay.classList.toggle('hidden', !muted);
   }
 
-  function unmute(player) {
-    player.setMuted(false).catch(() => {});
-    setSoundUI(false);
+  function revealVideo() {
+    if (revealed) return;
+    revealed = true;
+    const iframe = document.getElementById('ytIframe');
+    if (iframe) { iframe.style.transition = 'opacity 0.4s'; iframe.style.opacity = '1'; }
+    const poster = document.getElementById('videoPoster');
+    if (poster) {
+      poster.style.transition = 'opacity 0.4s';
+      poster.style.opacity = '0';
+      setTimeout(() => poster.remove(), 450);
+    }
   }
 
-  function boot() {
-    if (typeof Vimeo === 'undefined') { setTimeout(boot, 50); return; }
+  function initYT() {
+    const iframe = document.getElementById('ytIframe');
+    if (!iframe) return;
 
-    const player = new Vimeo.Player(iframe);
-
-    player.ready().then(() => {
-      // Try unmuted; fall back to muted + show overlay
-      player.setMuted(false)
-        .then(() => {
-          player.play().catch(() => {});
-          setSoundUI(false);
-        })
-        .catch(() => {
-          player.setMuted(true).then(() => player.play().catch(() => {})).catch(() => {});
-          // Overlay shown after video reveals itself
-        });
-      setTimeout(() => player.getMuted().then(m => setSoundUI(m)), 600);
-    });
-
-    // Reveal video over poster on first play, then show overlay if muted
-    let revealed = false;
-    player.on('play', () => {
-      if (revealed) return;
-      revealed = true;
-      iframe.style.transition = 'opacity 0.3s';
-      iframe.style.opacity = '1';
-      const poster = document.getElementById('videoPoster');
-      if (poster) {
-        poster.style.transition = 'opacity 0.3s';
-        poster.style.opacity = '0';
-        setTimeout(() => poster.remove(), 350);
+    ytPlayer = new YT.Player('ytIframe', {
+      events: {
+        onReady: function(e) {
+          e.target.playVideo();
+          // Attempt unmuted autoplay; browsers may block audio
+          try { e.target.unMute(); e.target.setVolume(100); } catch(_) {}
+          // After short delay, read actual mute state
+          setTimeout(function() {
+            try { setSoundUI(e.target.isMuted()); } catch(_) { setSoundUI(true); }
+          }, 700);
+        },
+        onStateChange: function(e) {
+          if (e.data === YT.PlayerState.PLAYING) revealVideo();
+        }
       }
-      // Show overlay if we're stuck muted
-      player.getMuted().then(m => setSoundUI(m));
     });
 
-    // iOS: play when visible, pause when off-screen
-    const obs = new IntersectionObserver(entries => {
-      entries[0].isIntersecting
-        ? player.play().catch(() => {})
-        : player.pause().catch(() => {});
+    // iOS: play/pause based on scroll visibility
+    var obs = new IntersectionObserver(function(entries) {
+      if (!ytPlayer) return;
+      try {
+        entries[0].isIntersecting ? ytPlayer.playVideo() : ytPlayer.pauseVideo();
+      } catch(_) {}
     }, { threshold: 0.25 });
     obs.observe(iframe);
-
-    // Big overlay tap → unmute
-    if (audioOverlay) {
-      audioOverlay.addEventListener('click', () => unmute(player));
-    }
-
-    // Small corner button → toggle
-    if (soundBtn) {
-      soundBtn.addEventListener('click', () => {
-        isMuted = !isMuted;
-        player.setMuted(isMuted).catch(() => {});
-        setSoundUI(isMuted);
-      });
-    }
   }
 
-  boot();
+  // Standard YT IFrame API bootstrap — set callback then inject script
+  window.onYouTubeIframeAPIReady = initYT;
+  var s = document.createElement('script');
+  s.src = 'https://www.youtube.com/iframe_api';
+  s.async = true;
+  document.head.appendChild(s);
+
+  // Big overlay → unmute
+  if (audioOverlay) {
+    audioOverlay.addEventListener('click', function() {
+      if (ytPlayer) { try { ytPlayer.unMute(); ytPlayer.setVolume(100); } catch(_) {} }
+      setSoundUI(false);
+    });
+  }
+
+  // Corner button → toggle
+  if (soundBtn) {
+    soundBtn.addEventListener('click', function() {
+      if (!ytPlayer) return;
+      isMuted = !isMuted;
+      try { isMuted ? ytPlayer.mute() : ytPlayer.unMute(); } catch(_) {}
+      setSoundUI(isMuted);
+    });
+  }
 })();
 </script>
 
