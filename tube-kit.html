@@ -1,886 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SFX RGBW Wireless Tube Kit — Sound Reactive DJ Lighting | SFX LED</title>
-  <meta name="description" content="Wireless RGBW LED tube kit with 500+ sound-reactive animations. Plug-and-play, no DMX controller required. 4, 6, 8, or 12-pack. Ships in 1–2 days." />
-  <link rel="canonical" href="https://sfxled.com/tube-kit.html" />
-  <meta property="og:type" content="product" />
-  <meta property="og:url" content="https://sfxled.com/tube-kit.html" />
-  <meta property="og:title" content="SFX RGBW Wireless Tube Kit — Sound Reactive DJ Lighting" />
-  <meta property="og:description" content="Wireless RGBW LED tube kit with 500+ sound-reactive animations. Plug-and-play, no DMX controller required. 4, 6, 8, or 12-pack." />
-  <meta property="og:image" content="https://sfxled.com/img/6-sfx-kit.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://sfxled.com/img/6-sfx-kit.jpg" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body { overflow-x: hidden; }
+  <meta name="description" content="Wireless RGBW LED tube kit with 500+ sound-reactive animations. Plug-and-play, no DMX controller required. 4, 6, 8, or 12-pack. Ships in 1–2 days."/>
+  <link rel="canonical" href="https://sfxled.com/tube-kit.html"/>
+  <meta property="og:type" content="product"/>
+  <meta property="og:url" content="https://sfxled.com/tube-kit.html"/>
+  <meta property="og:title" content="SFX RGBW Wireless Tube Kit — Sound Reactive DJ Lighting"/>
+  <meta property="og:description" content="Wireless RGBW LED tube kit with 500+ sound-reactive animations. Plug-and-play, no DMX controller required. 4, 6, 8, or 12-pack."/>
+  <meta property="og:image" content="https://sfxled.com/img/6-sfx-kit.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="https://sfxled.com/img/6-sfx-kit.jpg"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 
-    .products-page {
-      position: relative;
-      z-index: 10;
-      min-height: 100vh;
-      padding: calc(var(--nav-h) + 1.5rem) clamp(1.5rem, 8vw, 6rem) 6rem;
-    }
-
-    .page-header {
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto clamp(3rem, 7vw, 6rem);
-    }
-
-    .page-header h1 {
-      font-size: clamp(2rem, 6vw, 4.5rem);
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      line-height: 1;
-      margin: 0.6rem 0 1rem;
-    }
-
-    .page-header p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      letter-spacing: 0.03em;
-    }
-
-    .product-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .product-card {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
-    }
-
-    @media (max-width: 640px) {
-      .product-card { grid-template-columns: 1fr; }
-    }
-
-    .product-img {
-      aspect-ratio: 1 / 1;
-      background: rgba(255,255,255,0.03);
-      border-right: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      position: relative;
-    }
-
-    @media (max-width: 640px) {
-      .product-img {
-        border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-        aspect-ratio: 1 / 1;
-      }
-    }
-
-    .product-img::before,
-    .product-img::after {
-      content: '';
-      position: absolute;
-      width: 20px; height: 20px;
-      border-color: rgba(198,255,0,0.3);
-      border-style: solid;
-    }
-    .product-img::before { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
-    .product-img::after  { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
-
-    .img-placeholder-icon {
-      width: 48px; height: 48px;
-      border: 1px solid rgba(255,255,255,0.1);
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .img-placeholder-icon svg {
-      width: 20px; height: 20px;
-      fill: none;
-      stroke: rgba(255,255,255,0.2);
-      stroke-width: 1.5;
-    }
-
-    .img-placeholder-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-    }
-
-    .product-info {
-      padding: clamp(1.5rem, 4vw, 3rem);
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-
-    .product-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.62rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--lime-1);
-      opacity: 0.8;
-    }
-
-    .product-badge::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--lime-1);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    .product-name {
-      font-size: clamp(1.3rem, 3vw, 2rem);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      line-height: 1.1;
-    }
-
-    .product-desc {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.75;
-    }
-
-    .specs {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-      padding-top: 0.5rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .specs li {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .specs li::before {
-      content: '';
-      width: 14px; height: 1px;
-      background: var(--lime-2);
-      flex-shrink: 0;
-    }
-
-    /* ── Pack selector ── */
-    .pack-selector {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
-      padding-top: 0.25rem;
-    }
-
-    .pack-option {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.25rem;
-      padding: 0.75rem 0.5rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      position: relative;
-    }
-
-    .pack-option input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-      width: 0; height: 0;
-    }
-
-    .pack-option:has(input:checked),
-    .pack-option.selected {
-      border-color: var(--lime-1);
-      background: rgba(198,255,0,0.05);
-    }
-
-    .pack-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
-    .pack-price {
-      font-size: 1.1rem;
-      font-weight: 900;
-      letter-spacing: -0.01em;
-    }
-
-    .pack-note {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-    }
-
-    .buy-btn {
-      width: 100%;
-      background: linear-gradient(110deg, var(--lime-1), var(--lime-2), var(--lime-3));
-      background-size: 200% 100%;
-      color: #000;
-      font-family: inherit;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      padding: 1rem;
-      border: none;
-      text-decoration: none;
-      display: block;
-      text-align: center;
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-      cursor: pointer;
-      transition: background-position 0.3s, transform 0.2s, box-shadow 0.3s;
-    }
-
-    .buy-btn:hover {
-      background-position: 100% center;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 32px rgba(198,255,0,0.3);
-    }
-
-    .secure-note {
-      font-size: 0.62rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      text-align: center;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.68rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      text-decoration: none;
-      margin-bottom: 2rem;
-      transition: color 0.2s;
-    }
-    .back-link:hover { color: var(--lime-1); }
-
-    .footer {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 4rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .footer p {
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-    }
-
-    .footer a { color: var(--lime-1); text-decoration: none; opacity: 0.7; }
-    .footer a:hover { opacity: 1; }
-
-    /* ── Detail sections ── */
-    .detail-section {
-      max-width: 1100px;
-      margin: 4rem auto 0;
-    }
-
-    .detail-header { margin-bottom: 2rem; }
-
-    .detail-title {
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-top: 0.5rem;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    @media (max-width: 700px) { .features-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 420px) { .features-grid { grid-template-columns: 1fr; } }
-
-    .feature-card {
-      padding: clamp(1.2rem, 3vw, 1.75rem);
-      background: rgba(255,255,255,0.02);
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      border-right: 1px solid rgba(255,255,255,0.08);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .feature-line {
-      width: 24px; height: 2px;
-      background: linear-gradient(90deg, var(--lime-1), var(--lime-3));
-    }
-
-    .feature-name {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .feature-desc {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.7;
-    }
-
-    .box-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
-    }
-
-    @media (max-width: 560px) { .box-list { grid-template-columns: 1fr; } }
-
-    .box-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      padding: 0.9rem clamp(1rem, 3vw, 1.75rem);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      border-right: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.5;
-    }
-
-    .box-list li::before {
-      content: '';
-      width: 14px; height: 1px;
-      background: var(--lime-2);
-      flex-shrink: 0;
-      margin-top: 0.6em;
-    }
-
-    /* Trust badges */
-    .trust-strip {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75rem 1.25rem;
-      padding: 0.85rem 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .trust-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-    }
-    .trust-badge svg {
-      width: 14px; height: 14px;
-      flex-shrink: 0;
-      opacity: 0.55;
-    }
-
-    /* Reviews */
-    .reviews-section {
-      max-width: 1100px;
-      margin: 4rem auto 0;
-    }
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    @media (max-width: 700px) { .reviews-grid { grid-template-columns: 1fr; } }
-    .review-card {
-      padding: clamp(1.2rem, 3vw, 1.75rem);
-      background: rgba(255,255,255,0.02);
-      border-right: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .review-card:last-child { border-right: none; }
-    @media (max-width: 700px) {
-      .review-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
-      .review-card:last-child { border-bottom: none; }
-    }
-    .review-stars {
-      display: flex;
-      gap: 2px;
-    }
-    .review-stars svg {
-      width: 12px; height: 12px;
-      fill: var(--lime-1);
-    }
-    .review-text {
-      font-size: 0.84rem;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.75;
-      flex: 1;
-    }
-    .review-author {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-    }
-
-    /* Play button */
-    .play-btn {
-      position: absolute;
-      z-index: 5;
-      width: 68px; height: 68px;
-      background: rgba(0,0,0,0.55);
-      border: 2px solid rgba(255,255,255,0.85);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s, border-color 0.2s;
-      backdrop-filter: blur(4px);
-    }
-    .play-btn:hover {
-      background: rgba(0,0,0,0.8);
-      border-color: var(--lime-1);
-      transform: scale(1.08);
-    }
-    .play-btn svg {
-      width: 24px; height: 24px;
-      fill: #fff;
-      margin-left: 3px;
-    }
-
-    /* Video modal */
-    .video-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s;
-    }
-    .video-modal.open { opacity: 1; pointer-events: all; }
-
-    .video-modal-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.88);
-    }
-
-    .video-modal-inner {
-      position: relative;
-      z-index: 1;
-      width: min(92vw, 92vh, 720px);
-      max-width: 720px;
-    }
-
-    .video-close {
-      position: absolute;
-      top: -2.75rem; right: 0;
-      background: none;
-      border: none;
-      color: rgba(255,255,255,0.7);
-      font-size: 1.8rem;
-      line-height: 1;
-      cursor: pointer;
-      padding: 0;
-      transition: color 0.2s;
-    }
-    .video-close:hover { color: #fff; }
-
-    .video-frame {
-      aspect-ratio: 1 / 1;
-      background: #000;
-    }
-    .video-frame iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
-
-    /* Sticky mobile CTA */
-    .sticky-cta {
-      display: none;
-    }
-    @media (max-width: 768px) {
-      .sticky-cta {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.75rem;
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        z-index: 200;
-        background: rgba(10,10,10,0.96);
-        border-top: 1px solid rgba(255,255,255,0.08);
-        padding: 0.85rem 1.25rem;
-        backdrop-filter: blur(12px);
-        transform: translateY(100%);
-        transition: transform 0.3s;
-      }
-      .sticky-cta.visible { transform: translateY(0); }
-      .sticky-cta-info { display: flex; flex-direction: column; gap: 0.15rem; }
-      .sticky-cta-pack { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-faint); }
-      .sticky-cta-price { font-size: 1.1rem; font-weight: 900; letter-spacing: -0.01em; }
-      .sticky-buy-btn {
-        background: linear-gradient(110deg, var(--lime-1), var(--lime-2), var(--lime-3));
-        color: #000;
-        font-family: inherit;
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.35em;
-        text-transform: uppercase;
-        padding: 0.85rem 1.5rem;
-        border: none;
-        text-decoration: none;
-        display: block;
-        text-align: center;
-        clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-        white-space: nowrap;
-      }
-    }
-
-    /* Inline FAQ */
-    .faq-section {
-      max-width: 1100px;
-      margin: 4rem auto 0;
-    }
-    .faq-list {
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    .faq-item {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-q {
-      width: 100%;
-      background: rgba(255,255,255,0.02);
-      border: none;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 1.1rem clamp(1rem,3vw,1.75rem);
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      transition: background 0.2s;
-    }
-    .faq-q:hover { background: rgba(255,255,255,0.04); }
-    .faq-q svg {
-      width: 14px; height: 14px;
-      flex-shrink: 0;
-      stroke: var(--lime-1);
-      fill: none;
-      stroke-width: 2;
-      transition: transform 0.25s;
-    }
-    .faq-item.open .faq-q svg { transform: rotate(45deg); }
-    .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-    .faq-a-inner {
-      padding: 0 clamp(1rem,3vw,1.75rem) 1.1rem;
-      font-size: 0.84rem;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.75;
-    }
-
-    /* Currency switcher */
-    .currency-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-    .currency-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-    }
-    .currency-select {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--text);
-      font-family: inherit;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      padding: 0.35rem 0.65rem;
-      cursor: pointer;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .currency-select:focus { border-color: rgba(198,255,0,0.5); }
-    .pack-converted {
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      color: var(--lime-1);
-      opacity: 0.75;
-      min-height: 0.9em;
-    }
-
-    /* Pack option badges */
-    .pack-badge {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      font-size: 0.5rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.18rem 0.55rem;
-      white-space: nowrap;
-      pointer-events: none;
-    }
-    .pack-badge--popular {
-      background: var(--lime-1);
-      color: #000;
-    }
-    .pack-badge--value {
-      background: rgba(198,255,0,0.12);
-      color: var(--lime-1);
-      border: 1px solid rgba(198,255,0,0.35);
-    }
-
-    /* Per-tube price */
-    .pack-per-tube {
-      font-size: 0.56rem;
-      letter-spacing: 0.08em;
-      color: var(--text-faint);
-    }
-
-    /* Rating summary row */
-    .rating-summary {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: -0.5rem;
-    }
-    .rating-stars-row {
-      display: flex;
-      gap: 1px;
-    }
-    .rating-stars-row svg {
-      width: 11px; height: 11px;
-      fill: var(--lime-1);
-    }
-    .rating-score {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .rating-count {
-      font-size: 0.65rem;
-      color: var(--text-faint);
-      letter-spacing: 0.04em;
-    }
-
-    /* Review avatar */
-    .review-footer {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-top: auto;
-    }
-    .review-avatar {
-      width: 30px; height: 30px;
-      border-radius: 50%;
-      background: rgba(198,255,0,0.1);
-      border: 1px solid rgba(198,255,0,0.22);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      color: var(--lime-1);
-      flex-shrink: 0;
-    }
-
-    /* ── Enhanced box icon grid ── */
-    .box-icon-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.08);
-      overflow: hidden;
-    }
-    @media (max-width: 560px) {
-      .box-icon-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    .box-icon-card {
-      background: rgba(255,255,255,0.02);
-      padding: clamp(1.1rem, 3vw, 1.6rem);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      transition: background 0.2s;
-    }
-    .box-icon-card:hover { background: rgba(198,255,0,0.03); }
-
-    .box-icon-wrap {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      background: rgba(198,255,0,0.07);
-      border: 1px solid rgba(198,255,0,0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 16px rgba(198,255,0,0.18), inset 0 0 8px rgba(198,255,0,0.04);
-      margin-bottom: 0.3rem;
-      flex-shrink: 0;
-    }
-    .box-icon-wrap svg {
-      width: 18px; height: 18px;
-      stroke: var(--lime-1);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      filter: drop-shadow(0 0 4px rgba(198,255,0,0.5));
-    }
-    .box-icon-qty {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--lime-1);
-      opacity: 0.8;
-    }
-    .box-icon-name {
-      font-size: 0.83rem;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.3;
-    }
-    .box-icon-sub {
-      font-size: 0.71rem;
-      color: var(--text-faint);
-      line-height: 1.5;
-    }
-
-    /* ── Closing purchase CTA ── */
-    .closing-cta {
-      max-width: 1100px;
-      margin: 1px auto 2rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
-      padding: clamp(1.5rem, 4vw, 2.5rem);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .closing-cta-copy {
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      flex: 1;
-      min-width: 200px;
-    }
-    .closing-cta-stars {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    .closing-cta-stars svg {
-      width: 11px; height: 11px;
-      fill: var(--lime-1);
-    }
-    .closing-cta-stars span {
-      font-size: 0.64rem;
-      color: var(--text-faint);
-      letter-spacing: 0.04em;
-      margin-left: 0.2rem;
-    }
-    .closing-cta-headline {
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      line-height: 1.1;
-    }
-    .closing-cta-perks {
-      font-size: 0.65rem;
-      color: var(--text-faint);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      line-height: 1.8;
-    }
-    .closing-cta-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.85rem;
-    }
-    .closing-price-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.1rem;
-    }
-    .closing-price-label {
-      font-size: 0.56rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-    }
-    .closing-price {
-      font-size: clamp(1.7rem, 4vw, 2.5rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    @media (max-width: 520px) {
-      .closing-cta { flex-direction: column; }
-      .closing-cta-right { align-items: stretch; width: 100%; }
-      .closing-price-wrap { align-items: flex-start; }
-    }
-  </style>
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -895,9 +33,9 @@
   fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2113197789525901&ev=PageView&noscript=1"
-  /></noscript>
+  src="https://www.facebook.com/tr?id=2113197789525901&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel Code -->
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -915,375 +53,1292 @@
     ]
   }
   </script>
+
+  <style>
+    /* ── Design tokens ─────────────────────────────── */
+    :root {
+      --accent:       oklch(0.78 0.22 145);
+      --accent-dim:   oklch(0.55 0.15 145);
+      --bg:           #06070A;
+      --surface:      #0E1014;
+      --surface-2:    #0a0b0e;
+      --ink:          #F2F2EE;
+      --ink-60:       rgba(242,242,238,0.6);
+      --ink-45:       rgba(242,242,238,0.45);
+      --ink-35:       rgba(242,242,238,0.35);
+      --display:      'Space Grotesk', system-ui, sans-serif;
+      --mono:         'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    /* Fallback for browsers without oklch */
+    @supports not (color: oklch(0 0 0)) {
+      :root { --accent: #a8f708; --accent-dim: #5e8a04; }
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--display);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Override page-bg with radial gradient */
+    .page-bg {
+      background: radial-gradient(ellipse at 65% 0%, oklch(0.17 0.05 145) 0%, var(--bg) 55%) !important;
+    }
+
+    button { font-family: var(--display); }
+    button:active { transform: scale(0.98); }
+
+    /* ── PDP wrapper ───────────────────────────────── */
+    .pdp-wrap {
+      position: relative;
+      z-index: 10;
+      padding-top: var(--nav-h);
+      padding-bottom: 100px;
+    }
+
+    /* Column container — 520px max on mobile stacking, 1100px on desktop grid */
+    .pdp-col {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── Mini top bar ──────────────────────────────── */
+    .pdp-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px 8px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .pdp-chip-btn {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; cursor: pointer; flex-shrink: 0;
+    }
+
+    .pdp-wordmark {
+      font-family: var(--display);
+      font-size: 15px; font-weight: 500;
+      letter-spacing: -0.01em; color: var(--ink);
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    .pdp-wordmark-mark {
+      width: 18px; height: 18px; border-radius: 4px;
+      background: var(--ink); color: #000;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; letter-spacing: -0.03em;
+    }
+
+    /* ── Status chip ───────────────────────────────── */
+    .status-chip {
+      display: flex; align-items: center; gap: 8px;
+      padding: 0 20px;
+      max-width: 520px; margin: 6px auto 0;
+      font-family: var(--mono);
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-45);
+    }
+
+    .status-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      flex-shrink: 0;
+      transition: box-shadow 0.05s, transform 0.05s;
+    }
+
+    .status-id { margin-left: auto; opacity: 0.65; }
+
+    /* ── Media stage ───────────────────────────────── */
+    .media-wrap {
+      max-width: 520px; margin: 22px auto 0;
+      padding: 0 20px;
+    }
+
+    .media-stage {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--surface-2);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transition: box-shadow 0.05s;
+    }
+
+    .media-halo {
+      position: absolute; inset: -20px;
+      background: radial-gradient(ellipse at center, var(--accent) 0%, transparent 70%);
+      opacity: 0.12;
+      filter: blur(30px);
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity 0.05s;
+    }
+
+    .media-layer {
+      position: absolute; inset: 0;
+      transition: opacity 0.3s;
+      z-index: 1;
+    }
+
+    .media-layer.hidden { opacity: 0; pointer-events: none; }
+
+    .media-layer iframe,
+    .media-layer img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; border: none; display: block;
+    }
+
+    .media-vignette {
+      position: absolute; inset: 0; pointer-events: none; z-index: 2;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
+    }
+
+    /* Overlays */
+    .media-toggle {
+      position: absolute; top: 14px; left: 14px; z-index: 5;
+      display: flex; gap: 2px; padding: 3px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .media-pill {
+      padding: 5px 12px; border-radius: 999px; border: none;
+      background: transparent; color: rgba(255,255,255,0.7);
+      font-family: var(--mono); font-size: 9px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.15s, color 0.15s;
+    }
+
+    .media-pill.active { background: var(--ink); color: #000; }
+
+    .media-bpm-chip {
+      position: absolute; top: 14px; right: 14px; z-index: 5;
+      display: flex; align-items: center; gap: 6px;
+      padding: 5px 10px; border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-family: var(--mono); font-size: 9px;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      pointer-events: none;
+    }
+
+    .bpm-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+      flex-shrink: 0;
+      transition: box-shadow 0.05s, transform 0.05s;
+    }
+
+    .media-tag {
+      position: absolute; left: 14px; bottom: 14px; z-index: 5;
+      padding: 6px 10px; border-radius: 8px;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-family: var(--mono); font-size: 9px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .media-sound {
+      position: absolute; right: 14px; bottom: 14px; z-index: 5;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ── Tube row ──────────────────────────────────── */
+    .tube-row-wrap {
+      max-width: 520px; margin: 14px auto 0;
+      padding: 0 20px;
+    }
+
+    .tube-row {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    #tubeCanvas { display: block; flex-shrink: 0; }
+
+    .mode-pills {
+      flex: 1; display: flex; gap: 4px; flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .mode-pill {
+      padding: 5px 9px; border-radius: 999px;
+      font-family: var(--mono); font-size: 9px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      background: transparent; color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .mode-pill.active { background: var(--ink); color: #000; border-color: var(--ink); }
+
+    /* ── Title block ───────────────────────────────── */
+    .pdp-title-block {
+      max-width: 520px; margin: 0 auto;
+      padding: 28px 20px 4px;
+    }
+
+    .pdp-h1 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(38px, 9vw, 52px);
+      font-weight: 500;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    .pdp-h1 .dot { color: var(--accent); }
+
+    .pdp-tagline {
+      margin: 14px 0 0;
+      color: var(--ink-60); font-size: 16px;
+      line-height: 1.45; max-width: 340px; font-weight: 400;
+    }
+
+    .rating-row {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 16px;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.05em; color: var(--ink-60);
+    }
+
+    .stars { display: flex; gap: 2px; }
+    .stars svg { width: 13px; height: 13px; }
+
+    /* ── Eyebrow ───────────────────────────────────── */
+    .eyebrow {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+
+    .eyebrow-n { opacity: 0.55; }
+    .eyebrow-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+
+    /* ── Pack selector ─────────────────────────────── */
+    .pack-section {
+      max-width: 520px; margin: 0 auto;
+      padding: 32px 20px 28px;
+    }
+
+    .pack-hdr {
+      display: flex; align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .pack-h2 {
+      margin: 0; font-family: var(--display);
+      font-size: 28px; font-weight: 500;
+      letter-spacing: -0.02em; color: var(--ink);
+    }
+
+    .currency-sw {
+      display: flex; gap: 2px; padding: 2px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .cur-btn {
+      padding: 4px 7px; border-radius: 6px; border: none;
+      background: transparent; color: var(--ink-45);
+      font-family: var(--mono); font-size: 10px;
+      font-weight: 600; letter-spacing: 0.04em;
+      cursor: pointer; transition: all 0.15s;
+    }
+
+    .cur-btn.active { background: var(--ink); color: #000; }
+
+    .pack-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+
+    .pack-card {
+      position: relative;
+      padding: 16px 14px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer; color: var(--ink);
+      transition: all 0.2s;
+      display: flex; flex-direction: column;
+      text-align: left;
+    }
+
+    .pack-card.sel {
+      background: linear-gradient(180deg, oklch(0.22 0.04 145) 0%, oklch(0.14 0.04 145) 100%);
+      border-color: oklch(0.78 0.22 145 / 0.7);
+      box-shadow: 0 0 0 3px oklch(0.78 0.22 145 / 0.14);
+    }
+
+    @supports not (color: oklch(0 0 0)) {
+      .pack-card.sel {
+        background: linear-gradient(180deg, #1a2a0a 0%, #0e1a05 100%);
+        border-color: rgba(168, 247, 8, 0.7);
+        box-shadow: 0 0 0 3px rgba(168, 247, 8, 0.14);
+      }
+    }
+
+    .pack-badge {
+      position: absolute; top: -8px; right: 10px;
+      padding: 3px 7px; border-radius: 4px;
+      font-family: var(--mono); font-size: 8px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      background: var(--ink); color: #000; font-weight: 700;
+    }
+
+    .pack-qty-lbl {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--ink-45); text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .pack-price-val {
+      font-family: var(--display); font-size: 28px;
+      font-weight: 500; letter-spacing: -0.02em;
+      margin-top: 8px; line-height: 1;
+    }
+
+    .pack-per-tube-val {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--ink-45); margin-top: 4px;
+    }
+
+    .pack-radio {
+      position: absolute; top: 14px; right: 14px;
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: transparent; transition: all 0.15s;
+    }
+
+    .pack-card.sel .pack-radio {
+      border: 5px solid var(--accent);
+      background: #000;
+    }
+
+    .pack-converted-sm {
+      font-family: var(--mono); font-size: 9px;
+      color: var(--accent); opacity: 0.75;
+      margin-top: 2px; min-height: 0.9em;
+    }
+
+    .micro-benefits {
+      display: flex; gap: 6px; flex-wrap: wrap;
+      margin-top: 16px;
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-45);
+    }
+
+    .micro-benefit {
+      padding: 6px 10px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .buy-btn-pdp {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; height: 56px; margin-top: 20px;
+      border-radius: 14px; border: none; cursor: pointer;
+      background: var(--accent);
+      color: #06070a;
+      font-family: var(--display); font-size: 16px;
+      font-weight: 600; letter-spacing: -0.01em;
+      text-decoration: none;
+      box-shadow: 0 0 20px oklch(0.78 0.22 145 / 0.4);
+      transition: box-shadow 0.05s, transform 0.15s;
+    }
+
+    .buy-btn-pdp:hover { transform: translateY(-1px); }
+
+    /* ── Generic section ───────────────────────────── */
+    .pdp-sec {
+      max-width: 520px; margin: 0 auto;
+      padding: 8px 20px 28px;
+    }
+
+    .pdp-sec-h2 {
+      margin: 0 0 18px;
+      font-family: var(--display); font-size: 26px;
+      font-weight: 500; letter-spacing: -0.02em;
+      color: var(--ink); line-height: 1;
+    }
+
+    /* ── Features ──────────────────────────────────── */
+    .feat-list {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.04);
+      display: grid; gap: 1px;
+    }
+
+    .feat-row {
+      padding: 16px; background: var(--surface-2);
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+
+    .feat-ico {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: oklch(0.22 0.04 145 / 0.4);
+      border: 1px solid oklch(0.78 0.22 145 / 0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    @supports not (color: oklch(0 0 0)) {
+      .feat-ico { background: rgba(168,247,8,0.08); border-color: rgba(168,247,8,0.25); }
+    }
+
+    .feat-ico svg {
+      width: 18px; height: 18px;
+      stroke: var(--accent); fill: none;
+      stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .feat-t {
+      font-family: var(--display); font-size: 16px;
+      font-weight: 500; color: var(--ink); letter-spacing: -0.01em;
+    }
+
+    .feat-d {
+      margin-top: 4px; font-size: 13px;
+      line-height: 1.45; color: var(--ink-45);
+    }
+
+    /* ── Spec table ────────────────────────────────── */
+    .spec-tbl { padding: 0 2px; }
+
+    .spec-r {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.02em;
+    }
+
+    .spec-k { color: var(--ink-45); text-transform: uppercase; }
+    .spec-v { color: var(--ink); }
+
+    /* ── In the box ────────────────────────────────── */
+    .box-list-new {
+      border-radius: 16px; background: var(--surface-2);
+      border: 1px solid rgba(255,255,255,0.06); overflow: hidden;
+    }
+
+    .box-r {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .box-r:last-child { border-bottom: none; }
+
+    .box-qty-badge {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: oklch(0.22 0.04 145 / 0.35);
+      border: 1px solid oklch(0.78 0.22 145 / 0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 11px; font-weight: 600;
+      color: oklch(0.85 0.18 145);
+      letter-spacing: -0.02em; flex-shrink: 0;
+    }
+
+    @supports not (color: oklch(0 0 0)) {
+      .box-qty-badge { background: rgba(168,247,8,0.1); border-color: rgba(168,247,8,0.2); color: #a8f708; }
+    }
+
+    .box-n { flex: 1; font-size: 14px; color: var(--ink); letter-spacing: -0.005em; }
+
+    /* ── Use cases ─────────────────────────────────── */
+    .use-scroll {
+      display: flex; gap: 10px;
+      overflow-x: auto; padding: 4px 20px 12px;
+      margin: 0 -20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .use-scroll::-webkit-scrollbar { display: none; }
+
+    .use-card {
+      flex: 0 0 240px; scroll-snap-align: start;
+      border-radius: 16px; padding: 18px;
+      background: var(--surface-2);
+      border: 1px solid rgba(255,255,255,0.06);
+      min-height: 170px;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .use-card.hi {
+      background: linear-gradient(180deg, oklch(0.2 0.08 145) 0%, var(--surface-2) 100%);
+      border-color: oklch(0.78 0.22 145 / 0.3);
+    }
+
+    @supports not (color: oklch(0 0 0)) {
+      .use-card.hi { background: linear-gradient(180deg, #152800 0%, #0a0b0e 100%); border-color: rgba(168,247,8,0.3); }
+    }
+
+    .use-n { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-45); }
+    .use-t { font-family: var(--display); font-size: 22px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); margin-top: 10px; }
+    .use-d { font-size: 13px; line-height: 1.45; color: var(--ink-45); margin-top: 6px; }
+    .use-stat-row { display: flex; align-items: baseline; gap: 6px; margin-top: 16px; }
+    .use-stat { font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; }
+    .use-stat-lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-45); }
+
+    /* ── Reviews ───────────────────────────────────── */
+    .review-card-new {
+      border-radius: 18px; padding: 20px;
+      background: linear-gradient(180deg, oklch(0.14 0.03 145) 0%, var(--surface-2) 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      min-height: 220px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+
+    @supports not (color: oklch(0 0 0)) {
+      .review-card-new { background: linear-gradient(180deg, #0e1a05 0%, #0a0b0e 100%); }
+    }
+
+    .review-qm {
+      font-family: var(--display); font-size: 60px;
+      line-height: 0.7; color: var(--accent); opacity: 0.6; margin-bottom: 4px;
+    }
+
+    .review-txt {
+      margin: 0; font-size: 15px; line-height: 1.55;
+      color: var(--ink); font-family: var(--display);
+      font-weight: 400; letter-spacing: -0.005em;
+    }
+
+    .review-meta {
+      display: flex; align-items: center; gap: 12px; margin-top: 20px;
+    }
+
+    .review-av {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 11px;
+      font-weight: 600; color: var(--ink); flex-shrink: 0;
+    }
+
+    .review-nm { font-size: 13px; color: var(--ink); font-weight: 500; letter-spacing: -0.005em; }
+    .review-rl { font-family: var(--mono); font-size: 10px; color: var(--ink-45); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+    .review-stars-new { display: flex; gap: 2px; margin-left: auto; }
+    .review-stars-new svg { width: 10px; height: 10px; }
+
+    .review-pager { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+    .pager-dots { flex: 1; display: flex; gap: 4px; }
+    .pager-dot {
+      flex: 1; height: 3px; border-radius: 2px;
+      border: none; cursor: pointer; padding: 0;
+      background: rgba(255,255,255,0.1); transition: background 0.2s;
+    }
+    .pager-dot.on { background: var(--accent); }
+    .pager-btn {
+      width: 32px; height: 32px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: var(--ink); font-size: 14px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── FAQ ───────────────────────────────────────── */
+    .faq-list-new {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--surface-2);
+    }
+
+    .faq-item-new { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .faq-item-new:last-child { border-bottom: none; }
+
+    .faq-q-new {
+      width: 100%; text-align: left;
+      padding: 16px; background: transparent; border: none;
+      display: flex; align-items: center; gap: 10px;
+      cursor: pointer; color: var(--ink);
+      font-family: var(--display); font-size: 15px;
+      font-weight: 500; letter-spacing: -0.005em;
+    }
+
+    .faq-qtxt { flex: 1; }
+
+    .faq-tgl {
+      width: 20px; height: 20px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--accent);
+      transition: transform 0.2s; line-height: 1;
+    }
+
+    .faq-item-new.open .faq-tgl { transform: rotate(45deg); }
+
+    .faq-ans {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-ans-inner {
+      padding: 0 16px 16px;
+      font-size: 13px; line-height: 1.55;
+      color: var(--ink-60);
+    }
+
+    /* ── Sticky glass bar ──────────────────────────── */
+    .sticky-glass {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+      padding: 10px 14px 26px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      pointer-events: none;
+    }
+
+    .sticky-glass.on {
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .sticky-glass-inner {
+      max-width: 520px; margin: 0 auto;
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px;
+      border-radius: 18px;
+      background: rgba(10,11,14,0.88);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .sg-info { padding: 0 8px; min-width: 0; }
+
+    .sg-pack {
+      font-family: var(--mono); font-size: 9px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-45);
+    }
+
+    .sg-price {
+      font-family: var(--display); font-size: 18px;
+      font-weight: 600; letter-spacing: -0.02em;
+      color: var(--ink); margin-top: 2px;
+    }
+
+    .sg-btn {
+      flex: 1; height: 48px; border-radius: 12px; border: none;
+      cursor: pointer; background: var(--accent); color: #06070a;
+      font-family: var(--display); font-size: 15px;
+      font-weight: 600; letter-spacing: -0.01em;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      text-decoration: none;
+      box-shadow: 0 0 20px oklch(0.78 0.22 145 / 0.5);
+      transition: box-shadow 0.05s;
+    }
+
+    /* ── Desktop split hero ────────────────────────── */
+    @media (min-width: 860px) {
+      .pdp-wrap { padding-bottom: 60px; }
+
+      .pdp-topbar, .pdp-topbar-wrap { display: none; }
+
+      .pdp-hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        max-width: 1100px;
+        margin: 0 20px;
+        border: 1px solid rgba(255,255,255,0.07);
+        background: var(--bg);
+        overflow: hidden;
+      }
+
+      .pdp-left-col {
+        padding: 40px;
+        background: radial-gradient(ellipse at 50% 60%, oklch(0.18 0.06 145) 0%, #05060a 70%);
+        border-right: 1px solid rgba(255,255,255,0.06);
+        display: flex; flex-direction: column; gap: 20px;
+        justify-content: center;
+      }
+
+      @supports not (color: oklch(0 0 0)) {
+        .pdp-left-col { background: radial-gradient(ellipse at 50% 60%, #152800 0%, #05060a 70%); }
+      }
+
+      .pdp-right-col {
+        padding: 40px;
+        display: flex; flex-direction: column;
+        max-height: calc(100vh - var(--nav-h));
+        overflow-y: auto;
+      }
+
+      /* In desktop grid, remove individual mobile padding */
+      .pdp-left-col .media-wrap,
+      .pdp-left-col .tube-row-wrap,
+      .pdp-left-col .status-chip {
+        max-width: none; margin: 0; padding: 0;
+      }
+
+      .pdp-left-col .media-wrap { margin-top: 0; }
+      .pdp-left-col .tube-row-wrap { margin-top: 0; }
+
+      .pdp-right-col .pdp-title-block {
+        padding: 0; margin: 0;
+      }
+
+      .pdp-right-col .pack-section {
+        max-width: none; padding: 24px 0 0; margin: 0;
+      }
+
+      .pdp-right-col .pack-hdr { margin-bottom: 16px; }
+
+      /* Sections below the grid */
+      .pdp-sections-wrap {
+        max-width: 1100px;
+        margin: 0 20px;
+        padding: 0;
+      }
+
+      .pdp-sections-wrap .pdp-sec,
+      .pdp-sections-wrap .pdp-sec-wide {
+        max-width: none;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .pdp-sections-wrap .use-scroll {
+        padding-left: 40px;
+        margin-left: -40px;
+      }
+    }
+
+    /* ── Footer ────────────────────────────────────── */
+    .footer {
+      position: relative; z-index: 10;
+      text-align: center; padding: 20px 20px 80px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer p, .footer-copy {
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-35); line-height: 2.4; margin: 0;
+    }
+
+    .footer-links a {
+      color: var(--ink-35); text-decoration: none;
+      margin: 0 8px; opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .footer-links a:hover { opacity: 1; color: var(--accent); }
+  </style>
 </head>
 <body>
 
-  <div class="page-bg page-bg--solid"></div>
+<div class="page-bg page-bg--solid"></div>
 
-  <nav class="nav">
-    <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
-    <ul class="nav-links">
-      <li><a href="home.html">Home</a></li>
-      <li><a href="products.html" class="active">Products</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+<nav class="nav">
+  <a class="nav-logo" href="home.html"><span>SFX</span> LED</a>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <main class="products-page">
+<main class="pdp-wrap" id="pdpMain">
 
-    <a class="back-link anim-fadeup" href="products.html">← All Products</a>
+  <!-- ═══════════════════════════════════════════════
+       HERO GRID (left=media col, right=buy col)
+       On mobile both cols stack; on desktop side-by-side
+  ════════════════════════════════════════════════ -->
+  <div class="pdp-hero-grid" id="pdpHeroGrid">
 
-    <div class="product-wrap">
-      <div class="product-card anim-fadeup anim-delay-1">
+    <!-- ── LEFT: media ── -->
+    <div class="pdp-left-col">
 
-        <div class="product-img">
-          <img id="packImg" src="img/6-sfx-kit.jpg" alt="SFX RGBW Tube Kit" style="width:100%;height:100%;object-fit:cover;display:block;" />
-          <button class="play-btn" id="playBtn" aria-label="Watch video">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+      <!-- Mobile topbar -->
+      <div class="pdp-topbar">
+        <a href="products.html" class="pdp-chip-btn" aria-label="Back">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M10 2L3 7l7 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="pdp-wordmark">
+          <span class="pdp-wordmark-mark">S</span>SFX
+        </div>
+        <a href="products.html" class="pdp-chip-btn" aria-label="Products">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M11.5 12l-2.5-2.5m1-3.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0z"
+              stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Status chip -->
+      <div class="status-chip">
+        <span class="status-dot" id="statusDot"></span>
+        <span>In stock · ships 1–2 days</span>
+        <span class="status-id">SFX / TUBE-04</span>
+      </div>
+
+      <!-- Media stage -->
+      <div class="media-wrap">
+        <div class="media-stage" id="mediaStage">
+          <div class="media-halo" id="mediaHalo"></div>
+
+          <!-- Video layer (Vimeo background autoplay) -->
+          <div class="media-layer" id="videoLayer">
+            <iframe
+              src="https://player.vimeo.com/video/1174622136?badge=0&autopause=0&autoplay=1&loop=1&muted=1&background=1&player_id=0&app_id=58479"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="SFX Tube Kit"></iframe>
+          </div>
+
+          <!-- Photo layer -->
+          <div class="media-layer hidden" id="photoLayer">
+            <img id="packImg" src="img/6-sfx-kit.jpg" alt="SFX RGBW Tube Kit — 6-Pack"/>
+          </div>
+
+          <div class="media-vignette"></div>
+
+          <!-- Video / Photo toggle -->
+          <div class="media-toggle">
+            <button class="media-pill active" data-view="video">Video</button>
+            <button class="media-pill" data-view="photo">Photo</button>
+          </div>
+
+          <!-- Live BPM chip -->
+          <div class="media-bpm-chip">
+            <span class="bpm-dot" id="bpmDot"></span>
+            Live · 124 BPM
+          </div>
+
+          <!-- Product tag -->
+          <div class="media-tag">SFX / TUBE-04</div>
+
+          <!-- Sound icon (cosmetic) -->
+          <div class="media-sound">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M8 3L4.5 5.5H2v5h2.5L8 13V3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M11.5 5.5a3.5 3.5 0 0 1 0 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M2 14L14 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tube animation row + mode pills -->
+      <div class="tube-row-wrap">
+        <div class="tube-row">
+          <canvas id="tubeCanvas"></canvas>
+          <div class="mode-pills">
+            <button class="mode-pill active" data-mode="rainbow">Rainbow</button>
+            <button class="mode-pill" data-mode="mono">Mono</button>
+            <button class="mode-pill" data-mode="duo">Duo</button>
+            <button class="mode-pill" data-mode="strobe">Strobe</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /pdp-left-col -->
+
+    <!-- ── RIGHT: buy module ── -->
+    <div class="pdp-right-col">
+
+      <!-- Title block -->
+      <div class="pdp-title-block">
+        <h1 class="pdp-h1">RGBW Tube Kit<span class="dot">.</span></h1>
+        <p class="pdp-tagline">Wireless LED tubes with 500+ fully synchronized reactive animations.
+          Plug-and-play — no DMX controller required.</p>
+        <div class="rating-row">
+          <div class="stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15.1 4.4 18.1l1.4-6.3L1 7.5l6.4-.6L10 1z" fill="var(--accent)"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15.1 4.4 18.1l1.4-6.3L1 7.5l6.4-.6L10 1z" fill="var(--accent)"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15.1 4.4 18.1l1.4-6.3L1 7.5l6.4-.6L10 1z" fill="var(--accent)"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15.1 4.4 18.1l1.4-6.3L1 7.5l6.4-.6L10 1z" fill="var(--accent)"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15.1 4.4 18.1l1.4-6.3L1 7.5l6.4-.6L10 1z" fill="var(--accent)"/></svg>
+          </div>
+          <span>5.0 · 3 verified reviews</span>
+        </div>
+      </div>
+
+      <!-- Pack selector -->
+      <div class="pack-section" id="packSection">
+        <div class="eyebrow">
+          <span class="eyebrow-n">01</span>
+          <span class="eyebrow-line"></span>
+          <span>Configure</span>
+        </div>
+        <div class="pack-hdr">
+          <h2 class="pack-h2">Pick your kit</h2>
+          <div class="currency-sw" id="currencySw">
+            <button class="cur-btn active" data-cur="USD">USD</button>
+            <button class="cur-btn" data-cur="GBP">GBP</button>
+            <button class="cur-btn" data-cur="EUR">EUR</button>
+            <button class="cur-btn" data-cur="AUD">AUD</button>
+            <button class="cur-btn" data-cur="CAD">CAD</button>
+          </div>
+        </div>
+
+        <div class="pack-grid" id="packGrid">
+          <!-- 4-pack -->
+          <button class="pack-card" data-pack="4" data-usd="299" data-qty="4"
+            data-href="https://wled-lab.myshopify.com/cart/45320382972101:1">
+            <span class="pack-qty-lbl">4 Tubes</span>
+            <span class="pack-price-val">$299</span>
+            <span class="pack-per-tube-val">$75/tube</span>
+            <span class="pack-converted-sm"></span>
+            <span class="pack-radio"></span>
+          </button>
+          <!-- 6-pack -->
+          <button class="pack-card sel" data-pack="6" data-usd="399" data-qty="6"
+            data-href="https://wled-lab.myshopify.com/cart/45938229117125:1">
+            <span class="pack-badge">Most Popular</span>
+            <span class="pack-qty-lbl">6 Tubes</span>
+            <span class="pack-price-val">$399</span>
+            <span class="pack-per-tube-val">$67/tube</span>
+            <span class="pack-converted-sm"></span>
+            <span class="pack-radio"></span>
+          </button>
+          <!-- 8-pack -->
+          <button class="pack-card" data-pack="8" data-usd="549" data-qty="8"
+            data-href="https://wled-lab.myshopify.com/cart/45938229149893:1">
+            <span class="pack-qty-lbl">8 Tubes</span>
+            <span class="pack-price-val">$549</span>
+            <span class="pack-per-tube-val">$69/tube</span>
+            <span class="pack-converted-sm"></span>
+            <span class="pack-radio"></span>
+          </button>
+          <!-- 12-pack -->
+          <button class="pack-card" data-pack="12" data-usd="749" data-qty="12"
+            data-href="https://wled-lab.myshopify.com/cart/45938229182661:1">
+            <span class="pack-badge">Best Value</span>
+            <span class="pack-qty-lbl">12 Tubes</span>
+            <span class="pack-price-val">$749</span>
+            <span class="pack-per-tube-val">$62/tube</span>
+            <span class="pack-converted-sm"></span>
+            <span class="pack-radio"></span>
           </button>
         </div>
 
-        <div class="product-info">
-          <span class="product-badge">In Stock</span>
-
-          <h1 class="product-name">SFX RGBW<br>Tube Kit</h1>
-
-          <div class="rating-summary">
-            <div class="rating-stars-row">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </div>
-            <span class="rating-score">5.0</span>
-            <span class="rating-count">3 reviews</span>
-          </div>
-
-          <p class="product-desc">
-            RGBW wireless LED tubes with 500+ fully synchronized reactive animations.
-            Plug-and-play — no DMX controller required. Built for touring DJs,
-            rental companies, and event production. 6 and 12-pack include a heavy-duty hard case.
-          </p>
-
-          <ul class="specs">
-            <li>4ft (120cm) RGBW wireless LED tubes</li>
-            <li>500+ sound-reactive animations, beat-sync</li>
-            <li>Synkitt app control + onboard button control</li>
-            <li>8-hour battery life, USB-C rechargeable</li>
-            <li>CRI 90 · IP54 dust &amp; splash resistant</li>
-            <li id="caseSpec"><span>Heavy-duty hard carry case <strong id="caseWord">included</strong></span></li>
-            <li>2-year warranty</li>
-          </ul>
-
-          <!-- Currency switcher -->
-          <div class="currency-row">
-            <span class="currency-label">Currency</span>
-            <select class="currency-select" id="currencySelect">
-              <option value="USD">$ USD</option>
-              <option value="GBP">£ GBP</option>
-              <option value="AUD">A$ AUD</option>
-              <option value="CAD">C$ CAD</option>
-              <option value="EUR">€ EUR</option>
-            </select>
-          </div>
-
-          <!-- Pack selector -->
-          <div class="pack-selector" id="packSelector">
-            <label class="pack-option">
-              <input type="radio" name="pack" value="4pack" data-href="https://wled-lab.myshopify.com/cart/45320382972101:1" />
-              <span class="pack-label">4-Pack</span>
-              <span class="pack-price">$299</span>
-              <span class="pack-per-tube">$75/tube</span>
-              <span class="pack-converted" data-usd="299"></span>
-            </label>
-            <label class="pack-option selected">
-              <span class="pack-badge pack-badge--popular">Most Popular</span>
-              <input type="radio" name="pack" value="6pack" data-href="https://wled-lab.myshopify.com/cart/45938229117125:1" checked />
-              <span class="pack-label">6-Pack</span>
-              <span class="pack-price">$399</span>
-              <span class="pack-per-tube">$67/tube</span>
-              <span class="pack-converted" data-usd="399"></span>
-            </label>
-            <label class="pack-option">
-              <input type="radio" name="pack" value="8pack" data-href="https://wled-lab.myshopify.com/cart/45938229149893:1" />
-              <span class="pack-label">8-Pack</span>
-              <span class="pack-price">$549</span>
-              <span class="pack-per-tube">$69/tube</span>
-              <span class="pack-converted" data-usd="549"></span>
-            </label>
-            <label class="pack-option">
-              <span class="pack-badge pack-badge--value">Best Value</span>
-              <input type="radio" name="pack" value="12pack" data-href="https://wled-lab.myshopify.com/cart/45938229182661:1" />
-              <span class="pack-label">12-Pack</span>
-              <span class="pack-price">$749</span>
-              <span class="pack-per-tube">$62/tube</span>
-              <span class="pack-converted" data-usd="749"></span>
-            </label>
-          </div>
-
-          <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.6rem;background:rgba(198,255,0,0.07);border:1px solid rgba(198,255,0,0.25);">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lime-1)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--lime-1);">Free Shipping on All Kits</span>
-          </div>
-
-          <p style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime-1);opacity:0.75;text-align:center;">
-            ✦ Ships in 1–2 business days
-          </p>
-
-          <!-- href updated dynamically by pack selection -->
-          <a class="buy-btn" href="#" id="buyBtn">Buy Now</a>
-
-          <div class="trust-strip">
-            <span class="trust-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              SSL Secured
-            </span>
-            <span class="trust-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              2-Year Warranty
-            </span>
-            <span class="trust-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-              Shopify Payments
-            </span>
-          </div>
+        <div class="micro-benefits">
+          <span class="micro-benefit">Free shipping</span>
+          <span class="micro-benefit">2-yr warranty</span>
+          <span class="micro-benefit" id="caseBenefit">Hard case incl.</span>
+          <span class="micro-benefit">Ships 1–2 days</span>
         </div>
 
+        <a class="buy-btn-pdp" href="https://wled-lab.myshopify.com/cart/45938229117125:1"
+          id="buyBtnMain">Buy — $399 <span style="font-size:18px;">→</span></a>
       </div>
-    </div>
 
-    <!-- Reviews (social proof before the pitch) -->
-    <div class="reviews-section">
-      <div class="detail-header">
-        <p class="label label--lime">Reviews</p>
-        <h2 class="detail-title">What DJs Are Saying</h2>
+    </div><!-- /pdp-right-col -->
+
+  </div><!-- /pdp-hero-grid -->
+
+  <!-- ═══════════════════════════════════════════════
+       SECTIONS BELOW THE FOLD
+  ════════════════════════════════════════════════ -->
+  <div class="pdp-sections-wrap">
+
+    <!-- 03 Features -->
+    <section class="pdp-sec">
+      <div class="eyebrow">
+        <span class="eyebrow-n">03</span>
+        <span class="eyebrow-line"></span>
+        <span>Features</span>
       </div>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="review-stars">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <h2 class="pdp-sec-h2">Built to perform</h2>
+      <div class="feat-list">
+        <div class="feat-row">
+          <div class="feat-ico">
+            <svg viewBox="0 0 20 20"><path d="M1 10h3l2-6 4 12 3-10 2 4h4"/></svg>
           </div>
-          <p class="review-text">"Used the 6-pack at a 500-person club night. The sync was flawless — every tube locked to the beat without a single dropout. Crowd went insane when the strobes kicked in."</p>
-          <div class="review-footer">
-            <div class="review-avatar">MT</div>
-            <span class="review-author">Marcus T. — DJ / Miami, FL</span>
+          <div>
+            <div class="feat-t">Sound Reactive</div>
+            <div class="feat-d">500+ built-in animations sync to the beat in real time. No programming, no soundboard tap.</div>
           </div>
         </div>
-        <div class="review-card">
-          <div class="review-stars">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div class="feat-row">
+          <div class="feat-ico">
+            <svg viewBox="0 0 20 20"><path d="M4 12a8 8 0 0 1 12 0"/><path d="M6.5 14.5a5 5 0 0 1 7 0"/><circle cx="10" cy="17" r="1" fill="var(--accent)" stroke="none"/></svg>
           </div>
-          <p class="review-text">"I run a rental company and these have been out on 30+ events without a single issue. Battery life is legit and the hard case makes load-in and load-out so much faster."</p>
-          <div class="review-footer">
-            <div class="review-avatar">PS</div>
-            <span class="review-author">Priya S. — Event Production / London, UK</span>
+          <div>
+            <div class="feat-t">Fully Wireless</div>
+            <div class="feat-d">RF link syncs every tube simultaneously. No cables between fixtures, no signal loss.</div>
           </div>
         </div>
-        <div class="review-card">
-          <div class="review-stars">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div class="feat-row">
+          <div class="feat-ico">
+            <svg viewBox="0 0 20 20"><rect x="4" y="2" width="12" height="16" rx="2" stroke="var(--accent)" fill="none" stroke-width="1.4"/><circle cx="10" cy="15" r="0.5" fill="var(--accent)"/><path d="M8 5h4"/></svg>
           </div>
-          <p class="review-text">"Setup took under 10 minutes. No DMX, no controller, just power on and it works. The animations are actually impressive — not cheap party-store stuff. Worth every dollar."</p>
-          <div class="review-footer">
-            <div class="review-avatar">JK</div>
-            <span class="review-author">Jordan K. — Touring DJ / Toronto, CA</span>
+          <div>
+            <div class="feat-t">App + Button Control</div>
+            <div class="feat-d">Swap animations via the Synkitt app or cycle presets with the onboard button mid-set.</div>
+          </div>
+        </div>
+        <div class="feat-row">
+          <div class="feat-ico">
+            <svg viewBox="0 0 20 20"><rect x="2" y="6" width="14" height="8" rx="1"/><path d="M16 8v4"/><path d="M5 9l2 2-2 2"/></svg>
+          </div>
+          <div>
+            <div class="feat-t">8-Hour Battery</div>
+            <div class="feat-d">8-hour battery life on a single USB-C charge. Enough for a full event without touching a cable.</div>
+          </div>
+        </div>
+        <div class="feat-row">
+          <div class="feat-ico">
+            <svg viewBox="0 0 20 20"><path d="M10 2v16"/><path d="M3 5l7-3 7 3v10l-7 3-7-3V5z"/></svg>
+          </div>
+          <div>
+            <div class="feat-t">Built for the Road</div>
+            <div class="feat-d">IP54 rated, CRI 90+. Designed for truss, floor, and stand mounts — built to tour.</div>
+          </div>
+        </div>
+        <div class="feat-row">
+          <div class="feat-ico">
+            <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="5"/><path d="M10 5v5l3 2"/></svg>
+          </div>
+          <div>
+            <div class="feat-t">Zero Setup</div>
+            <div class="feat-d">No DMX controller, no interface, no programming. Power on and start performing.</div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Features -->
-    <div class="detail-section">
-      <div class="detail-header">
-        <p class="label label--lime">Features</p>
-        <h2 class="detail-title">Built to Perform</h2>
+    <!-- 04 Spec sheet -->
+    <section class="pdp-sec">
+      <div class="eyebrow">
+        <span class="eyebrow-n">04</span>
+        <span class="eyebrow-line"></span>
+        <span>Spec sheet</span>
       </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">Sound Reactive</h3>
-          <p class="feature-desc">500+ built-in animations sync to the beat in real time. No programming, no soundboard tap.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">Fully Wireless</h3>
-          <p class="feature-desc">RF link syncs every tube simultaneously. No cables between fixtures, no signal loss.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">App + Button Control</h3>
-          <p class="feature-desc">Swap animations via the Synkitt app or cycle presets with the onboard button mid-set.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">8-Hour Battery</h3>
-          <p class="feature-desc">8-hour battery life on a single USB-C charge. Enough for a full event without touching a cable.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">Built for the Road</h3>
-          <p class="feature-desc">IP54 rated, CRI 90+. Designed for truss, floor, and stand mounts — built to tour.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-line"></div>
-          <h3 class="feature-name">Zero Setup</h3>
-          <p class="feature-desc">No DMX controller, no interface, no programming. Power on and start performing.</p>
-        </div>
+      <h2 class="pdp-sec-h2">Specifications</h2>
+      <div class="spec-tbl">
+        <div class="spec-r"><span class="spec-k">Length</span><span class="spec-v">4 ft · 120 cm</span></div>
+        <div class="spec-r"><span class="spec-k">LEDs</span><span class="spec-v">RGBW · 96 per tube</span></div>
+        <div class="spec-r"><span class="spec-k">CRI</span><span class="spec-v">90+</span></div>
+        <div class="spec-r"><span class="spec-k">Battery</span><span class="spec-v">8 hrs · USB-C</span></div>
+        <div class="spec-r"><span class="spec-k">Charge time</span><span class="spec-v">2–3 hrs</span></div>
+        <div class="spec-r"><span class="spec-k">Wireless range</span><span class="spec-v">30 m · 100 ft</span></div>
+        <div class="spec-r"><span class="spec-k">Rating</span><span class="spec-v">IP54 · dust + splash</span></div>
+        <div class="spec-r"><span class="spec-k">Mic</span><span class="spec-v">Built-in, 40–20k Hz</span></div>
+        <div class="spec-r"><span class="spec-k">Weight</span><span class="spec-v">1.1 kg / 2.4 lb</span></div>
+        <div class="spec-r"><span class="spec-k">Warranty</span><span class="spec-v">2 years</span></div>
       </div>
-    </div>
+    </section>
 
-    <!-- FAQ -->
-    <div class="faq-section">
-      <div class="detail-header">
-        <p class="label label--lime">FAQ</p>
-        <h2 class="detail-title">Common Questions</h2>
+    <!-- 05 In the box -->
+    <section class="pdp-sec">
+      <div class="eyebrow">
+        <span class="eyebrow-n">05</span>
+        <span class="eyebrow-line"></span>
+        <span>In the box</span>
       </div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q">How long does the battery last?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="faq-a"><p class="faq-a-inner">Each tube has an 8-hour battery life on a single USB-C charge — enough for a full event without touching a cable. Charging takes approximately 2–3 hours.</p></div>
+      <h2 class="pdp-sec-h2">What's included</h2>
+      <div class="box-list-new">
+        <div class="box-r">
+          <div class="box-qty-badge">×<span class="box-qty">6</span></div>
+          <span class="box-n">RGBW wireless tubes — 4 ft</span>
         </div>
-        <div class="faq-item">
-          <button class="faq-q">What's the wireless sync range?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="faq-a"><p class="faq-a-inner">The RF wireless link syncs all tubes simultaneously across a typical venue. Range is up to 30m (100ft) in open space. Walls and obstructions may reduce range.</p></div>
+        <div class="box-r">
+          <div class="box-qty-badge">×<span class="box-qty">6</span></div>
+          <span class="box-n">Plate stand with telescopic extension</span>
         </div>
-        <div class="faq-item">
-          <button class="faq-q">Do I need a DMX controller or mixer tap?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="faq-a"><p class="faq-a-inner">No. The kits are fully plug-and-play. The tubes have a built-in microphone for sound reactivity — just power on and they sync to the music. You can also control animations via the app or the onboard button.</p></div>
+        <div class="box-r">
+          <div class="box-qty-badge">×<span class="box-qty">6</span></div>
+          <span class="box-n">USB-C charging cable</span>
         </div>
-        <div class="faq-item">
-          <button class="faq-q">What app do I use to control them?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="faq-a"><p class="faq-a-inner">The tubes are controlled via the Synkitt app, available on iOS and Android. Use it to switch animations, adjust brightness, and change color modes in real time.</p></div>
+        <div class="box-r">
+          <div class="box-qty-badge">×<span class="box-qty">6</span></div>
+          <span class="box-n">Wireless remote</span>
+        </div>
+        <div class="box-r" id="boxCaseItem">
+          <div class="box-qty-badge">×<span id="boxCaseCount">1</span></div>
+          <span class="box-n">Hard carry case</span>
+        </div>
+        <div class="box-r">
+          <div class="box-qty-badge" style="font-size:9px;letter-spacing:0;">1</div>
+          <span class="box-n">Quick-start guide</span>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- What's in the box — enhanced icon grid -->
-    <div class="detail-section" style="margin-bottom: 0;">
-      <div class="detail-header">
-        <p class="label label--lime">In the Box</p>
-        <h2 class="detail-title">Everything You Need</h2>
+    <!-- 08 Use cases -->
+    <section class="pdp-sec">
+      <div class="eyebrow">
+        <span class="eyebrow-n">08</span>
+        <span class="eyebrow-line"></span>
+        <span>Use cases</span>
       </div>
-      <div class="box-icon-grid">
-
-        <div class="box-icon-card">
-          <div class="box-icon-wrap">
-            <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="15" rx="3"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="9.5" y1="21" x2="14.5" y2="21"/></svg>
+      <h2 class="pdp-sec-h2">Who it's for</h2>
+      <div class="use-scroll">
+        <div class="use-card">
+          <div class="use-n">01</div>
+          <div>
+            <div class="use-t">Touring DJs</div>
+            <div class="use-d">Throw six tubes in the case, fly anywhere, set up in ten minutes.</div>
           </div>
-          <span class="box-icon-qty"><span class="box-qty">6</span>&times; Included</span>
-          <span class="box-icon-name">RGBW Wireless LED Tubes</span>
-          <span class="box-icon-sub">4ft / 120cm &middot; 500+ animations</span>
-        </div>
-
-        <div class="box-icon-card">
-          <div class="box-icon-wrap">
-            <svg viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="14"/><line x1="12" y1="14" x2="4" y2="22"/><line x1="12" y1="14" x2="20" y2="22"/><line x1="12" y1="17" x2="12" y2="22"/><line x1="7" y1="8" x2="17" y2="8"/></svg>
+          <div class="use-stat-row">
+            <span class="use-stat">10 min</span>
+            <span class="use-stat-lbl">Avg setup</span>
           </div>
-          <span class="box-icon-qty"><span class="box-qty">6</span>&times; Included</span>
-          <span class="box-icon-name">Plate Stands</span>
-          <span class="box-icon-sub">Telescopic extension</span>
         </div>
-
-        <div class="box-icon-card">
-          <div class="box-icon-wrap">
-            <svg viewBox="0 0 24 24"><path d="M9 7h6v5H9z"/><line x1="11" y1="4" x2="11" y2="7"/><line x1="13" y1="4" x2="13" y2="7"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+        <div class="use-card hi">
+          <div class="use-n">02</div>
+          <div>
+            <div class="use-t">Rental Houses</div>
+            <div class="use-d">IP54 build, 2-yr warranty, swappable batteries. Zero service calls.</div>
           </div>
-          <span class="box-icon-qty"><span class="box-qty">6</span>&times; Included</span>
-          <span class="box-icon-name">USB-C Charging Cables</span>
-          <span class="box-icon-sub">Full charge in 2–3 hrs</span>
-        </div>
-
-        <div class="box-icon-card">
-          <div class="box-icon-wrap">
-            <svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="4"/><line x1="12" y1="6" x2="12" y2="8"/><circle cx="12" cy="13" r="1.5" fill="var(--lime-1)" stroke="none"/></svg>
+          <div class="use-stat-row">
+            <span class="use-stat">30+</span>
+            <span class="use-stat-lbl">Events / unit</span>
           </div>
-          <span class="box-icon-qty"><span class="box-qty">6</span>&times; Included</span>
-          <span class="box-icon-name">Wireless Remotes</span>
-          <span class="box-icon-sub">Onboard animation control</span>
         </div>
-
-        <div class="box-icon-card" id="boxCaseItem">
-          <div class="box-icon-wrap">
-            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="2" y1="13" x2="22" y2="13"/></svg>
+        <div class="use-card">
+          <div class="use-n">03</div>
+          <div>
+            <div class="use-t">Event Production</div>
+            <div class="use-d">Sync 24 tubes on a single RF channel across a full venue.</div>
           </div>
-          <span class="box-icon-qty" id="boxCaseText">Hard carry case &times;1</span>
-          <span class="box-icon-name">Hard Carry Case</span>
-          <span class="box-icon-sub">Tour-grade foam interior</span>
-        </div>
-
-        <div class="box-icon-card">
-          <div class="box-icon-wrap">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg>
+          <div class="use-stat-row">
+            <span class="use-stat">30 m</span>
+            <span class="use-stat-lbl">Range</span>
           </div>
-          <span class="box-icon-qty">Included</span>
-          <span class="box-icon-name">Quick-Start Guide</span>
-          <span class="box-icon-sub">Up and running in minutes</span>
         </div>
-
       </div>
-    </div>
+    </section>
 
-    <!-- Closing purchase CTA -->
-    <div class="closing-cta">
-      <div class="closing-cta-copy">
-        <div class="closing-cta-stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <span>5.0 &middot; 3 Verified Reviews</span>
+    <!-- 06 Reviews -->
+    <section class="pdp-sec">
+      <div class="eyebrow">
+        <span class="eyebrow-n">06</span>
+        <span class="eyebrow-line"></span>
+        <span>Reviews</span>
+      </div>
+      <h2 class="pdp-sec-h2">What DJs are saying</h2>
+
+      <div class="review-card-new" id="reviewCard">
+        <div class="review-qm">"</div>
+        <p class="review-txt" id="reviewTxt">Used the 6-pack at a 500-person club night. The sync was flawless — every tube locked to the beat without a single dropout. Crowd went insane when the strobes kicked in.</p>
+        <div class="review-meta">
+          <div class="review-av" id="reviewAv">MT</div>
+          <div>
+            <div class="review-nm" id="reviewNm">Marcus T.</div>
+            <div class="review-rl" id="reviewRl">DJ · Miami, FL</div>
+          </div>
+          <div class="review-stars-new">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15.1 4.4 18.1l1.4-6.3L1 7.5l6.4-.6L10 1z" fill="var(--accent)"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15.1 4.4 18.1l1.4-6.3L1 7.5l6.4-.6L10 1z" fill="var(--accent)"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15.1 4.4 18.1l1.4-6.3L1 7.5l6.4-.6L10 1z" fill="var(--accent)"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15.1 4.4 18.1l1.4-6.3L1 7.5l6.4-.6L10 1z" fill="var(--accent)"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15.1 4.4 18.1l1.4-6.3L1 7.5l6.4-.6L10 1z" fill="var(--accent)"/></svg>
+          </div>
         </div>
-        <p class="closing-cta-headline">Ready to&nbsp;<span class="lime-text">perform?</span></p>
-        <p class="closing-cta-perks">Free Shipping &nbsp;&middot;&nbsp; Ships 1–2 Business Days &nbsp;&middot;&nbsp; 2-Year Warranty</p>
       </div>
-      <div class="closing-cta-right">
-        <div class="closing-price-wrap">
-          <span class="closing-price-label">Selected Pack</span>
-          <span class="closing-price" id="closingPrice">$399</span>
+
+      <div class="review-pager">
+        <div class="pager-dots" id="pagerDots">
+          <button class="pager-dot on" data-i="0"></button>
+          <button class="pager-dot" data-i="1"></button>
+          <button class="pager-dot" data-i="2"></button>
         </div>
-        <a class="buy-btn" href="#" id="closingBuyBtn" style="white-space:nowrap;">Buy Now &rarr;</a>
+        <button class="pager-btn" id="revPrev">←</button>
+        <button class="pager-btn" id="revNext">→</button>
       </div>
-    </div>
+    </section>
 
-  </main>
-
-  <!-- Sticky mobile CTA -->
-  <div class="sticky-cta" id="stickyCta">
-    <div class="sticky-cta-info">
-      <span class="sticky-cta-pack" id="stickyPack">6-Pack</span>
-      <span class="sticky-cta-price" id="stickyPrice">$399</span>
-    </div>
-    <a class="sticky-buy-btn" href="#" id="stickyBuyBtn">Buy Now</a>
-  </div>
-
-  <!-- Video modal -->
-  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Product video">
-    <div class="video-modal-backdrop" id="videoBackdrop"></div>
-    <div class="video-modal-inner">
-      <button class="video-close" id="videoClose" aria-label="Close video">&times;</button>
-      <div class="video-frame">
-        <iframe id="videoIframe" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen playsinline></iframe>
+    <!-- 07 FAQ -->
+    <section class="pdp-sec">
+      <div class="eyebrow">
+        <span class="eyebrow-n">07</span>
+        <span class="eyebrow-line"></span>
+        <span>FAQ</span>
       </div>
-    </div>
-  </div>
+      <h2 class="pdp-sec-h2">Common questions</h2>
+      <div class="faq-list-new">
+        <div class="faq-item-new open">
+          <button class="faq-q-new">
+            <span class="faq-qtxt">How long does the battery last?</span>
+            <span class="faq-tgl">+</span>
+          </button>
+          <div class="faq-ans" style="max-height:200px">
+            <div class="faq-ans-inner">Each tube has an 8-hour battery life on a single USB-C charge — enough for a full event without touching a cable. Charging takes approximately 2–3 hours.</div>
+          </div>
+        </div>
+        <div class="faq-item-new">
+          <button class="faq-q-new">
+            <span class="faq-qtxt">What's the wireless sync range?</span>
+            <span class="faq-tgl">+</span>
+          </button>
+          <div class="faq-ans">
+            <div class="faq-ans-inner">The RF wireless link syncs all tubes simultaneously across a typical venue. Range is up to 30m (100ft) in open space. Walls and obstructions may reduce range.</div>
+          </div>
+        </div>
+        <div class="faq-item-new">
+          <button class="faq-q-new">
+            <span class="faq-qtxt">Do I need a DMX controller or mixer tap?</span>
+            <span class="faq-tgl">+</span>
+          </button>
+          <div class="faq-ans">
+            <div class="faq-ans-inner">No. The kits are fully plug-and-play. The tubes have a built-in microphone for sound reactivity — just power on and they sync to the music. You can also control animations via the app or the onboard button.</div>
+          </div>
+        </div>
+        <div class="faq-item-new">
+          <button class="faq-q-new">
+            <span class="faq-qtxt">What app do I use to control them?</span>
+            <span class="faq-tgl">+</span>
+          </button>
+          <div class="faq-ans">
+            <div class="faq-ans-inner">The tubes are controlled via the Synkitt app, available on iOS and Android. Use it to switch animations, adjust brightness, and change color modes in real time.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /pdp-sections-wrap -->
 
   <footer class="footer">
     <nav class="footer-links">
@@ -1292,173 +1347,416 @@
       <a href="shipping.html">Shipping &amp; Returns</a>
       <a href="privacy.html">Privacy</a>
     </nav>
-    <p>Questions? <a href="mailto:hello@sfxled.com">hello@sfxled.com</a></p>
+    <p class="footer-copy">© 2026 SFX LED — Built for the road &nbsp;·&nbsp; hello@sfxled.com</p>
   </footer>
 
-  <script>
-    const buyBtn       = document.getElementById('buyBtn');
-    const caseWord     = document.getElementById('caseWord');
-    const boxCaseItem  = document.getElementById('boxCaseItem');
-    const boxCaseText  = document.getElementById('boxCaseText');
-    const packImg      = document.getElementById('packImg');
-    const packQty      = { '4pack': 4, '6pack': 6, '8pack': 8, '12pack': 12 };
-    const caseCounts   = { '4pack': 0, '6pack': 1, '8pack': 0, '12pack': 2 };
-    const packImgs     = { '4pack': 'img/4-kit-sfx.jpg', '6pack': 'img/6-sfx-kit.jpg', '8pack': 'img/8-sfx-kit.jpg', '12pack': 'img/12-kit-sfx.jpg' };
+</main>
 
-    function updatePack(radio) {
-      document.querySelectorAll('.pack-option').forEach(el => el.classList.remove('selected'));
-      radio.closest('.pack-option').classList.add('selected');
-      buyBtn.href = radio.dataset.href || '#';
-      if (packImg) packImg.src = packImgs[radio.value];
+<!-- ── Sticky glass buy bar ──────────────────── -->
+<div class="sticky-glass" id="stickyGlass">
+  <div class="sticky-glass-inner">
+    <div class="sg-info">
+      <div class="sg-pack" id="sgPack">6-Pack</div>
+      <div class="sg-price" id="sgPrice">$399</div>
+    </div>
+    <a class="sg-btn" href="https://wled-lab.myshopify.com/cart/45938229117125:1" id="sgBtn">
+      Buy now <span style="font-size:16px">→</span>
+    </a>
+  </div>
+</div>
 
-      const included = caseCounts[radio.value] > 0;
-      caseWord.textContent = included ? 'included' : 'not included';
-      caseWord.style.color  = 'var(--lime-1)';
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════
+const PACKS = [
+  { id:'4',  qty:4,  usd:299, href:'https://wled-lab.myshopify.com/cart/45320382972101:1', img:'img/4-kit-sfx.jpg',   cases:0 },
+  { id:'6',  qty:6,  usd:399, href:'https://wled-lab.myshopify.com/cart/45938229117125:1', img:'img/6-sfx-kit.jpg',   cases:1 },
+  { id:'8',  qty:8,  usd:549, href:'https://wled-lab.myshopify.com/cart/45938229149893:1', img:'img/8-sfx-kit.jpg',   cases:0 },
+  { id:'12', qty:12, usd:749, href:'https://wled-lab.myshopify.com/cart/45938229182661:1', img:'img/12-kit-sfx.jpg',  cases:2 },
+];
 
-      const qty = packQty[radio.value];
-      document.querySelectorAll('.box-qty').forEach(el => el.textContent = qty);
+const CURRENCIES = {
+  USD:{ sym:'$',  rate:1,    pre:true },
+  GBP:{ sym:'£',  rate:0.79, pre:true },
+  EUR:{ sym:'€',  rate:0.92, pre:true },
+  AUD:{ sym:'A$', rate:1.52, pre:true },
+  CAD:{ sym:'C$', rate:1.37, pre:true },
+};
 
-      const cases = caseCounts[radio.value];
-      boxCaseItem.style.display = cases === 0 ? 'none' : '';
-      if (cases > 0) boxCaseText.textContent = `Hard carry case ×${cases}`;
-    }
+const REVIEWS = [
+  { txt:'Used the 6-pack at a 500-person club night. The sync was flawless — every tube locked to the beat without a single dropout. Crowd went insane when the strobes kicked in.', nm:'Marcus T.', rl:'DJ · Miami, FL', av:'MT' },
+  { txt:"I run a rental company and these have been out on 30+ events without a single issue. Battery life is legit and the hard case makes load-in and load-out so much faster.", nm:'Priya S.', rl:'Event Production · London, UK', av:'PS' },
+  { txt:"Setup took under 10 minutes. No DMX, no controller, just power on and it works. The animations are actually impressive — not cheap party-store stuff. Worth every dollar.", nm:'Jordan K.', rl:'Touring DJ · Toronto, CA', av:'JK' },
+];
 
-    document.getElementById('packSelector').addEventListener('change', function(e) {
-      if (e.target.type === 'radio') updatePack(e.target);
-    });
+// ═══════════════════════════════════════════════════════
+// BEAT ENGINE — 124 BPM
+// ═══════════════════════════════════════════════════════
+const beatStart = performance.now();
+let beatEnv = 0;
+let beatNow = 0;
 
-    const checked = document.querySelector('input[name="pack"]:checked');
-    if (checked) updatePack(checked);
+function computeBeat() {
+  const elapsed = (performance.now() - beatStart) / 1000;
+  const beat = (elapsed * 124) / 60;
+  const phase = beat - Math.floor(beat);
+  beatEnv = Math.pow(1 - phase, 2.2);
+  beatNow = elapsed;
+}
 
-    // Sticky CTA + Closing CTA
-    const stickyCta    = document.getElementById('stickyCta');
-    const stickyPack   = document.getElementById('stickyPack');
-    const stickyPrice  = document.getElementById('stickyPrice');
-    const stickyBuyBtn = document.getElementById('stickyBuyBtn');
-    const closingPrice  = document.getElementById('closingPrice');
-    const closingBuyBtn = document.getElementById('closingBuyBtn');
-    const packLabels   = { '4pack': '4-Pack', '6pack': '6-Pack', '8pack': '8-Pack', '12pack': '12-Pack' };
-    const packPrices   = { '4pack': '$299', '6pack': '$399', '8pack': '$549', '12pack': '$749' };
+// ═══════════════════════════════════════════════════════
+// TUBE CANVAS
+// ═══════════════════════════════════════════════════════
+const canvas = document.getElementById('tubeCanvas');
+const dpr = Math.min(window.devicePixelRatio || 1, 2);
+const TC = 4, TW = 12, TH = 52, TG = 4;
+const CW = TC * TW + (TC - 1) * TG;
+canvas.style.width  = CW + 'px';
+canvas.style.height = TH + 'px';
+canvas.width  = CW * dpr;
+canvas.height = TH * dpr;
+const ctx = canvas.getContext('2d');
+ctx.scale(dpr, dpr);
 
-    function syncStickyBtn(radio) {
-      stickyPack.textContent  = packLabels[radio.value];
-      stickyPrice.textContent = packPrices[radio.value];
-      stickyBuyBtn.href       = radio.dataset.href || '#';
-      if (closingPrice)  closingPrice.textContent  = packPrices[radio.value];
-      if (closingBuyBtn) closingBuyBtn.href         = radio.dataset.href || '#';
-    }
-    if (checked) syncStickyBtn(checked);
+let tubeMode = 'rainbow';
+const ACCENT_H = 88; // HSL approximation of oklch(0.78 0.22 145)
 
-    document.getElementById('packSelector').addEventListener('change', function(e) {
-      if (e.target.type === 'radio') syncStickyBtn(e.target);
-    });
+function rrPath(x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.arcTo(x + w, y, x + w, y + r, r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+  ctx.lineTo(x + r, y + h);
+  ctx.arcTo(x, y + h, x, y + h - r, r);
+  ctx.lineTo(x, y + r);
+  ctx.arcTo(x, y, x + r, y, r);
+  ctx.closePath();
+}
 
-    const buyBtnEl = document.getElementById('buyBtn');
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        stickyCta.classList.toggle('visible', !entry.isIntersecting);
-      });
-    }, { threshold: 0 });
-    observer.observe(buyBtnEl);
+function drawTubes() {
+  ctx.clearRect(0, 0, CW, TH);
+  const now = beatNow, env = beatEnv;
 
-    // FAQ accordion
-    document.querySelectorAll('.faq-q').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        const item = btn.closest('.faq-item');
-        const ans  = item.querySelector('.faq-a');
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
-          openItem.classList.remove('open');
-          openItem.querySelector('.faq-a').style.maxHeight = null;
-        });
-        if (!isOpen) {
-          item.classList.add('open');
-          ans.style.maxHeight = ans.scrollHeight + 'px';
-        }
-      });
-    });
+  for (let i = 0; i < TC; i++) {
+    const x = i * (TW + TG);
+    const ph = i * 0.6;
+    const r  = TW / 2;
 
-    // Video modal
-    const modal  = document.getElementById('videoModal');
-    const iframe = document.getElementById('videoIframe');
-    const VIMEO  = 'https://player.vimeo.com/video/1174622136?autoplay=1&playsinline=1&color=c6ff00';
+    // Shell
+    rrPath(x, 0, TW, TH, r);
+    ctx.fillStyle = '#0a0b0e';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
 
-    document.getElementById('playBtn').addEventListener('click', function() {
-      iframe.src = VIMEO;
-      modal.classList.add('open');
-    });
+    // End caps
+    rrPath(x + 1, 1, TW - 2, 8, (TW - 2) / 2);
+    ctx.fillStyle = '#15171c'; ctx.fill();
+    rrPath(x + 1, TH - 9, TW - 2, 8, (TW - 2) / 2);
+    ctx.fillStyle = '#15171c'; ctx.fill();
 
-    function closeModal() {
-      modal.classList.remove('open');
-      iframe.src = '';
-    }
-
-    document.getElementById('videoClose').addEventListener('click', closeModal);
-    document.getElementById('videoBackdrop').addEventListener('click', closeModal);
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
-
-    // ── Currency converter ──
-    var fxRates   = {};
-    var fxSymbols = { USD:'$', GBP:'£', AUD:'A$', CAD:'C$', EUR:'€' };
-    var countryToCurrency = {
-      GB:'GBP', AU:'AUD', CA:'CAD',
-      DE:'EUR', FR:'EUR', IT:'EUR', ES:'EUR', NL:'EUR',
-      AT:'EUR', BE:'EUR', PT:'EUR', IE:'EUR', FI:'EUR', GR:'EUR'
-    };
-
-    function applyRates(currency) {
-      var rate = fxRates[currency] || 1;
-      var sym  = fxSymbols[currency] || currency + ' ';
-      document.querySelectorAll('.pack-converted').forEach(function(el) {
-        if (currency === 'USD') { el.textContent = ''; return; }
-        var usd = parseFloat(el.dataset.usd);
-        el.textContent = '~' + sym + Math.round(usd * rate).toLocaleString();
-      });
-    }
-
-    function initCurrency(currency) {
-      var sel = document.getElementById('currencySelect');
-      if (sel) sel.value = currency;
-      applyRates(currency);
-    }
-
-    // Fetch live rates
-    fetch('https://open.er-api.com/v6/latest/USD')
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        fxRates = data.rates || {};
-        // Try IP geolocation to auto-select currency
-        fetch('https://ipapi.co/json/')
-          .then(function(r) { return r.json(); })
-          .then(function(geo) {
-            var currency = geo.currency || countryToCurrency[geo.country_code] || 'USD';
-            if (fxSymbols[currency]) initCurrency(currency);
-          })
-          .catch(function() {}); // silently fall back to USD
-      })
-      .catch(function() {});
-
-    document.getElementById('currencySelect').addEventListener('change', function() {
-      applyRates(this.value);
-    });
-
-    (function() {
-      const burger = document.getElementById('navBurger');
-      const links  = document.querySelector('.nav-links');
-      if (burger && links) {
-        burger.addEventListener('click', function() {
-          burger.classList.toggle('open');
-          links.classList.toggle('open');
-        });
-        links.querySelectorAll('a').forEach(function(a) {
-          a.addEventListener('click', function() {
-            burger.classList.remove('open');
-            links.classList.remove('open');
-          });
-        });
+    // LED strip
+    const sx = x + 2, sw = TW - 4, sy = 12, sh = TH - 24, sr = sw / 2;
+    const N = 16;
+    const grad = ctx.createLinearGradient(0, sy, 0, sy + sh);
+    for (let j = 0; j < N; j++) {
+      const u = j / (N - 1);
+      let clr;
+      if (tubeMode === 'rainbow') {
+        const h = (u * 360 + now * 90 + ph * 180) % 360;
+        const l = 50 + 20 * Math.sin(u * 7 + now * 3);
+        clr = `hsl(${h},90%,${l}%)`;
+      } else if (tubeMode === 'mono') {
+        const l = 8 + 60 * Math.max(0, Math.sin((u - now * 0.8 + ph * 0.2) * Math.PI * 2));
+        clr = `hsl(${ACCENT_H},95%,${l}%)`;
+      } else if (tubeMode === 'duo') {
+        const sign = Math.sin((u - now * 0.4 + ph * 0.3) * Math.PI * 2);
+        const h = ACCENT_H + (sign > 0 ? 0 : 180);
+        const l = 35 + 35 * Math.abs(Math.sin((u + now * 0.5 + ph * 0.2) * Math.PI * 3));
+        clr = `hsl(${h},90%,${l}%)`;
+      } else { // strobe
+        const bright = env > 0.5 ? 88 : 8;
+        clr = `hsl(${ACCENT_H},40%,${bright}%)`;
       }
-    })();
-  </script>
+      grad.addColorStop(u, clr);
+    }
+
+    // Glow via shadow
+    ctx.save();
+    const glowH = tubeMode === 'rainbow' ? (now * 90) % 360 : ACCENT_H;
+    ctx.shadowBlur  = 8 + (0.4 + env * 0.9) * 18;
+    ctx.shadowColor = `hsl(${glowH},90%,60%)`;
+    rrPath(sx, sy, sw, sh, sr);
+    ctx.fillStyle = grad; ctx.fill();
+    ctx.restore();
+
+    // Shimmer highlight
+    const sg = ctx.createLinearGradient(x, 0, x + TW, 0);
+    sg.addColorStop(0,   'rgba(255,255,255,0)');
+    sg.addColorStop(0.35,'rgba(255,255,255,0.18)');
+    sg.addColorStop(0.5, 'rgba(255,255,255,0.32)');
+    sg.addColorStop(0.65,'rgba(255,255,255,0.18)');
+    sg.addColorStop(1,   'rgba(255,255,255,0)');
+    rrPath(x, sy, TW, sh, r);
+    ctx.globalAlpha = 0.65; ctx.fillStyle = sg; ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// BEAT-DRIVEN DOM UPDATES
+// ═══════════════════════════════════════════════════════
+const elStatusDot  = document.getElementById('statusDot');
+const elBpmDot     = document.getElementById('bpmDot');
+const elMediaHalo  = document.getElementById('mediaHalo');
+const elMediaStage = document.getElementById('mediaStage');
+const elBuyBtn     = document.getElementById('buyBtnMain');
+const elSgBtn      = document.getElementById('sgBtn');
+
+function updateBeatDOM() {
+  const e = beatEnv;
+  const gA = `oklch(0.78 0.22 145 / ${(0.09 + e * 0.16).toFixed(2)})`;
+
+  if (elStatusDot) {
+    elStatusDot.style.boxShadow = `0 0 ${6 + e * 14}px var(--accent)`;
+    elStatusDot.style.transform = `scale(${(1 + e * 0.35).toFixed(3)})`;
+  }
+  if (elBpmDot) {
+    elBpmDot.style.boxShadow = `0 0 ${6 + e * 14}px var(--accent)`;
+    elBpmDot.style.transform = `scale(${(1 + e * 0.55).toFixed(3)})`;
+  }
+  if (elMediaHalo) elMediaHalo.style.opacity = (0.1 + e * 0.22).toFixed(3);
+  if (elMediaStage) elMediaStage.style.boxShadow = `0 20px 60px rgba(0,0,0,0.5), 0 0 ${20 + e * 40}px ${gA}`;
+  if (elBuyBtn)  elBuyBtn.style.boxShadow  = `0 0 ${14 + e * 28}px oklch(0.78 0.22 145 / 0.6)`;
+  if (elSgBtn)   elSgBtn.style.boxShadow   = `0 0 ${12 + e * 24}px oklch(0.78 0.22 145 / 0.55)`;
+}
+
+// ═══════════════════════════════════════════════════════
+// MAIN RAF LOOP
+// ═══════════════════════════════════════════════════════
+function rafLoop() {
+  computeBeat();
+  drawTubes();
+  updateBeatDOM();
+  requestAnimationFrame(rafLoop);
+}
+requestAnimationFrame(rafLoop);
+
+// ═══════════════════════════════════════════════════════
+// MODE PILLS
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.mode-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tubeMode = btn.dataset.mode;
+  });
+});
+
+// ═══════════════════════════════════════════════════════
+// MEDIA TOGGLE (Video / Photo)
+// ═══════════════════════════════════════════════════════
+const videoLayer = document.getElementById('videoLayer');
+const photoLayer = document.getElementById('photoLayer');
+
+document.querySelectorAll('.media-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.media-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const view = btn.dataset.view;
+    if (view === 'video') {
+      videoLayer.classList.remove('hidden');
+      photoLayer.classList.add('hidden');
+    } else {
+      videoLayer.classList.add('hidden');
+      photoLayer.classList.remove('hidden');
+    }
+  });
+});
+
+// ═══════════════════════════════════════════════════════
+// CURRENCY
+// ═══════════════════════════════════════════════════════
+let fxRates = {};
+let activeCur = 'USD';
+
+function fmtPrice(usd, cur) {
+  const c = CURRENCIES[cur];
+  const rate = fxRates[cur] || c.rate;
+  const val = Math.round(usd * rate);
+  return c.pre ? `${c.sym}${val.toLocaleString()}` : `${val.toLocaleString()}${c.sym}`;
+}
+
+function applyPrices() {
+  document.querySelectorAll('.pack-card').forEach(card => {
+    const usd = parseFloat(card.dataset.usd);
+    const qty = parseFloat(card.dataset.qty);
+    card.querySelector('.pack-price-val').textContent = fmtPrice(usd, activeCur);
+    card.querySelector('.pack-per-tube-val').textContent = fmtPrice(usd / qty, activeCur) + '/tube';
+    const conv = card.querySelector('.pack-converted-sm');
+    conv.textContent = activeCur === 'USD' ? '' : '≈ ' + fmtPrice(usd, activeCur);
+  });
+}
+
+document.querySelectorAll('.cur-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cur-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCur = btn.dataset.cur;
+    applyPrices();
+    syncBuyBtn();
+  });
+});
+
+// Live FX rates
+fetch('https://open.er-api.com/v6/latest/USD')
+  .then(r => r.json())
+  .then(data => {
+    fxRates = data.rates || {};
+    // Geo-detect currency
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(geo => {
+        const map = { GB:'GBP', AU:'AUD', CA:'CAD', DE:'EUR', FR:'EUR', IT:'EUR', ES:'EUR', NL:'EUR', AT:'EUR', BE:'EUR', PT:'EUR', IE:'EUR', FI:'EUR', GR:'EUR' };
+        const c = geo.currency || map[geo.country_code] || 'USD';
+        if (CURRENCIES[c]) {
+          activeCur = c;
+          document.querySelectorAll('.cur-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.cur === c);
+          });
+          applyPrices();
+          syncBuyBtn();
+        }
+      }).catch(() => {});
+  }).catch(() => {});
+
+// ═══════════════════════════════════════════════════════
+// PACK SELECTOR
+// ═══════════════════════════════════════════════════════
+let activePack = '6';
+const packImgEl = document.getElementById('packImg');
+
+function selectPack(id) {
+  activePack = id;
+  const pack = PACKS.find(p => p.id === id);
+
+  document.querySelectorAll('.pack-card').forEach(c => c.classList.toggle('sel', c.dataset.pack === id));
+
+  // Update photo
+  if (packImgEl) packImgEl.src = pack.img;
+
+  // Update box quantities
+  const qty = pack.qty;
+  document.querySelectorAll('.box-qty').forEach(el => el.textContent = qty);
+
+  // Case item
+  const caseItem  = document.getElementById('boxCaseItem');
+  const caseCount = document.getElementById('boxCaseCount');
+  if (caseItem) caseItem.style.display = pack.cases === 0 ? 'none' : '';
+  if (caseCount && pack.cases > 0) caseCount.textContent = pack.cases;
+
+  // Case benefit chip
+  const caseBen = document.getElementById('caseBenefit');
+  if (caseBen) caseBen.style.opacity = pack.cases > 0 ? '1' : '0.35';
+
+  syncBuyBtn();
+  applyPrices();
+}
+
+function syncBuyBtn() {
+  const pack = PACKS.find(p => p.id === activePack);
+  const price = fmtPrice(pack.usd, activeCur);
+  const href  = pack.href;
+  const label = `${pack.qty}-Pack`;
+
+  if (elBuyBtn) { elBuyBtn.href = href; elBuyBtn.innerHTML = `Buy — ${price} <span style="font-size:18px">→</span>`; }
+
+  const sgPack  = document.getElementById('sgPack');
+  const sgPrice = document.getElementById('sgPrice');
+  const sgBtn   = document.getElementById('sgBtn');
+  if (sgPack)  sgPack.textContent  = label;
+  if (sgPrice) sgPrice.textContent = price;
+  if (sgBtn)   sgBtn.href = href;
+}
+
+document.querySelectorAll('.pack-card').forEach(card => {
+  card.addEventListener('click', () => selectPack(card.dataset.pack));
+});
+
+selectPack('6'); // default
+
+// ═══════════════════════════════════════════════════════
+// STICKY GLASS BAR — visible when buy button scrolls out
+// ═══════════════════════════════════════════════════════
+const stickyGlass = document.getElementById('stickyGlass');
+const buyBtnObs = new IntersectionObserver(entries => {
+  entries.forEach(e => stickyGlass.classList.toggle('on', !e.isIntersecting));
+}, { threshold: 0 });
+if (elBuyBtn) buyBtnObs.observe(elBuyBtn);
+
+// ═══════════════════════════════════════════════════════
+// REVIEWS PAGER
+// ═══════════════════════════════════════════════════════
+let revIdx = 0;
+
+function showReview(i) {
+  revIdx = i;
+  const r = REVIEWS[i];
+  document.getElementById('reviewTxt').textContent = r.txt;
+  document.getElementById('reviewNm').textContent  = r.nm;
+  document.getElementById('reviewRl').textContent  = r.rl;
+  document.getElementById('reviewAv').textContent  = r.av;
+  document.querySelectorAll('.pager-dot').forEach(d => d.classList.toggle('on', +d.dataset.i === i));
+}
+
+document.querySelectorAll('.pager-dot').forEach(d => {
+  d.addEventListener('click', () => showReview(+d.dataset.i));
+});
+document.getElementById('revPrev').addEventListener('click', () => showReview((revIdx - 1 + REVIEWS.length) % REVIEWS.length));
+document.getElementById('revNext').addEventListener('click', () => showReview((revIdx + 1) % REVIEWS.length));
+
+// ═══════════════════════════════════════════════════════
+// FAQ ACCORDION
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.faq-q-new').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item-new');
+    const ans  = item.querySelector('.faq-ans');
+    const open = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item-new.open').forEach(it => {
+      it.classList.remove('open');
+      it.querySelector('.faq-ans').style.maxHeight = null;
+    });
+    if (!open) {
+      item.classList.add('open');
+      ans.style.maxHeight = ans.scrollHeight + 'px';
+    }
+  });
+});
+
+// ═══════════════════════════════════════════════════════
+// NAV BURGER
+// ═══════════════════════════════════════════════════════
+(function() {
+  const burger = document.getElementById('navBurger');
+  const links  = document.querySelector('.nav-links');
+  if (burger && links) {
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      links.classList.toggle('open');
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      burger.classList.remove('open');
+      links.classList.remove('open');
+    }));
+  }
+})();
+</script>
 
 </body>
 </html>
