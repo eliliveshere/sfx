@@ -659,6 +659,85 @@
       opacity: 0.75;
       min-height: 0.9em;
     }
+
+    /* Pack option badges */
+    .pack-badge {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .pack-badge--popular {
+      background: var(--lime-1);
+      color: #000;
+    }
+    .pack-badge--value {
+      background: rgba(198,255,0,0.12);
+      color: var(--lime-1);
+      border: 1px solid rgba(198,255,0,0.35);
+    }
+
+    /* Per-tube price */
+    .pack-per-tube {
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+    }
+
+    /* Rating summary row */
+    .rating-summary {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: -0.5rem;
+    }
+    .rating-stars-row {
+      display: flex;
+      gap: 1px;
+    }
+    .rating-stars-row svg {
+      width: 11px; height: 11px;
+      fill: var(--lime-1);
+    }
+    .rating-score {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .rating-count {
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      letter-spacing: 0.04em;
+    }
+
+    /* Review avatar */
+    .review-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: auto;
+    }
+    .review-avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: rgba(198,255,0,0.1);
+      border: 1px solid rgba(198,255,0,0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--lime-1);
+      flex-shrink: 0;
+    }
   </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -731,6 +810,18 @@
 
           <h1 class="product-name">SFX RGBW<br>Tube Kit</h1>
 
+          <div class="rating-summary">
+            <div class="rating-stars-row">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="rating-score">5.0</span>
+            <span class="rating-count">3 reviews</span>
+          </div>
+
           <p class="product-desc">
             RGBW wireless LED tubes with 500+ fully synchronized reactive animations.
             Plug-and-play — no DMX controller required. Built for touring DJs,
@@ -765,24 +856,30 @@
               <input type="radio" name="pack" value="4pack" data-href="https://wled-lab.myshopify.com/cart/45320382972101:1" />
               <span class="pack-label">4-Pack</span>
               <span class="pack-price">$299</span>
+              <span class="pack-per-tube">$75/tube</span>
               <span class="pack-converted" data-usd="299"></span>
             </label>
             <label class="pack-option selected">
+              <span class="pack-badge pack-badge--popular">Most Popular</span>
               <input type="radio" name="pack" value="6pack" data-href="https://wled-lab.myshopify.com/cart/45938229117125:1" checked />
               <span class="pack-label">6-Pack</span>
               <span class="pack-price">$399</span>
+              <span class="pack-per-tube">$67/tube</span>
               <span class="pack-converted" data-usd="399"></span>
             </label>
             <label class="pack-option">
               <input type="radio" name="pack" value="8pack" data-href="https://wled-lab.myshopify.com/cart/45938229149893:1" />
               <span class="pack-label">8-Pack</span>
               <span class="pack-price">$549</span>
+              <span class="pack-per-tube">$69/tube</span>
               <span class="pack-converted" data-usd="549"></span>
             </label>
             <label class="pack-option">
+              <span class="pack-badge pack-badge--value">Best Value</span>
               <input type="radio" name="pack" value="12pack" data-href="https://wled-lab.myshopify.com/cart/45938229182661:1" />
               <span class="pack-label">12-Pack</span>
               <span class="pack-price">$749</span>
+              <span class="pack-per-tube">$62/tube</span>
               <span class="pack-converted" data-usd="749"></span>
             </label>
           </div>
@@ -834,7 +931,10 @@
             <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
           <p class="review-text">"Used the 6-pack at a 500-person club night. The sync was flawless — every tube locked to the beat without a single dropout. Crowd went insane when the strobes kicked in."</p>
-          <span class="review-author">Marcus T. — DJ / Miami, FL</span>
+          <div class="review-footer">
+            <div class="review-avatar">MT</div>
+            <span class="review-author">Marcus T. — DJ / Miami, FL</span>
+          </div>
         </div>
         <div class="review-card">
           <div class="review-stars">
@@ -845,7 +945,10 @@
             <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
           <p class="review-text">"I run a rental company and these have been out on 30+ events without a single issue. Battery life is legit and the hard case makes load-in and load-out so much faster."</p>
-          <span class="review-author">Priya S. — Event Production / London, UK</span>
+          <div class="review-footer">
+            <div class="review-avatar">PS</div>
+            <span class="review-author">Priya S. — Event Production / London, UK</span>
+          </div>
         </div>
         <div class="review-card">
           <div class="review-stars">
@@ -856,7 +959,10 @@
             <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
           <p class="review-text">"Setup took under 10 minutes. No DMX, no controller, just power on and it works. The animations are actually impressive — not cheap party-store stuff. Worth every dollar."</p>
-          <span class="review-author">Jordan K. — Touring DJ / Toronto, CA</span>
+          <div class="review-footer">
+            <div class="review-avatar">JK</div>
+            <span class="review-author">Jordan K. — Touring DJ / Toronto, CA</span>
+          </div>
         </div>
       </div>
     </div>
