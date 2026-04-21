@@ -777,18 +777,25 @@
 
       .pdp-topbar, .pdp-topbar-wrap { display: none; }
 
+      /* ── Centering shell shared by hero + sections ── */
+      .pdp-hero-grid,
+      .pdp-sections-wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        width: calc(100% - 48px);
+      }
+
       .pdp-hero-grid {
         display: grid;
         grid-template-columns: 1.15fr 1fr;
-        max-width: 1100px;
-        margin: 0 20px;
         border: 1px solid rgba(255,255,255,0.07);
         background: var(--bg);
         overflow: hidden;
+        border-radius: 2px;
       }
 
       .pdp-left-col {
-        padding: 40px;
+        padding: 48px;
         background: radial-gradient(ellipse at 50% 60%, oklch(0.18 0.06 145) 0%, #05060a 70%);
         border-right: 1px solid rgba(255,255,255,0.06);
         display: flex; flex-direction: column; gap: 20px;
@@ -800,9 +807,8 @@
       }
 
       .pdp-right-col {
-        padding: 40px;
+        padding: 48px;
         display: flex; flex-direction: column;
-        max-height: calc(100vh - var(--nav-h));
         overflow-y: auto;
       }
 
@@ -828,21 +834,48 @@
 
       /* Sections below the grid */
       .pdp-sections-wrap {
-        max-width: 1100px;
-        margin: 0 20px;
         padding: 0;
+        margin-top: 40px;
+        border-top: 1px solid rgba(255,255,255,0.06);
       }
 
       .pdp-sections-wrap .pdp-sec,
       .pdp-sections-wrap .pdp-sec-wide {
         max-width: none;
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-left: 48px;
+        padding-right: 48px;
+      }
+
+      /* Features → 2×3 grid on desktop */
+      .pdp-sections-wrap .feat-list {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* Spec + In the Box → side-by-side columns */
+      .pdp-sections-wrap .spec-feat-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+
+      .pdp-sections-wrap .spec-feat-wrap > .pdp-sec:first-child {
+        border-right: 1px solid rgba(255,255,255,0.06);
+      }
+
+      /* Reviews + FAQ side by side */
+      .pdp-sections-wrap .rev-faq-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+
+      .pdp-sections-wrap .rev-faq-wrap > .pdp-sec:first-child {
+        border-right: 1px solid rgba(255,255,255,0.06);
       }
 
       .pdp-sections-wrap .use-scroll {
-        padding-left: 40px;
-        margin-left: -40px;
+        padding-left: 48px;
+        margin-left: -48px;
       }
     }
 
@@ -1148,6 +1181,8 @@
       </div>
     </section>
 
+    <div class="spec-feat-wrap">
+
     <!-- 04 Spec sheet -->
     <section class="pdp-sec">
       <div class="eyebrow">
@@ -1206,6 +1241,8 @@
       </div>
     </section>
 
+    </div><!-- /spec-feat-wrap -->
+
     <!-- 08 Use cases -->
     <section class="pdp-sec">
       <div class="eyebrow">
@@ -1250,6 +1287,8 @@
         </div>
       </div>
     </section>
+
+    <div class="rev-faq-wrap">
 
     <!-- 06 Reviews -->
     <section class="pdp-sec">
@@ -1337,6 +1376,8 @@
         </div>
       </div>
     </section>
+
+    </div><!-- /rev-faq-wrap -->
 
   </div><!-- /pdp-sections-wrap -->
 
