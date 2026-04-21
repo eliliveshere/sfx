@@ -2055,7 +2055,7 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
 })();
 
 // ═══════════════════════════════════════════════════════
-// VIMEO — bind to iframe already in DOM, unmuted autoplay
+// VIMEO — robust autoplay with layered reveal fallbacks
 // ═══════════════════════════════════════════════════════
 (function() {
   const iframe        = document.getElementById('vimeoIframe');
@@ -2065,59 +2065,67 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
   const iconOn        = document.getElementById('soundIconOn');
   if (!iframe) return;
 
-  let isMuted = true;
+  let isMuted  = true;
+  let revealed = false;
 
   function setSoundUI(muted) {
     isMuted = muted;
     if (iconMuted)    iconMuted.style.display    = muted ? ''     : 'none';
     if (iconOn)       iconOn.style.display       = muted ? 'none' : '';
     if (soundBtn)     soundBtn.setAttribute('aria-label', muted ? 'Unmute video' : 'Mute video');
-    // Show big overlay only while muted; hide it once sound is on
     if (audioOverlay) audioOverlay.classList.toggle('hidden', !muted);
   }
 
-  function unmute(player) {
-    player.setMuted(false).catch(() => {});
-    setSoundUI(false);
+  // Reveal iframe over poster — safe to call multiple times
+  function revealVideo() {
+    if (revealed) return;
+    revealed = true;
+    iframe.style.transition = 'opacity 0.4s';
+    iframe.style.opacity = '1';
+    const poster = document.getElementById('videoPoster');
+    if (poster) {
+      poster.style.transition = 'opacity 0.4s';
+      poster.style.opacity = '0';
+      setTimeout(() => { if (poster.parentNode) poster.remove(); }, 450);
+    }
   }
 
+  // Nuclear fallback: show video after 5 s no matter what
+  setTimeout(revealVideo, 5000);
+
+  let attempts = 0;
   function boot() {
-    if (typeof Vimeo === 'undefined') { setTimeout(boot, 50); return; }
+    if (typeof Vimeo === 'undefined') {
+      if (++attempts < 120) setTimeout(boot, 50); // give up after ~6 s
+      return;
+    }
 
     const player = new Vimeo.Player(iframe);
 
     player.ready().then(() => {
-      // Try unmuted; fall back to muted + show overlay
-      player.setMuted(false)
-        .then(() => {
-          player.play().catch(() => {});
-          setSoundUI(false);
-        })
-        .catch(() => {
-          player.setMuted(true).then(() => player.play().catch(() => {})).catch(() => {});
-          // Overlay shown after video reveals itself
-        });
-      setTimeout(() => player.getMuted().then(m => setSoundUI(m)), 600);
+      // background=1 already handles muted autoplay — just nudge play
+      player.play().catch(() => {});
+
+      // Read actual mute state after player settles
+      setTimeout(() => {
+        player.getMuted().then(m => setSoundUI(m)).catch(() => setSoundUI(true));
+      }, 800);
+
+      // Fallback reveal if play event is slow / never fires
+      setTimeout(revealVideo, 2500);
+
+    }).catch(() => {
+      // ready() rejected — still reveal eventually
+      setTimeout(revealVideo, 3000);
     });
 
-    // Reveal video over poster on first play, then show overlay if muted
-    let revealed = false;
+    // Primary reveal: play event fires as soon as video starts
     player.on('play', () => {
-      if (revealed) return;
-      revealed = true;
-      iframe.style.transition = 'opacity 0.3s';
-      iframe.style.opacity = '1';
-      const poster = document.getElementById('videoPoster');
-      if (poster) {
-        poster.style.transition = 'opacity 0.3s';
-        poster.style.opacity = '0';
-        setTimeout(() => poster.remove(), 350);
-      }
-      // Show overlay if we're stuck muted
-      player.getMuted().then(m => setSoundUI(m));
+      revealVideo();
+      player.getMuted().then(m => setSoundUI(m)).catch(() => setSoundUI(true));
     });
 
-    // iOS: play when visible, pause when off-screen
+    // iOS: play when scrolled into view, pause when off-screen
     const obs = new IntersectionObserver(entries => {
       entries[0].isIntersecting
         ? player.play().catch(() => {})
@@ -2127,10 +2135,13 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
 
     // Big overlay tap → unmute
     if (audioOverlay) {
-      audioOverlay.addEventListener('click', () => unmute(player));
+      audioOverlay.addEventListener('click', () => {
+        player.setMuted(false).catch(() => {});
+        setSoundUI(false);
+      });
     }
 
-    // Small corner button → toggle
+    // Corner button → toggle
     if (soundBtn) {
       soundBtn.addEventListener('click', () => {
         isMuted = !isMuted;
