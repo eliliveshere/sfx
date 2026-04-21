@@ -903,48 +903,159 @@
 
       .pdp-right-col .pack-hdr { margin-bottom: 16px; }
 
-      /* ── Each section: own full-width stripe ──────── */
-      /* Self-centering padding: at ≤1040px feels spacious;
-         on wider screens the horizontal padding grows until
-         content sits at a comfortable ~1040px reading width */
+      /* ── Each section: true full-width stripe ─────── */
       .pdp-sections-wrap .pdp-sec,
       .pdp-sections-wrap .pdp-sec-wide {
         max-width: none;
-        padding: clamp(56px, 7vw, 96px) max(80px, calc(50vw - 520px));
+        padding: clamp(56px, 7vw, 96px) clamp(40px, 4vw, 72px);
         border-bottom: 1px solid rgba(255,255,255,0.05);
       }
 
       /* Alternate subtle background on even stripes */
-      .pdp-sections-wrap .pdp-sec:nth-child(even),
-      .pdp-sections-wrap .spec-feat-wrap > .pdp-sec:last-child,
-      .pdp-sections-wrap .rev-faq-wrap > .pdp-sec:last-child {
+      .pdp-sections-wrap .pdp-sec:nth-child(even) {
         background: #080910;
       }
 
-      /* Features → 3-column grid */
-      .pdp-sections-wrap .feat-list {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 1040px;
-        margin: 0 auto;
-      }
-
-      /* Spec table + box list: constrain for readability */
-      .pdp-sections-wrap .spec-tbl { max-width: 680px; }
-      .pdp-sections-wrap .box-list-new { max-width: 680px; }
-      .pdp-sections-wrap .faq-list-new { max-width: 760px; }
-      .pdp-sections-wrap .review-card-new { max-width: 680px; }
-
-      /* Un-pair spec+box and reviews+FAQ — each is its own stripe */
+      /* Un-pair wrappers — each section is its own stripe row */
       .pdp-sections-wrap .spec-feat-wrap,
       .pdp-sections-wrap .rev-faq-wrap {
-        display: contents; /* dissolve wrappers, children become direct stripe children */
+        display: contents;
       }
 
-      /* Use-cases scroll: start flush with section padding edge */
+      /* ── Section headings scale up ──────────────────── */
+      .pdp-sections-wrap .pdp-sec-h2 {
+        font-size: clamp(32px, 3.5vw, 52px);
+        margin-bottom: 32px;
+        letter-spacing: -0.03em;
+      }
+
+      .pdp-sections-wrap .eyebrow {
+        margin-bottom: 20px;
+        letter-spacing: 0.22em;
+      }
+
+      /* ── Features: 3-col icon-on-top tiles ─────────── */
+      .pdp-sections-wrap .feat-list {
+        grid-template-columns: repeat(3, 1fr);
+        border-radius: 20px;
+        max-width: none;
+      }
+
+      .pdp-sections-wrap .feat-row {
+        padding: 28px 24px;
+        gap: 0;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .pdp-sections-wrap .feat-ico {
+        width: 52px; height: 52px; border-radius: 14px;
+        margin-bottom: 16px;
+      }
+
+      .pdp-sections-wrap .feat-ico svg {
+        width: 26px; height: 26px; stroke-width: 1.3;
+      }
+
+      .pdp-sections-wrap .feat-t {
+        font-size: 20px; margin-top: 0;
+      }
+
+      .pdp-sections-wrap .feat-d {
+        font-size: 15px; line-height: 1.55; margin-top: 8px;
+      }
+
+      /* ── Spec table: full-width, bigger rows ─────── */
+      .pdp-sections-wrap .spec-tbl { max-width: none; }
+
+      .pdp-sections-wrap .spec-r {
+        padding: 20px 6px;
+        font-size: 14px; letter-spacing: 0.03em;
+      }
+
+      .pdp-sections-wrap .spec-k { font-size: 11px; letter-spacing: 0.14em; }
+
+      /* ── In the Box: full-width, bigger rows ────────── */
+      .pdp-sections-wrap .box-list-new { max-width: none; }
+
+      .pdp-sections-wrap .box-r {
+        padding: 20px 24px; gap: 20px;
+      }
+
+      .pdp-sections-wrap .box-qty-badge {
+        width: 44px; height: 44px; border-radius: 10px;
+        font-size: 13px;
+      }
+
+      .pdp-sections-wrap .box-n { font-size: 17px; }
+
+      /* ── Use cases: 3-column static grid ─────────── */
       .pdp-sections-wrap .use-scroll {
-        padding-left: 0;
-        margin-left: 0;
-        overflow-x: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        overflow-x: visible;
+        padding: 0; margin: 0;
+      }
+
+      .pdp-sections-wrap .use-card {
+        flex: none; width: auto;
+        padding: 32px 28px; min-height: 240px;
+        border-radius: 20px;
+      }
+
+      .pdp-sections-wrap .use-t {
+        font-size: 30px; margin-top: 14px;
+      }
+
+      .pdp-sections-wrap .use-d {
+        font-size: 15px; line-height: 1.55; margin-top: 8px;
+      }
+
+      .pdp-sections-wrap .use-stat { font-size: 34px; }
+
+      .pdp-sections-wrap .use-stat-lbl {
+        font-size: 10px; letter-spacing: 0.12em;
+      }
+
+      /* ── Reviews: full-width card, large quote ──────── */
+      .pdp-sections-wrap .review-card-new {
+        max-width: none; padding: 36px; border-radius: 20px;
+        min-height: 260px;
+      }
+
+      .pdp-sections-wrap .review-qm {
+        font-size: 90px;
+      }
+
+      .pdp-sections-wrap .review-txt {
+        font-size: 22px; line-height: 1.5;
+      }
+
+      .pdp-sections-wrap .review-av {
+        width: 44px; height: 44px;
+      }
+
+      .pdp-sections-wrap .review-nm { font-size: 15px; }
+      .pdp-sections-wrap .review-rl { font-size: 11px; }
+      .pdp-sections-wrap .review-stars-new svg { width: 14px; height: 14px; }
+
+      .pdp-sections-wrap .review-pager { margin-top: 20px; }
+
+      .pdp-sections-wrap .pager-btn {
+        width: 38px; height: 38px; font-size: 16px;
+      }
+
+      /* ── FAQ: full-width, spacious items ─────────── */
+      .pdp-sections-wrap .faq-list-new { max-width: none; border-radius: 20px; }
+
+      .pdp-sections-wrap .faq-q-new {
+        padding: 22px 28px; font-size: 18px;
+      }
+
+      .pdp-sections-wrap .faq-ans-inner {
+        font-size: 15px; line-height: 1.6;
+        padding-left: 28px; padding-right: 28px; padding-bottom: 24px;
       }
     }
 
