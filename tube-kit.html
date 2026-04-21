@@ -307,6 +307,47 @@
       border-color: rgba(255,255,255,0.2);
     }
 
+    /* ── Full-stage audio tap overlay ──────────────── */
+    .audio-overlay {
+      position: absolute; inset: 0; z-index: 8;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 14px;
+      background: rgba(0,0,0,0.28);
+      border: none; cursor: pointer; width: 100%; padding: 0;
+      opacity: 1; transition: opacity 0.25s;
+    }
+
+    .audio-overlay.hidden {
+      opacity: 0; pointer-events: none;
+    }
+
+    .audio-overlay-ring {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(6,7,10,0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(255,255,255,0.22);
+      display: flex; align-items: center; justify-content: center;
+      animation: aoRingPulse 2s ease-in-out infinite;
+    }
+
+    .audio-overlay-ring svg {
+      width: 30px; height: 30px;
+      stroke: #fff; fill: none;
+      stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .audio-overlay-label {
+      font-family: var(--mono); font-size: 10px;
+      font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75);
+    }
+
+    @keyframes aoRingPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.15); transform: scale(1); }
+      50%       { box-shadow: 0 0 0 12px rgba(255,255,255,0); transform: scale(1.05); }
+    }
+
     /* ── Tube row ──────────────────────────────────── */
     .tube-row-wrap {
       max-width: 520px; margin: 14px auto 0;
@@ -1182,7 +1223,18 @@
           <!-- Product tag -->
           <div class="media-tag">SFX / TUBE-04</div>
 
-          <!-- Sound toggle -->
+          <!-- Full-stage tap-to-unmute overlay (shown when playing muted) -->
+          <button class="audio-overlay hidden" id="audioOverlay" aria-label="Tap to enable sound">
+            <div class="audio-overlay-ring">
+              <svg viewBox="0 0 24 24">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                <path d="M23 9l-6 6M17 9l6 6" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <span class="audio-overlay-label">Tap for sound</span>
+          </button>
+
+          <!-- Small corner sound toggle (secondary) -->
           <button class="media-sound" id="soundBtn" aria-label="Unmute video">
             <!-- muted icon (default) -->
             <svg id="soundIconMuted" width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -1987,19 +2039,27 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
 // VIMEO — bind to iframe already in DOM, unmuted autoplay
 // ═══════════════════════════════════════════════════════
 (function() {
-  const iframe   = document.getElementById('vimeoIframe');
-  const soundBtn = document.getElementById('soundBtn');
-  const iconMuted = document.getElementById('soundIconMuted');
-  const iconOn    = document.getElementById('soundIconOn');
+  const iframe        = document.getElementById('vimeoIframe');
+  const soundBtn      = document.getElementById('soundBtn');
+  const audioOverlay  = document.getElementById('audioOverlay');
+  const iconMuted     = document.getElementById('soundIconMuted');
+  const iconOn        = document.getElementById('soundIconOn');
   if (!iframe) return;
 
   let isMuted = true;
 
   function setSoundUI(muted) {
     isMuted = muted;
-    if (iconMuted) iconMuted.style.display = muted ? ''     : 'none';
-    if (iconOn)    iconOn.style.display    = muted ? 'none' : '';
-    if (soundBtn)  soundBtn.setAttribute('aria-label', muted ? 'Unmute video' : 'Mute video');
+    if (iconMuted)    iconMuted.style.display    = muted ? ''     : 'none';
+    if (iconOn)       iconOn.style.display       = muted ? 'none' : '';
+    if (soundBtn)     soundBtn.setAttribute('aria-label', muted ? 'Unmute video' : 'Mute video');
+    // Show big overlay only while muted; hide it once sound is on
+    if (audioOverlay) audioOverlay.classList.toggle('hidden', !muted);
+  }
+
+  function unmute(player) {
+    player.setMuted(false).catch(() => {});
+    setSoundUI(false);
   }
 
   function boot() {
@@ -2008,18 +2068,20 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
     const player = new Vimeo.Player(iframe);
 
     player.ready().then(() => {
-      // Try to play with sound; fall back to muted if browser blocks it
+      // Try unmuted; fall back to muted + show overlay
       player.setMuted(false)
-        .then(() => player.play().catch(() => {}))
+        .then(() => {
+          player.play().catch(() => {});
+          setSoundUI(false);
+        })
         .catch(() => {
           player.setMuted(true).then(() => player.play().catch(() => {})).catch(() => {});
-          setSoundUI(true);
+          // Overlay shown after video reveals itself
         });
-      // Sync icon to reality once the dust settles
       setTimeout(() => player.getMuted().then(m => setSoundUI(m)), 600);
     });
 
-    // Fade iframe in, remove poster on first play
+    // Reveal video over poster on first play, then show overlay if muted
     let revealed = false;
     player.on('play', () => {
       if (revealed) return;
@@ -2032,6 +2094,8 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
         poster.style.opacity = '0';
         setTimeout(() => poster.remove(), 350);
       }
+      // Show overlay if we're stuck muted
+      player.getMuted().then(m => setSoundUI(m));
     });
 
     // iOS: play when visible, pause when off-screen
@@ -2042,7 +2106,12 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
     }, { threshold: 0.25 });
     obs.observe(iframe);
 
-    // Mute toggle
+    // Big overlay tap → unmute
+    if (audioOverlay) {
+      audioOverlay.addEventListener('click', () => unmute(player));
+    }
+
+    // Small corner button → toggle
     if (soundBtn) {
       soundBtn.addEventListener('click', () => {
         isMuted = !isMuted;
