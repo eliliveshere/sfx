@@ -307,6 +307,37 @@
       border-color: rgba(255,255,255,0.2);
     }
 
+    /* ── Play button overlay (shown when not yet playing) ── */
+    .play-overlay {
+      position: absolute; inset: 0; z-index: 9;
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle, rgba(0,0,0,0.32) 0%, transparent 68%);
+      border: none; cursor: pointer; width: 100%; padding: 0;
+      opacity: 1; transition: opacity 0.35s;
+    }
+    .play-overlay.hidden { opacity: 0; pointer-events: none; }
+
+    .play-overlay-btn {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(6,7,10,0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(255,255,255,0.28);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 0 0 0 oklch(0.78 0.22 145 / 0);
+    }
+    .play-overlay:hover .play-overlay-btn {
+      transform: scale(1.1);
+      border-color: oklch(0.78 0.22 145 / 0.6);
+      box-shadow: 0 0 28px oklch(0.78 0.22 145 / 0.35);
+    }
+    .play-overlay-btn svg {
+      width: 28px; height: 28px; fill: #fff;
+      margin-left: 4px; /* optical nudge for play triangle */
+      filter: drop-shadow(0 0 6px rgba(255,255,255,0.4));
+    }
+
     /* ── Full-stage audio tap overlay ──────────────── */
     .audio-overlay {
       position: absolute; inset: 0; z-index: 8;
@@ -1242,6 +1273,13 @@
           <!-- Product tag -->
           <div class="media-tag">SFX / TUBE-04</div>
 
+          <!-- Play button (shown until video starts; fallback if autoplay blocked) -->
+          <button class="play-overlay" id="playOverlay" aria-label="Play video">
+            <div class="play-overlay-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </button>
+
           <!-- Full-stage tap-to-unmute overlay (shown when playing muted) -->
           <button class="audio-overlay hidden" id="audioOverlay" aria-label="Tap to enable sound">
             <div class="audio-overlay-ring">
@@ -2061,6 +2099,7 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
   const iframe        = document.getElementById('vimeoIframe');
   const soundBtn      = document.getElementById('soundBtn');
   const audioOverlay  = document.getElementById('audioOverlay');
+  const playOverlay   = document.getElementById('playOverlay');
   const iconMuted     = document.getElementById('soundIconMuted');
   const iconOn        = document.getElementById('soundIconOn');
   if (!iframe) return;
@@ -2082,6 +2121,7 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
     revealed = true;
     iframe.style.transition = 'opacity 0.4s';
     iframe.style.opacity = '1';
+    if (playOverlay) playOverlay.classList.add('hidden');
     const poster = document.getElementById('videoPoster');
     if (poster) {
       poster.style.transition = 'opacity 0.4s';
@@ -2132,6 +2172,19 @@ document.querySelectorAll('.faq-q-new').forEach(btn => {
         : player.pause().catch(() => {});
     }, { threshold: 0.25 });
     obs.observe(iframe);
+
+    // Play button → start video + attempt unmute (user gesture allows it)
+    if (playOverlay) {
+      playOverlay.addEventListener('click', () => {
+        player.play().catch(() => {});
+        player.setMuted(false)
+          .then(() => setSoundUI(false))
+          .catch(() => {
+            player.setMuted(true).catch(() => {});
+            setSoundUI(true); // show audio overlay if unmute blocked
+          });
+      });
+    }
 
     // Big overlay tap → unmute
     if (audioOverlay) {
