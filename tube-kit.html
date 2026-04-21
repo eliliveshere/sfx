@@ -768,9 +768,9 @@
     /* ── Sticky glass bar ──────────────────────────── */
     .sticky-glass {
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
-      padding: 10px 14px 26px;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
+      padding: 10px 16px calc(env(safe-area-inset-bottom, 0px) + 20px);
+      transform: translateY(110%);
+      transition: transform 0.32s cubic-bezier(0.34, 1.18, 0.64, 1);
       pointer-events: none;
     }
 
@@ -784,11 +784,26 @@
       display: flex; align-items: center; gap: 10px;
       padding: 8px;
       border-radius: 18px;
-      background: rgba(10,11,14,0.88);
-      backdrop-filter: blur(16px) saturate(160%);
-      -webkit-backdrop-filter: blur(16px) saturate(160%);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      background: rgba(10,11,14,0.92);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 -4px 0 rgba(255,255,255,0.03), 0 10px 40px rgba(0,0,0,0.6);
+    }
+
+    @media (min-width: 860px) {
+      .sticky-glass {
+        padding: 14px 40px 20px;
+      }
+      .sticky-glass-inner {
+        max-width: 680px;
+        padding: 10px 10px 10px 20px;
+        border-radius: 20px;
+      }
+      .sg-btn {
+        height: 52px;
+        font-size: 16px;
+      }
     }
 
     .sg-info { padding: 0 8px; min-width: 0; }
@@ -818,7 +833,7 @@
 
     /* ── Desktop split hero ────────────────────────── */
     @media (min-width: 860px) {
-      .pdp-wrap { padding-bottom: 60px; }
+      .pdp-wrap { padding-bottom: 0; }
 
       .pdp-topbar, .pdp-topbar-wrap { display: none; }
 
@@ -835,11 +850,12 @@
         overflow: visible;
       }
 
-      /* ── Sections stay readable ──────────────────── */
+      /* ── Sections — full-width stripes ─────────────── */
       .pdp-sections-wrap {
-        max-width: 1280px;
-        margin: 40px auto 0;
-        width: calc(100% - 80px);
+        max-width: none;
+        width: 100%;
+        margin: 0;
+        border-top: 1px solid rgba(255,255,255,0.07);
       }
 
       .pdp-left-col {
@@ -887,48 +903,48 @@
 
       .pdp-right-col .pack-hdr { margin-bottom: 16px; }
 
-      /* Sections below the grid */
-      .pdp-sections-wrap {
-        padding: 0;
-      }
-
+      /* ── Each section: own full-width stripe ──────── */
+      /* Self-centering padding: at ≤1040px feels spacious;
+         on wider screens the horizontal padding grows until
+         content sits at a comfortable ~1040px reading width */
       .pdp-sections-wrap .pdp-sec,
       .pdp-sections-wrap .pdp-sec-wide {
         max-width: none;
-        padding-left: clamp(32px, 4vw, 60px);
-        padding-right: clamp(32px, 4vw, 60px);
+        padding: clamp(56px, 7vw, 96px) max(80px, calc(50vw - 520px));
+        border-bottom: 1px solid rgba(255,255,255,0.05);
       }
 
-      /* Features → 2×3 grid on desktop */
+      /* Alternate subtle background on even stripes */
+      .pdp-sections-wrap .pdp-sec:nth-child(even),
+      .pdp-sections-wrap .spec-feat-wrap > .pdp-sec:last-child,
+      .pdp-sections-wrap .rev-faq-wrap > .pdp-sec:last-child {
+        background: #080910;
+      }
+
+      /* Features → 3-column grid */
       .pdp-sections-wrap .feat-list {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1040px;
+        margin: 0 auto;
       }
 
-      /* Spec + In the Box → side-by-side columns */
-      .pdp-sections-wrap .spec-feat-wrap {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: start;
-      }
+      /* Spec table + box list: constrain for readability */
+      .pdp-sections-wrap .spec-tbl { max-width: 680px; }
+      .pdp-sections-wrap .box-list-new { max-width: 680px; }
+      .pdp-sections-wrap .faq-list-new { max-width: 760px; }
+      .pdp-sections-wrap .review-card-new { max-width: 680px; }
 
-      .pdp-sections-wrap .spec-feat-wrap > .pdp-sec:first-child {
-        border-right: 1px solid rgba(255,255,255,0.06);
-      }
-
-      /* Reviews + FAQ side by side */
+      /* Un-pair spec+box and reviews+FAQ — each is its own stripe */
+      .pdp-sections-wrap .spec-feat-wrap,
       .pdp-sections-wrap .rev-faq-wrap {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: start;
+        display: contents; /* dissolve wrappers, children become direct stripe children */
       }
 
-      .pdp-sections-wrap .rev-faq-wrap > .pdp-sec:first-child {
-        border-right: 1px solid rgba(255,255,255,0.06);
-      }
-
+      /* Use-cases scroll: start flush with section padding edge */
       .pdp-sections-wrap .use-scroll {
-        padding-left: clamp(32px, 4vw, 60px);
-        margin-left: calc(-1 * clamp(32px, 4vw, 60px));
+        padding-left: 0;
+        margin-left: 0;
+        overflow-x: auto;
       }
     }
 
