@@ -355,6 +355,20 @@
 
     .pdp-h1 .dot { color: var(--accent); }
 
+    .pdp-h1 .h1-sfx {
+      display: block;
+      font-size: 0.55em;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-shadow:
+        0 0 12px oklch(0.78 0.22 145 / 0.7),
+        0 0 40px oklch(0.78 0.22 145 / 0.35);
+      margin-bottom: 0.15em;
+      line-height: 1;
+    }
+
     .pdp-tagline {
       margin: 14px 0 0;
       color: var(--ink-60); font-size: 16px;
@@ -505,11 +519,11 @@
 
     .buy-btn-pdp {
       display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; height: 56px; margin-top: 20px;
+      width: 100%; height: 60px; margin-top: 24px;
       border-radius: 14px; border: none; cursor: pointer;
       background: var(--accent);
       color: #06070a;
-      font-family: var(--display); font-size: 16px;
+      font-family: var(--display); font-size: 17px;
       font-weight: 600; letter-spacing: -0.01em;
       text-decoration: none;
       box-shadow: 0 0 20px oklch(0.78 0.22 145 / 0.4);
@@ -841,15 +855,16 @@
       }
 
       .pdp-right-col {
-        padding: clamp(40px, 5vw, 80px) clamp(40px, 6vw, 100px);
+        padding: clamp(48px, 6vw, 96px) clamp(44px, 6.5vw, 110px);
         display: flex; flex-direction: column;
         overflow-y: auto;
+        justify-content: center;
       }
 
-      /* Cap media stage so it stays square on wide screens */
+      /* Cap media stage — 25% smaller than left col max */
       .pdp-left-col .media-wrap {
         width: 100%;
-        max-width: 560px;
+        max-width: 420px;
       }
 
       /* In desktop grid, remove individual mobile padding */
@@ -867,7 +882,7 @@
       }
 
       .pdp-right-col .pack-section {
-        max-width: none; padding: 24px 0 0; margin: 0;
+        max-width: none; padding: 32px 0 0; margin: 0;
       }
 
       .pdp-right-col .pack-hdr { margin-bottom: 16px; }
@@ -1067,7 +1082,7 @@
 
       <!-- Title block -->
       <div class="pdp-title-block">
-        <h1 class="pdp-h1">RGBW Tube Kit<span class="dot">.</span></h1>
+        <h1 class="pdp-h1"><span class="h1-sfx">SFX</span>RGBW Tube Kit<span class="dot">.</span></h1>
         <p class="pdp-tagline">Wireless LED tubes with 500+ fully synchronized reactive animations.
           Plug-and-play — no DMX controller required.</p>
         <div class="rating-row">
